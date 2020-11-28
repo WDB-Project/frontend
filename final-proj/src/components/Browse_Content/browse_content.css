@@ -1,0 +1,13 @@
+.right-side {
+  background: #f1f7ed;
+  margin-left: auto;
+  margin-right: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}

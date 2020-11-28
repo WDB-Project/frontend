@@ -1,0 +1,10 @@
+.green-background {
+  background: #7ca982;
+  width: 40%;
+  height: 1000px;
+  position: sticky;
+}
+
+.checkboxes {
+  background-color: inherit;
+}

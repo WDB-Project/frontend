@@ -1,0 +1,97 @@
+/* Design inspiration:  https://dribbble.com/shots/1978243-Latest-News */
+
+body,
+html {
+  font-family: "Montserrat", sans-serif;
+}
+.card-title {
+  margin: 0;
+  font-size: 20px;
+  padding: 0px 0px 10px 0px;
+}
+
+.tags {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 14px 80px 5px 0px;
+}
+
+.tags li {
+  float: left;
+}
+
+.tag {
+  background: #7ca982;
+  border-radius: 3px 0 0 3px;
+  color: #eee;
+
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 6px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+  display: block;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  content: "";
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #7ca982;
+  border-top: 13px solid transparent;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover {
+  background-color: #243e36;
+  color: white;
+}
+
+.tag:hover::after {
+  border-left-color: #243e36;
+}
+
+.card {
+  padding: 30px;
+  width: 280px;
+  display: block;
+  margin: 0px;
+}
+.card :hover {
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 15px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.date {
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+}
+
+.location {
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+  float: right;
+}
