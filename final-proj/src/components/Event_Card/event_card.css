@@ -2,10 +2,38 @@ body,
 html {
   font-family: "Montserrat", sans-serif;
 }
-.card-title {
+.title-card {
   margin: 0;
   font-size: 20px;
   padding: 0px 0px 10px 0px;
+}
+.entire-card {
+  padding: 30px;
+  width: 280px;
+  display: block;
+  margin: 0px;
+}
+.entire-card :hover {
+  cursor: pointer;
+}
+
+.card-interior {
+  padding: 15px;
+  background-color: #fff;
+  width: inherit;
+}
+
+.date-of-event {
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+}
+
+.location-event {
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+  float: right;
 }
 
 .tags {
@@ -63,33 +91,4 @@ html {
 
 .tag:hover::after {
   border-left-color: #243e36;
-}
-
-.card {
-  padding: 30px;
-  width: 280px;
-  display: block;
-  margin: 0px;
-}
-.card :hover {
-  cursor: pointer;
-}
-
-.card-body {
-  padding: 15px;
-  background-color: #fff;
-  width: 100%;
-}
-
-.date {
-  font-size: 15px;
-  font-weight: 600;
-  color: grey;
-}
-
-.location {
-  font-size: 15px;
-  font-weight: 600;
-  color: grey;
-  float: right;
 }

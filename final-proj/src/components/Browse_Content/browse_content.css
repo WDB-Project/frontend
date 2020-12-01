@@ -1,18 +1,16 @@
 body {
   background: #f1f7ed;
+  width: inherit;
 }
-.right-side {
+.wrapping {
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
-  /* background: #f1f7ed; */
-  float: left;
+  background: #f1f7ed;
+  /* float: left; */
 }
 
-.four-box-per-row {
-}
-
-.title {
+.title-browsing {
   font-size: 40px;
   font-weight: bold;
   position: absolute;
