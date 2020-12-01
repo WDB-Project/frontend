@@ -60,12 +60,7 @@ const Repeater = () => {
 class Browse_Content extends Component {
   render() {
     return (
-      <div>
-        <h1 class="title">
-          Browse Events
-          <h2>5,230 Available Events</h2>
-        </h1>
-
+      <div class="flex">
         <Filter />
         <div>{Repeater()}</div>
       </div>
