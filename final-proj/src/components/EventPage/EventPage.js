@@ -8,18 +8,23 @@ class EventPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {isLoaded: false}
-        
+        this.updateEvent = this.updateEvent.bind(this)
     }
 
     componentDidMount() {
-        axios.post("http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get", {name : this.props.eventID})
+        this.updateEvent()
+    }
+
+    
+    updateEvent() {
+        axios.get(`http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get?id=${this.props.eventID}`)
             .then((result) => {
                 if (!result.data) {
                     this.setState({isLoaded: false, error : "this event does not exist"})
                 } else {
                 this.setState({
                     isLoaded: true,
-                    data : result.data
+                    data : result.data[0]
                 })}},
                 (err) => {
                     console.log(err)
@@ -28,17 +33,35 @@ class EventPage extends React.Component {
             )
     }
 
+    addVolunteer = () => {
+        const node = ReactDOM.findDOMNode(this)
+        const input = node.querySelector('#name-input')
+        const newVolunteer = input.value
+        input.value = ""
+        const newVolunteerArr = this.state.data.volunteers
+        newVolunteerArr.push(newVolunteer)
+        axios.put("http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/add_volunteer", {id: this.state.data._id, volunteers: newVolunteerArr})
+            .then((result) => {
+                
+            }, (err) => {
+                console.log(err)
+                alert("Volunteer addition failed")
+            })
+        this.state.data.volunteers = newVolunteerArr
+        this.forceUpdate()
+    }
 
     render() { 
         if (!this.state.isLoaded) {
             console.log("Loading")
-            return(<div></div>)
+            return(<div>Loading...</div>)
         }
 
         const volunteers = []
-        for (const v of this.state.data.volunteers) {
-            volunteers.push(<li class = "volunteer-list">{v}</li>)
+        for (const [index, value] of this.state.data.volunteers.entries()) {
+            volunteers.push(<li className = "volunteer-list" key = {index}>{value}</li>)
         }
+
         return(
             <div className = 'wrapper'>
                 <div className = 'nav-bar'>
@@ -47,9 +70,9 @@ class EventPage extends React.Component {
                 <div className = 'image'>
                     
                 </div>
-                <div className = 'content'>
+                <div className = 'eventpage-content'>
                     <div className = 'name-signup'>
-                        <div class = 'name-wrap'>
+                        <div className = 'name-wrap'>
                             <h1 className = 'name'>{this.state.data.name}</h1>
                         </div>
                         <div className = 'signup'>
@@ -60,7 +83,12 @@ class EventPage extends React.Component {
                                 <ol className = "vol-wrapper">
                                     {volunteers}
                                 </ol>
-
+                            </div>
+                            <div className = "add-vol">
+                                <div className = 'name-input-wrap'>
+                                    <input className = 'name-input' type = 'text' placeholder = "Enter your name!" id = 'name-input'></input>
+                                    <button className = "button-go" onClick = {this.addVolunteer}>Go!</button>
+                                </div>
                             </div>
                         </div>
                     </div>

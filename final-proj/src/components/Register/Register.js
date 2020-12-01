@@ -4,6 +4,8 @@ import Header from "../NavBar/NavBar.js"
 import axios from 'axios'
 import "./Register.css"
 import {Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+
 const dbUrl = "http://localhost:3000/auth/"
 const finalDbUrl = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get"
 class Register extends React.Component {
@@ -22,7 +24,7 @@ class Register extends React.Component {
         this.setState({switchPage: true})
         e.preventDefault();
         console.log('switch')
-        this.props.history.push('/login');
+        this.props.history.push('/signin');
     }
 
     registerAttempt = (e)  => {
@@ -100,4 +102,4 @@ class Register extends React.Component {
 
 
 
-export default Register;
+export default withRouter(Register);
