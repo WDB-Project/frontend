@@ -4,6 +4,8 @@ body {
 }
 .wrapping-browsing {
   margin-top: 70px;
+  background: #f1f7ed;
+  padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
   /* background: #f1f7ed; */

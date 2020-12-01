@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import EventPage from "./components/EventPage/EventPage";
-import GetEventID from "./components/EventPage/getEventID"
+import GetEventID from "./components/EventPage/getEventID";
 import Header from "./components/NavBar/NavBar";
 import SignIn from "./components/SignIn/SignIn";
 import React, { Component } from "react";
@@ -11,26 +11,26 @@ import {
   Switch,
   Route,
   Link,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path = "/signin">
-          <div className = "signin-wrapper">
+        <Route path="/signin">
+          <div className="signin-wrapper">
             <SignIn />
           </div>
         </Route>
-        <Route path = "/home">
+        <Route path="/home">
           <div>
             <Browse_Content />
           </div>
         </Route>
-        <Route path = "/event/:id" children = {<GetEventID/>}/>
-        <Route path = "/">
-          <Redirect to = "/home"/>
+        <Route path="/event/:id" children={<GetEventID />} />
+        <Route path="/">
+          <Redirect to="/home" />
         </Route>
       </Switch>
     </Router>
