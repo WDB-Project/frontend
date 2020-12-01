@@ -70,7 +70,7 @@ class EventPage extends React.Component {
                 <div className = 'image'>
                     
                 </div>
-                <div className = 'content'>
+                <div className = 'eventpage-content'>
                     <div className = 'name-signup'>
                         <div className = 'name-wrap'>
                             <h1 className = 'name'>{this.state.data.name}</h1>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./browse_content.css";
 import Event_Card from "../Event_Card/Event_Card";
 import Filter from "../filter/filter";
+import Header from "../NavBar/NavBar";
 
 const a = [
   {
@@ -61,13 +62,19 @@ class Browse_Content extends Component {
   render() {
     return (
       <div>
-        <h1 class="title-browse">
-          Browse Events
-          <div id="available-events">5,230 Available Events</div>
-        </h1>
+        <div>
+          <Header />
+        </div>
+        
+        <div>
+          <h1 className="title-browse">
+            Browse Events
+            <div id="available-events">5,230 Available Events</div>
+          </h1>
 
-        <Filter />
-        <div>{Repeater()}</div>
+          <Filter />
+          <div>{Repeater()}</div>
+        </div>
       </div>
     );
   }

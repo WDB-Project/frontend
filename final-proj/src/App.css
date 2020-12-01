@@ -43,3 +43,10 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.signin-wrapper {
+  height: 100%;
+  background-color: #F1F7ED;
+  display: flex;
+  justify-content: center;
+}

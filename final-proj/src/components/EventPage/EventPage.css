@@ -10,7 +10,7 @@
     background-color: rgb(36, 62, 54);
 }
 
-.content {
+.eventpage-content {
     display: flex;
     flex-direction: row;
     height: 66%;
