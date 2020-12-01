@@ -1,16 +1,16 @@
 body {
   background: #f1f7ed;
-  width: inherit;
+  padding-top: 60px;
 }
-.wrapping {
-  margin-top: 50px;
+.wrapping-browsing {
+  margin-top: 70px;
   display: flex;
   flex-wrap: wrap;
-  background: #f1f7ed;
-  /* float: left; */
+  /* background: #f1f7ed; */
+  float: left;
 }
 
-.title-browsing {
+.title-browse {
   font-size: 40px;
   font-weight: bold;
   position: absolute;
@@ -18,8 +18,8 @@ body {
   margin: 20px;
 }
 
-h2 {
-  font-size: 20px;
+#available-events {
+  font-size: 22px;
   margin: 2px;
   font-weight: normal;
 }

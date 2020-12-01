@@ -7,34 +7,6 @@ html {
   font-size: 20px;
   padding: 0px 0px 10px 0px;
 }
-.entire-card {
-  padding: 30px;
-  width: 280px;
-  display: block;
-  margin: 0px;
-}
-.entire-card :hover {
-  cursor: pointer;
-}
-
-.card-interior {
-  padding: 15px;
-  background-color: #fff;
-  width: inherit;
-}
-
-.date-of-event {
-  font-size: 15px;
-  font-weight: 600;
-  color: grey;
-}
-
-.location-event {
-  font-size: 15px;
-  font-weight: 600;
-  color: grey;
-  float: right;
-}
 
 .tags {
   list-style: none;
@@ -91,4 +63,37 @@ html {
 
 .tag:hover::after {
   border-left-color: #243e36;
+}
+
+.padding-between-cards {
+  padding: 5px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.card {
+  padding: 30px;
+  width: 280px;
+  display: block;
+  margin: 0px;
+}
+.card :hover {
+  cursor: pointer;
+}
+
+.card-body {
+  background-color: #fff;
+  width: 100%;
+}
+
+.date-event {
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+}
+
+.location-event {
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+  float: right;
 }
