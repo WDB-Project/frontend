@@ -1,7 +1,7 @@
 body {
   background: #f1f7ed;
 }
-.right-side {
+.wrapping-browsing {
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -9,10 +9,7 @@ body {
   float: left;
 }
 
-.four-box-per-row {
-}
-
-.title {
+.title-browse {
   font-size: 40px;
   font-weight: bold;
   position: absolute;

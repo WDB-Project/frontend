@@ -49,7 +49,7 @@ const a = [
 ];
 const Repeater = () => {
   return (
-    <ul class="right-side">
+    <ul class="wrapping-browsing">
       {a.map((event) => {
         return <Event_Card event={event} />;
       })}
@@ -61,7 +61,7 @@ class Browse_Content extends Component {
   render() {
     return (
       <div>
-        <h1 class="title">
+        <h1 class="title-browse">
           Browse Events
           <h2>5,230 Available Events</h2>
         </h1>

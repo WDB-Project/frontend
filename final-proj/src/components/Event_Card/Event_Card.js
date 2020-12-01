@@ -3,18 +3,14 @@ import "./event_card.css";
 
 const Event_Card = ({ event }) => {
   return (
-    <div class="card">
-      <img
-        class="card-img-top"
-        src="http://placecorgi.com/310/178.34"
-        alt="Card image cap"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{event.title}</h5>
-        <div class="date">
-          <div class="location">{event.location}</div>
+    <div class="card-entire">
+      <img src="http://placecorgi.com/310/178.34" alt="Card image cap" />
+      <div class="card-interior">
+        <h5 class="title-card">{event.title}</h5>
+        <div class="date-event">
+          <div class="location-event">{event.location}</div>
         </div>
-        <div class="date">{event.date}</div>
+        <div class="date-event">{event.date}</div>
 
         <ul class="tags">
           <li>
