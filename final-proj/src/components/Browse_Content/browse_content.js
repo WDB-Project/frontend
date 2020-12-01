@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./browse_content.css";
-import Event_Card from "../Event_Card/event_card";
+import Event_Card from "../Event_Card/Event_Card";
 import Filter from "../filter/filter";
 
 const a = [
@@ -60,7 +60,12 @@ const Repeater = () => {
 class Browse_Content extends Component {
   render() {
     return (
-      <div class="flex">
+      <div>
+        <h1 class="title">
+          Browse Events
+          <h2>5,230 Available Events</h2>
+        </h1>
+
         <Filter />
         <div>{Repeater()}</div>
       </div>
