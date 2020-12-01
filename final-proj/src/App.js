@@ -2,44 +2,19 @@
 // import './App.css';
 import React from "react";
 import Header from './components/NavBar/NavBar'
-
+import PopEvents from './components/Popular_Events/Popular_Events'
+import HomePage from './components/Home_Page/Home_Page'
+import SignInCard from './components/Sign_In/Sign_In_Card'
 
 // function App() {
 
 class App extends React.Component {
   render() {
     return (
-      <Header />
+      <div>
+      <HomePage />
+      </div>
     );
   }
 }
-  // class App extends React.Component {
-  //   render() {
-  //     return (
-  //       <div>
-  //         <NavBar />
-  //       </div>
-  //     );
-  //   }
-  // };
-
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-  // );
-
-
 export default App;
