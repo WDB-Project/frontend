@@ -12,7 +12,7 @@ function App() {
       <Browse_Content />
       <SignIn />
     </div>
-    // <EventPage eventID = "test_volunteer_event" />
+    // <EventPage eventID = "5fbf0065b49be52c2bed16bf" />
   );
 }
 
