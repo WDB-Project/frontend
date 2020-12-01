@@ -4,7 +4,7 @@ import EventPage from  './components/EventPage/EventPage'
 import Header from './components/NavBar/NavBar'
 function App() {
   return (
-      <EventPage eventID = "test_voluneer_event" />
+      <EventPage eventID = "5fbf0065b49be52c2bed16bf" />
   );
 }
 
