@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Header from '/Users/isabelzheng/WDB_final_proj/front-end/final-proj/src/components/NavBar/NavBar'
-import PopEvents from  '/Users/isabelzheng/WDB_final_proj/front-end/final-proj/src/components/Popular_Events/Popular_Events'
-import SignInCard from '/Users/isabelzheng/WDB_final_proj/front-end/final-proj/src/components/Sign_In/Sign_In_Card'
+import Header from '../NavBar/NavBar'
+import PopEvents from  '../Popular_Events/Popular_Events'
+import SignInCard from '../Sign_In/Sign_In_Card'
 
 class HomePage extends Component{
   render(){

@@ -17,7 +17,7 @@ class EventPage extends React.Component {
 
     
     updateEvent() {
-        axios.get(`http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get?id=${this.props.eventID}`)
+        axios.get(`http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get?_id=${this.props.eventID}`)
             .then((result) => {
                 if (!result.data) {
                     this.setState({isLoaded: false, error : "this event does not exist"})

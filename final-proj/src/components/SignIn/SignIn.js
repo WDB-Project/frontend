@@ -27,7 +27,9 @@ class SignIn extends React.Component {
             password: pwd
         }).then((result) => {
                 if (result.data.message == "success") {
-                    console.log("Logged in! Token: " + result.token);
+                    console.log("Logged in! Token: " + result.data.token);
+                    localStorage.setItem('token', result.data.token)
+                    localStorage.setItem('userID', result.data.userID)
                     this.props.history.push('/browse');
                 } else {
                     console.log("Did not log in");

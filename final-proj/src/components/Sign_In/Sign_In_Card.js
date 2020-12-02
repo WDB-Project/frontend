@@ -35,7 +35,7 @@ class SignInCard extends Component{
             </Button>
             <div className="d-flex flex-column align-items-center align-content-center" >
               <p style={{marginBottom: .75}}>Don't have an account?</p>
-              <button type="button" class="btn btn-secondary btn-sm" style={buttonStyle}>
+              <button type="button" className="btn btn-secondary btn-sm" style={buttonStyle}>
               Sign up!
               </button>
             </div>
