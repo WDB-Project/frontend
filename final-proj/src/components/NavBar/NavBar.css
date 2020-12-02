@@ -1,7 +1,11 @@
 .bigblue {
-  color: red;
+  background-color: red;
 }
 
 .color {
   background-color: "red";
+}
+
+.font {
+  font-family: 'Montserrat', sans-serif;
 }

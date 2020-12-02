@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./NavBar.css";
+import "./NavBar.css";
 
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
@@ -36,7 +36,7 @@ class Header extends Component{
                 <Nav className="mrx-auto" navbar>
 
                 <NavItem className="d-flex align-items-center">
-                  <NavLink className="font-weight-bold" style={{color: "#7CA982"}} href="/">Up&Coming</NavLink>
+                  <NavLink className="font-weight-bold font" style={{color: "#7CA982"}} href="/">Up&Coming</NavLink>
                 </NavItem>
 
                 </Nav>
