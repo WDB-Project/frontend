@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+hello world
+second edit
+=======
 import React, { Component } from "react";
 import "./event_card.css";
 
@@ -24,3 +28,4 @@ const Event_Card = ({ event }) => {
   );
 };
 export default Event_Card;
+>>>>>>> origin
