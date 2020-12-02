@@ -22,15 +22,13 @@ class SignIn extends React.Component {
         console.log("login attempt")
         const uName = this.usernameRef.current.value;
         const pwd = this.passwordRef.current.value;
-        axios.post(dbUrl +"login", {
+        axios.post(finalDbUrl +"login", {
             username: uName,
             password: pwd
         }).then((result) => {
                 if (result.data.message == "success") {
                     console.log("Logged in! Token: " + result.token);
-                    window.open("//google.com", '_blank');
-                    // uncomment once done
-                    // this.props.history.push('/events');
+                    this.props.history.push('/browse');
                 } else {
                     console.log("Did not log in");
                     // this.props.history.go(0);

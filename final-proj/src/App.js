@@ -6,6 +6,7 @@ import Header from "./components/NavBar/NavBar";
 import SignIn from "./components/SignIn/SignIn";
 import React, { Component } from "react";
 import Browse_Content from "./components/Browse_Content/browse_content";
+import PopEvents from "./components/Popular_Events/Popular_Events"
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +19,7 @@ import HomePage from './components/Home_Page/Home_Page'
 import Register from './components/Register/Register'
 function App() {
   return (
+<<<<<<< HEAD
     <HomePage />
     // <Router>
     //   <Switch>
@@ -42,6 +44,37 @@ function App() {
     //     </Route>
     //   </Switch>
     // </Router>
+=======
+    <Router>
+      <Switch>
+        <Route path="/signin">
+          <div className="signin-wrapper">
+            <SignIn />
+          </div>
+        </Route>
+        <Route path="/register">
+          <div className="signin-wrapper">
+            <Register/>
+          </div>
+        </Route>
+        <Route path="/browse">
+          <div>
+            <Browse_Content />
+          </div>
+        </Route>
+        <Route path="/home" >
+          <div>
+            <PopEvents />
+          </div>
+        </Route>
+        <Route path="/event/:id" children={<GetEventID />} />
+        <Route path="/">
+          <Redirect to="/browse" />
+        </Route>
+      </Switch>
+    </Router>
+    // <EventPage eventID = "5fbf0065b49be52c2bed16bf" />
+>>>>>>> 47f7702db79e5d9eef00fb6c581a9d61856f2f9a
   );
 }
 
