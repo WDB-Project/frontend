@@ -6,6 +6,7 @@ import Header from "./components/NavBar/NavBar";
 import SignIn from "./components/SignIn/SignIn";
 import React, { Component } from "react";
 import Browse_Content from "./components/Browse_Content/browse_content";
+import PopEvents from "./components/Popular_Events/Popular_Events"
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,9 +35,14 @@ function App() {
             <Browse_Content />
           </div>
         </Route>
+        <Route path="/home" >
+          <div>
+            <PopEvents />
+          </div>
+        </Route>
         <Route path="/event/:id" children={<GetEventID />} />
         <Route path="/">
-          <Redirect to="/home" />
+          <Redirect to="/browse" />
         </Route>
       </Switch>
     </Router>
