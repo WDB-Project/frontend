@@ -29,7 +29,7 @@ function App() {
             <Register/>
           </div>
         </Route>
-        <Route path="/home">
+        <Route path="/browse">
           <div>
             <Browse_Content />
           </div>
