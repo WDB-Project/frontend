@@ -13,34 +13,35 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
+import HomePage from './components/Home_Page/Home_Page'
 
 import Register from './components/Register/Register'
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/signin">
-          <div className="signin-wrapper">
-            <SignIn />
-          </div>
-        </Route>
-        <Route path="/register">
-          <div className="signin-wrapper">
-            <Register/>
-          </div>
-        </Route>
-        <Route path="/home">
-          <div>
-            <Browse_Content />
-          </div>
-        </Route>
-        <Route path="/event/:id" children={<GetEventID />} />
-        <Route path="/">
-          <Redirect to="/home" />
-        </Route>
-      </Switch>
-    </Router>
-    // <EventPage eventID = "5fbf0065b49be52c2bed16bf" />
+    <HomePage />
+    // <Router>
+    //   <Switch>
+    //     <Route path="/signin">
+    //       <div className="signin-wrapper">
+    //         <SignIn />
+    //       </div>
+    //     </Route>
+    //     <Route path="/register">
+    //       <div className="signin-wrapper">
+    //         <Register/>
+    //       </div>
+    //     </Route>
+    //     <Route path="/home">
+    //       <div>
+    //         <Browse_Content />
+    //       </div>
+    //     </Route>
+    //     <Route path="/event/:id" children={<GetEventID />} />
+    //     <Route path="/">
+    //       <Redirect to="/home" />
+    //     </Route>
+    //   </Switch>
+    // </Router>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, ListGroup, Row, Col } from 'react-bootstrap';
+import "./PopularEvents.css"
 
 
 class PopEvents extends Component{
@@ -20,7 +21,7 @@ class PopEvents extends Component{
     };
     return (
       <Card style={cardStyle}>
-        <Card.Header style={title}>Popular</Card.Header>
+        <Card.Header className="MontserratFont" style={title}>Upcoming</Card.Header>
         <ListGroup variant="flush">
           <ListGroup.Item>
             <Row noGutters>

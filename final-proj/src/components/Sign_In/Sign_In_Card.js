@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, button } from 'react-bootstrap';
+import "./SignInCard.css"
 
 class SignInCard extends Component{
   render(){
@@ -13,10 +14,10 @@ class SignInCard extends Component{
     };
 
     return (
-      <div style={{width: 500}}>
-        <Form style={{backgroundColor: '#7CA982'}}>
-          <h2>Sign In</h2>
-          <div style={{padding: 10}}>
+      <div style={{width: 500, borderRadius: '5px!important'}}>
+        <Form className="padding" style={{backgroundColor: '#7CA982'}}>
+          <h2 className="MontserratFont title">Sign In</h2>
+          <div>
             <Form.Group controlId="formBasicEmail">
               <Form.Label style={textStyle}>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />

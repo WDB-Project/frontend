@@ -1,0 +1,13 @@
+.MontserratFont {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title {
+  color: white;
+  font-size: 25px;
+  padding: 2px;
+}
+
+.padding{
+  padding: 30px;
+}
