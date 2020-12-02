@@ -12,17 +12,22 @@ class EventPage extends React.Component {
         super(props)
         this.state = {isLoaded: false}
         this.updateEvent = this.updateEvent.bind(this)
-        this.getVolunteers = this.getVolunteers.bind(this)
         this.buttonRef = React.createRef()
+        this.state.user = JSON.parse(localStorage.getItem('user'))
     }
 
     componentDidMount() {
         this._isMounted = true;
         try {
             this.updateEvent(() => {
-            console.log(this.state.data)
-            this.getVolunteers()
-            if (this.state.data.volunteers.includes(localStorage.getItem('userID'))) {
+            var volunteers = []
+            console.log(this.state.data.volunteers)
+            for (const [index, value] of this.state.data.volunteers.entries()) {
+                volunteers.push(<li className = "volunteer-list" key = {index}>{JSON.parse(value).realname}</li>)
+            }
+
+            this.setState({volunteers: volunteers})
+            if (this.state.data.volunteers.includes(JSON.stringify(this.state.user))) {
                 this.setState({join: "Leave Event", update: this.deleteVolunteer})
             } else {
                 this.setState({join: "Join This Event!", update: this.addVolunteer})
@@ -55,7 +60,7 @@ class EventPage extends React.Component {
     }
 
     addVolunteer = () => {
-        this.state.data.volunteers.push(localStorage.getItem('userID'))
+        this.state.data.volunteers.push(JSON.stringify(this.state.user))
         let config = {headers : {"Authorization" : "Bearer " + localStorage.getItem('token')}}
         let body = {id: this.state.data._id, volunteers: this.state.data.volunteers}
         axios.put(url + "/events/signup", body, config)
@@ -70,7 +75,7 @@ class EventPage extends React.Component {
     }
 
     deleteVolunteer = () => {
-        var index = this.state.data.volunteers.indexOf(localStorage.getItem('userID'))
+        var index = this.state.data.volunteers.indexOf(JSON.stringify(this.state.user))
         this.state.data.volunteers.splice(index, 1)
         let config = {headers : {"Authorization" : "Bearer " + localStorage.getItem('token')}}
         let body = {id: this.state.data._id, volunteers: this.state.data.volunteers}
@@ -81,43 +86,11 @@ class EventPage extends React.Component {
             }, (err) => {
                 console.log(err)
                 alert("Volunteer deletion failed")
-                this.state.data.volunteers.push(localStorage.getItem('userID'))
+                this.state.data.volunteers.push(this.state.user)
             })
     }
 
-    getUser = (uid, callback) => {
-        let config = {headers : {"Authorization" : "Bearer " + localStorage.getItem('token')}}
-        var res;
-        axios.get(url + "/profile/basic?uid=" + localStorage.getItem('userID'), config)
-            .then((result) => {
-                res = result.data.realname
-                callback(res)
-            }, (err) => {
-                console.log(err)
-                res = false
-                callback(res)
-            })
-    }
-
-    getVolunteers = () => {
-        this._isMounted = true;
-        var volunteers = []
-        var vol;
-        if (localStorage.getItem('token')) {
-            for (const [index, value] of this.state.data.volunteers.entries()) {
-                this.getUser(value, (res) => {
-                    if (res) {
-                        volunteers.push(<li className = "volunteer-list" key = {index}>{res}</li>)
-                        this.setState({'volunteers': volunteers})
-                    }
-                })                
-            }
-        } else {
-            volunteers.push("Sign in to view volunteers")
-            this.setState({'volunteers': volunteers})
-        }
-        
-    }
+    
 
     render() { 
         if (!this.state.isLoaded) {
@@ -133,7 +106,7 @@ class EventPage extends React.Component {
                         <Header />
                 </div>
                 <div className = 'image'>
-                    <img class = "title-image" src={this.state.data.image} alt = ""/>
+                    <img className = "title-image" src={this.state.data.image} alt = ""/>
                 </div>
                 <div className = 'eventpage-content'>
                     <div className = 'name-signup'>
