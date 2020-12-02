@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import EventPage from "./components/EventPage/EventPage";
+import GetEventID from "./components/EventPage/getEventID";
+import Header from "./components/NavBar/NavBar";
+import SignIn from "./components/SignIn/SignIn";
+import React, { Component } from "react";
+import Browse_Content from "./components/Browse_Content/browse_content";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
+import Register from './components/Register/Register'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/signin">
+          <div className="signin-wrapper">
+            <SignIn />
+          </div>
+        </Route>
+        <Route path="/register">
+          <div className="signin-wrapper">
+            <Register/>
+          </div>
+        </Route>
+        <Route path="/home">
+          <div>
+            <Browse_Content />
+          </div>
+        </Route>
+        <Route path="/event/:id" children={<GetEventID />} />
+        <Route path="/">
+          <Redirect to="/home" />
+        </Route>
+      </Switch>
+    </Router>
+    // <EventPage eventID = "5fbf0065b49be52c2bed16bf" />
   );
 }
 
