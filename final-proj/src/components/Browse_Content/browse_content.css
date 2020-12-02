@@ -1,0 +1,27 @@
+body {
+  background: #f1f7ed;
+  padding-top: 60px;
+}
+.wrapping-browsing {
+  margin-top: 70px;
+  background: #f1f7ed;
+  padding-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* background: #f1f7ed; */
+  float: left;
+}
+
+.title-browse {
+  font-size: 40px;
+  font-weight: bold;
+  position: absolute;
+  padding: 20px 50px 50px 50px;
+  margin: 20px;
+}
+
+#available-events {
+  font-size: 22px;
+  margin: 2px;
+  font-weight: normal;
+}

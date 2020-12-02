@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import "./NavBar.css";
+=======
+import styles from "./NavBar.css";
+>>>>>>> c983d0e06feb8591c93a422fbf7d474c6160db1d
 
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
@@ -36,7 +40,11 @@ class Header extends Component{
                 <Nav className="mrx-auto" navbar>
 
                 <NavItem className="d-flex align-items-center">
+<<<<<<< HEAD
                   <NavLink className="font-weight-bold font" style={{color: "#7CA982"}} href="/">Up&Coming</NavLink>
+=======
+                  <NavLink className="font-weight-bold" style={{color: "#7CA982"}} href="/">Up&Coming</NavLink>
+>>>>>>> c983d0e06feb8591c93a422fbf7d474c6160db1d
                 </NavItem>
 
                 </Nav>
@@ -65,3 +73,8 @@ class Header extends Component{
 }
 
 export default Header;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> c983d0e06feb8591c93a422fbf7d474c6160db1d
