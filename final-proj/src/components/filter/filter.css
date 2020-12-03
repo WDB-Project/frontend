@@ -1,27 +1,14 @@
-/* .green-background {
-  background: #7ca982;
-  width: 40%;
-  height: 1000px;
-  position: sticky;
-} */
 body {
   background-color: #f1f7ed;
 }
-.dropdown-size {
-  /* width: 20%; */
-  /* margin-top: 20px; */
-  padding: 0px 0px 0px 20px;
-  /* float: right; */
-  position: absolute;
-}
-.flex {
-  width: 20%;
-  margin-top: 50px;
 
+.dropdown {
+  margin: 70px;
   float: right;
-  display: flex;
-  flex-wrap: wrap;
+  width: 15%;
 }
-.sort-wording {
-  margin-top: 8px;
+
+#search-button {
+  margin-top: 20px;
+  align-self: center;
 }

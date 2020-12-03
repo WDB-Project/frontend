@@ -144,7 +144,9 @@ class Browse_Content extends Component {
         <div>
           <Header />
         </div>
-        <Filter />
+        <div>
+          <Filter />
+        </div>
         <div className="upcoming-past-sectioning">
           <div className="entire-screen">
             <div className="header">

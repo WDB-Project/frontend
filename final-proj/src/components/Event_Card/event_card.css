@@ -85,17 +85,18 @@ html {
   margin-left: 20px;
   margin-bottom: 20px;
 }
-.card {
+
+.padding-between-cards:hover {
+  box-shadow: 5px 5px 30px 11px rgba(0, 0, 0, 0.26);
+}
+/* .card {
   padding: 30px;
   max-width: 320px;
   width: 100%;
   display: block;
   margin: 0px;
   word-wrap: break-word;
-}
-.card :hover {
-  cursor: pointer;
-}
+} */
 
 .card-body {
   background-color: #fff;
@@ -118,11 +119,17 @@ html {
 }
 .upcoming-past {
   border-style: solid;
-  width: 50%;
+  width: 40%;
   text-align: center;
   float: right;
 }
 
-.entire-card {
-  background-color: blue;
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: black;
+  text-decoration: none;
 }
