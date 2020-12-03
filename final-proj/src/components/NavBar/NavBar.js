@@ -52,7 +52,7 @@ class Header extends Component{
 
 
               <Col className="d-none d-lg-flex justify-content-end">
-                <NavLink className="font" style={browseStyle} href="/Browse_Content">Browse</NavLink>
+                <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                 <Form inline>
                   <Button style={buttonStyle} outline>Create Event</Button>
                 </Form>

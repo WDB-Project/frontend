@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from "../NavBar/NavBar.js" 
 import axios from 'axios'
 import "./EventPage.css"
+import ErrorPage from "../ErrorPage/ErrorPage"
 const url = `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`
 
 class EventPage extends React.Component {
@@ -95,7 +96,11 @@ class EventPage extends React.Component {
     render() { 
         if (!this.state.isLoaded) {
             console.log("Loading")
-            return(<div>Loading...</div>)
+            if (this.state.error) {
+                return(<ErrorPage/>)
+            } else {
+                return(<div>Loading...</div>)
+            }
         }
 
         
