@@ -51,3 +51,9 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.background-img {
+  background-image: url(https://burst.shopifycdn.com/photos/concert-audience.jpg?width=1200&format=pjpg&exif=0&iptc=0);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
