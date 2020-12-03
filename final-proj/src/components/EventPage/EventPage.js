@@ -34,7 +34,7 @@ class EventPage extends React.Component {
             } else if (!this.state.user) {
                 this.setState({button: <button className = "button-go" ref = {this.buttonRef}>Sign In to Join</button>})
             } else {
-                this.setState({button: <button className = "button-go" onClick = {this.state.update} ref = {this.buttonRef}>Join this Event!</button>})
+                this.setState({button: <button className = "button-go" onClick = {this.addVolunteer} ref = {this.buttonRef}>Join this Event!</button>})
             }
             })    
         } catch(err) {
