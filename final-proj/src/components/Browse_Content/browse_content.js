@@ -3,9 +3,10 @@ import "./browse_content.css";
 import Event_Card from "../Event_Card/Event_Card";
 import Filter from "../filter/filter";
 import Header from "../NavBar/NavBar";
-import axios from "axios"; 
+import axios from "axios";
 
-const url = "http://localhost:3030/events/get"
+const EVENT_LIST_API =
+  "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get";
 
 // const events = [
 //   {
@@ -80,57 +81,62 @@ const url = "http://localhost:3030/events/get"
 //   }
 // ];
 
-const Repeater = (events) => {
+const Repeater = (items) => {
+  if (items == undefined) {
+    return null;
+  }
   return (
-    <ul class="wrapping-browsing">
-      {events.map((event) => {
-        return <Event_Card event={event} />;
-      })}
-    </ul>
+    <div id="background-coloring">
+      <ul class="wrapping-browsing">
+        {items.map((event) => {
+          return <Event_Card event={event} />;
+        })}
+      </ul>
+    </div>
   );
 };
 
 class Browse_Content extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isLoaded: false,
-      data: undefined
-    }
-    this.getEvents = this.getEvents.bind(this)
+      data: undefined,
+    };
+    this.getEvents = this.getEvents.bind(this);
   }
 
   componentDidMount() {
-    this.getEvents()
+    this.getEvents();
+    console.log(this.state.data);
   }
 
   getEvents() {
-    axios.get('http://localhost:3030/events/get')
+    axios
+      .get(EVENT_LIST_API)
       .then((response) => {
+        console.log(response);
         this.setState({
           isLoaded: true,
-          data: response.data
-        })
-      }).catch((error) => {
-        console.log(error)
-        this.setState({
-          isLoaded: true,
-          error: error
-        })
+          data: response.data,
+        });
       })
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          isLoaded: true,
+          error: error,
+        });
+      });
   }
-
 
   render() {
     if (!this.state.isLoaded) {
       if (this.state.error) {
-        return (
-          <div>{this.state.error}</div>
-        )
+        return <div>{this.state.error}</div>;
       } else {
-        return (
-        <div>Loading...</div>
-      )}
+        return <div>Loading...</div>;
+      }
     }
 
     return (
@@ -138,7 +144,7 @@ class Browse_Content extends Component {
         <div>
           <Header />
         </div>
-        
+
         <div>
           <h1 className="title-browse">
             Browse Events
@@ -148,15 +154,18 @@ class Browse_Content extends Component {
           <Filter />
 
           <div className="event-type">
-            <div className="event-list">{Repeater(this.state.data.upcoming)}</div>
+            <div className="event-list">
+              {Repeater(this.state.data.upcoming)}
+            </div>
           </div>
           <div className="event-type">
-            <div className="event-list">{Repeater(this.state.data.ongoing)}</div>
+            <div className="event-list">
+              {Repeater(this.state.data.ongoing)}
+            </div>
           </div>
           <div className="event-type">
             <div className="event-list">{Repeater(this.state.data.past)}</div>
           </div>
-          
         </div>
       </div>
     );
@@ -164,8 +173,6 @@ class Browse_Content extends Component {
 }
 
 export default Browse_Content;
-
-
 
 // {
 //   title: "Birthday Party",

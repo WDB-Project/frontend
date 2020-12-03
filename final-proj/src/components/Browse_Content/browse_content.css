@@ -10,20 +10,23 @@ body {
 }
 
 .wrapping-browsing {
-  margin-top: 70px;
-  /* background: #f1f7ed; */
+  margin-top: 100px;
   padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  /* background: #f1f7ed; */
   float: left;
 }
 
+#background-coloring {
+  background-color: #f1f7ed;
+  display: flex;
+  flex-grow: 1;
+}
 .title-browse {
   font-size: 40px;
   font-weight: bold;
   position: absolute;
-  padding: 20px 50px 50px 50px;
+  padding: 20px 50px 80px 50px;
   margin: 20px;
 }
 
