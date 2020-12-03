@@ -19,6 +19,8 @@
 .image {
     height: 35%;
     background: grey;
+    display: flex;
+    justify-content: center;
 }
 
 .name-signup {
@@ -33,11 +35,12 @@
 .name-wrap {
     margin-top: 10%;
     margin-left: 20%;
+    overflow: hidden;
 }
 
 .name {
     font-family: Arial, sans-serif;
-    font-size: 48px;
+    font-size: 40px;
 }
 
 .banner {
@@ -114,8 +117,26 @@
     outline: none;
     color: grey;
     border-radius: 7px;
-    margin-left: 30px;
+    
     height: 40px;
-    width: 50px;    
+    width: 200px;    
     font-size: 20px;
+}
+
+.button-go:focus{
+    outline: none;
+}
+
+.button-go:hover {
+    background-color: #d2e0b8;
+}
+
+.add-vol {
+    display: flex;
+    justify-content: center;
+}
+
+.title-image {
+    height: 100%;
+    width: auto;
 }

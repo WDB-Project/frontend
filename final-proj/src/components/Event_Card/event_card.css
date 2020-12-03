@@ -2,10 +2,26 @@ body,
 html {
   font-family: "Montserrat", sans-serif;
 }
+
+.image-spacing {
+  height: 195px;
+  width: 320px;
+  background-color: white;
+}
+
+.image-spacing img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+  display: block;
+}
+
 .title-card {
   margin: 0;
+  display: flex;
   font-size: 20px;
   padding: 0px 0px 10px 0px;
+  word-wrap: break-word;
 }
 
 .tags {
@@ -72,9 +88,11 @@ html {
 }
 .card {
   padding: 30px;
-  width: 280px;
+  max-width: 320px;
+  width: 100%;
   display: block;
   margin: 0px;
+  word-wrap: break-word;
 }
 .card :hover {
   cursor: pointer;
@@ -82,7 +100,9 @@ html {
 
 .card-body {
   background-color: #fff;
-  width: 100%;
+  max-width: 320px;
+  width: 320px;
+  word-wrap: break-word;
 }
 
 .date-event {
@@ -95,5 +115,11 @@ html {
   font-size: 15px;
   font-weight: 600;
   color: grey;
+  float: right;
+}
+.upcoming-past {
+  border-style: solid;
+  width: 50%;
+  text-align: center;
   float: right;
 }

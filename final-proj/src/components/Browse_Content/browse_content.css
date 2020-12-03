@@ -2,21 +2,31 @@ body {
   background: #f1f7ed;
   padding-top: 60px;
 }
-.wrapping-browsing {
-  margin-top: 70px;
+
+.event-type {
   background: #f1f7ed;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.wrapping-browsing {
+  margin-top: 100px;
   padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
-  /* background: #f1f7ed; */
   float: left;
 }
 
+#background-coloring {
+  background-color: #f1f7ed;
+  display: flex;
+  flex-grow: 1;
+}
 .title-browse {
   font-size: 40px;
   font-weight: bold;
   position: absolute;
-  padding: 20px 50px 50px 50px;
+  padding: 20px 50px 80px 50px;
   margin: 20px;
 }
 

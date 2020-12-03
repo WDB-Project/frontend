@@ -3,14 +3,26 @@ import "./event_card.css";
 
 const Event_Card = ({ event }) => {
   return (
-    <div className="padding-between-cards">
-      <img src="http://placecorgi.com/310/178.34" alt="Card image cap" />
-      <div className="card-body">
-        <h5 className="title-card">{event.title}</h5>
-        <div className="date-event">
-          <div className="location-event">{event.location}</div>
+    <div class="padding-between-cards">
+      <div class="image-spacing">
+        <img src={event.image} alt="event image" />
+      </div>
+      <div class="card-body">
+        <h5 class="title-card">{event.name}</h5>
+        <div class="date-event">
+          <div class="upcoming-past">UPCOMING</div>
         </div>
-        <div className="date-event">{event.date}</div>
+        <div class="date-event">
+          <div class="date">
+            Start: {new Date(event.startDate).toString().slice(4, 15)}
+          </div>
+          <div class="date">
+            End: {new Date(event.endDate).toString().slice(4, 15)}
+          </div>
+        </div>
+        <div class="date-event">
+          <div>Location: {event.location}</div>
+        </div>
 
         <ul className="tags">
           <li>
@@ -23,4 +35,5 @@ const Event_Card = ({ event }) => {
     </div>
   );
 };
+
 export default Event_Card;

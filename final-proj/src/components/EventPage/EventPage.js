@@ -3,29 +3,55 @@ import ReactDOM from 'react-dom';
 import Header from "../NavBar/NavBar.js" 
 import axios from 'axios'
 import "./EventPage.css"
+const url = `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`
 
 class EventPage extends React.Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props)
         this.state = {isLoaded: false}
         this.updateEvent = this.updateEvent.bind(this)
+        this.buttonRef = React.createRef()
+        this.state.user = JSON.parse(localStorage.getItem('user'))
     }
 
     componentDidMount() {
-        this.updateEvent()
+        this._isMounted = true;
+        try {
+            this.updateEvent(() => {
+            var volunteers = []
+            console.log(this.state.data.volunteers)
+            for (const [index, value] of this.state.data.volunteers.entries()) {
+                volunteers.push(<li className = "volunteer-list" key = {index}>{JSON.parse(value).realname}</li>)
+            }
+
+            this.setState({volunteers: volunteers})
+            if (this.state.data.volunteers.includes(JSON.stringify(this.state.user))) {
+                this.setState({join: "Leave Event", update: this.deleteVolunteer})
+            } else {
+                this.setState({join: "Join This Event!", update: this.addVolunteer})
+            }
+            })    
+        } catch(err) {
+            console.log(err)
+            this.setState({isLoaded: false})
+        }
     }
 
     
-    updateEvent() {
-        axios.get(`http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get?id=${this.props.eventID}`)
+    updateEvent(callback) {
+        axios.get(url + `/events/get?_id=${this.props.eventID}`)
             .then((result) => {
                 if (!result.data) {
                     this.setState({isLoaded: false, error : "this event does not exist"})
+                    callback()
                 } else {
                 this.setState({
                     isLoaded: true,
                     data : result.data[0]
-                })}},
+                })}
+                callback()},
                 (err) => {
                     console.log(err)
                     this.setState({isLoaded: false, error : err})
@@ -34,22 +60,37 @@ class EventPage extends React.Component {
     }
 
     addVolunteer = () => {
-        const node = ReactDOM.findDOMNode(this)
-        const input = node.querySelector('#name-input')
-        const newVolunteer = input.value
-        input.value = ""
-        const newVolunteerArr = this.state.data.volunteers
-        newVolunteerArr.push(newVolunteer)
-        axios.put("http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/add_volunteer", {id: this.state.data._id, volunteers: newVolunteerArr})
+        this.state.data.volunteers.push(JSON.stringify(this.state.user))
+        let config = {headers : {"Authorization" : "Bearer " + localStorage.getItem('token')}}
+        let body = {id: this.state.data._id, volunteers: this.state.data.volunteers}
+        axios.put(url + "/events/signup", body, config)
             .then((result) => {
-                
+                this.setState({join: "Leave Event", update: this.deleteVolunteer})
+                this.componentDidMount()
             }, (err) => {
                 console.log(err)
                 alert("Volunteer addition failed")
+                this.state.data.volunteers.pop()
             })
-        this.state.data.volunteers = newVolunteerArr
-        this.forceUpdate()
     }
+
+    deleteVolunteer = () => {
+        var index = this.state.data.volunteers.indexOf(JSON.stringify(this.state.user))
+        this.state.data.volunteers.splice(index, 1)
+        let config = {headers : {"Authorization" : "Bearer " + localStorage.getItem('token')}}
+        let body = {id: this.state.data._id, volunteers: this.state.data.volunteers}
+        axios.put(url + "/events/signup", body, config)
+            .then((result) => {
+                this.setState({join: "Join This Event!", update: this.addVolunteer})
+                this.componentDidMount()
+            }, (err) => {
+                console.log(err)
+                alert("Volunteer deletion failed")
+                this.state.data.volunteers.push(this.state.user)
+            })
+    }
+
+    
 
     render() { 
         if (!this.state.isLoaded) {
@@ -57,18 +98,15 @@ class EventPage extends React.Component {
             return(<div>Loading...</div>)
         }
 
-        const volunteers = []
-        for (const [index, value] of this.state.data.volunteers.entries()) {
-            volunteers.push(<li className = "volunteer-list" key = {index}>{value}</li>)
-        }
-
+        
+        
         return(
             <div className = 'wrapper'>
                 <div className = 'nav-bar'>
                         <Header />
                 </div>
                 <div className = 'image'>
-                    
+                    <img className = "title-image" src={this.state.data.image} alt = ""/>
                 </div>
                 <div className = 'eventpage-content'>
                     <div className = 'name-signup'>
@@ -81,14 +119,11 @@ class EventPage extends React.Component {
                             </div>
                             <div className = 'signup-cont'>
                                 <ol className = "vol-wrapper">
-                                    {volunteers}
+                                    {this.state.volunteers}
                                 </ol>
                             </div>
                             <div className = "add-vol">
-                                <div className = 'name-input-wrap'>
-                                    <input className = 'name-input' type = 'text' placeholder = "Enter your name!" id = 'name-input'></input>
-                                    <button className = "button-go" onClick = {this.addVolunteer}>Go!</button>
-                                </div>
+                                <button className = "button-go" onClick = {this.state.update} ref = {this.buttonRef}>{this.state.join}</button>
                             </div>
                         </div>
                     </div>

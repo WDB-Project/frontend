@@ -23,7 +23,35 @@ import AboutUs from './components/AboutUs/AboutUs'
 
 function App() {
   return (
-    <HomePage />
+
+    <Router>
+      <Switch>
+        <Route path="/signin">
+          <div className="signin-wrapper">
+            <SignIn />
+          </div>
+        </Route>
+        <Route path="/register">
+          <div className="signin-wrapper">
+            <Register/>
+          </div>
+        </Route>
+        <Route path="/browse">
+          <div>
+            <Browse_Content />
+          </div>
+        </Route>
+        <Route path="/home" >
+          <div>
+            <HomePage />
+          </div>
+        </Route>
+        <Route path="/event/:id" children={<GetEventID />} />
+        <Route path="/">
+          <Redirect to="/home" />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

@@ -3,77 +3,169 @@ import "./browse_content.css";
 import Event_Card from "../Event_Card/Event_Card";
 import Filter from "../filter/filter";
 import Header from "../NavBar/NavBar";
+import axios from "axios";
 
-const a = [
-  {
-    title: "Protest",
-    location: "Walnut, CA",
-    date: "March 23, 2018",
-    time: "3:30PM",
-    tag: "Social Good",
-  },
-  {
-    title: "Birthday Party",
-    location: "Alaska, CA",
-    date: "May 29, 2020",
-    time: "2:30PM",
-    tag: "Music",
-  },
-  {
-    title: "Career Fair",
-    location: "Berkeley, CA",
-    date: "August 23, 2018",
-    time: "3:30PM",
-    tag: "Professional",
-  },
-  {
-    title: "Protest",
-    location: "Walnut, CA",
-    date: "March 23, 2018",
-    time: "3:30PM",
-    tag: "Social Good",
-  },
-  {
-    title: "Protest",
-    location: "Walnut, CA",
-    date: "March 23, 2018",
-    time: "3:30PM",
-    tag: "Social Good",
-  },
-  {
-    title: "Protest",
-    location: "Walnut, CA",
-    date: "March 23, 2018",
-    time: "3:30PM",
-    tag: "Social Good",
-  },
-];
-const Repeater = () => {
+const EVENT_LIST_API =
+  "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get";
+
+// const events = [
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   },
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   },
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   },
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   },
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   },
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   },
+//   {
+//     image: "https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501_960_720.jpg",
+//     name: "Protest",
+//     location: "Walnut, CA",
+//     startDate: 1584687600000,
+//     endDate: 1584774000000,
+//     website: "https://google.com",
+//     contact: "helloWorld@google.com",
+//     tag: "Social Good",
+//   }
+// ];
+
+const Repeater = (items) => {
+  if (items == undefined) {
+    return null;
+  }
   return (
-    <ul class="wrapping-browsing">
-      {a.map((event) => {
-        return <Event_Card event={event} />;
-      })}
-    </ul>
+    <div id="background-coloring">
+      <ul class="wrapping-browsing">
+        {items.map((event) => {
+          return <Event_Card event={event} />;
+        })}
+      </ul>
+    </div>
   );
 };
 
 class Browse_Content extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false,
+      data: undefined,
+    };
+    this.getEvents = this.getEvents.bind(this);
+  }
+
+  componentDidMount() {
+    this.getEvents();
+    console.log(this.state.data);
+  }
+
+  getEvents() {
+    axios
+      .get(EVENT_LIST_API)
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          isLoaded: true,
+          data: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          isLoaded: true,
+          error: error,
+        });
+      });
+  }
+
   render() {
+    if (!this.state.isLoaded) {
+      if (this.state.error) {
+        return <div>{this.state.error}</div>;
+      } else {
+        return <div>Loading...</div>;
+      }
+    }
+
     return (
       <div>
         <div>
           <Header />
         </div>
-        
+
         <div>
           <h1 className="title-browse">
             Browse Events
-            <div id="available-events">5,230 Available Events</div>
+            <div id="available-events">5,237 Available Events</div>
           </h1>
 
           <Filter />
-          <div>{Repeater()}</div>
+
+          <div className="event-type">
+            <div className="event-list">
+              {Repeater(this.state.data.upcoming)}
+            </div>
+          </div>
+          <div className="event-type">
+            <div className="event-list">
+              {Repeater(this.state.data.ongoing)}
+            </div>
+          </div>
+          <div className="event-type">
+            <div className="event-list">{Repeater(this.state.data.past)}</div>
+          </div>
         </div>
       </div>
     );
@@ -81,3 +173,39 @@ class Browse_Content extends Component {
 }
 
 export default Browse_Content;
+
+// {
+//   title: "Birthday Party",
+//   location: "Alaska, CA",
+//   date: "May 29, 2020",
+//   time: "2:30PM",
+//   tag: "Music",
+// },
+// {
+//   title: "Career Fair",
+//   location: "Berkeley, CA",
+//   date: "August 23, 2018",
+//   time: "3:30PM",
+//   tag: "Professional",
+// },
+// {
+//   title: "Protest",
+//   location: "Walnut, CA",
+//   date: "March 23, 2018",
+//   time: "3:30PM",
+//   tag: "Social Good",
+// },
+// {
+//   title: "Protest",
+//   location: "Walnut, CA",
+//   date: "March 23, 2018",
+//   time: "3:30PM",
+//   tag: "Social Good",
+// },
+// {
+//   title: "Protest",
+//   location: "Walnut, CA",
+//   date: "March 23, 2018",
+//   time: "3:30PM",
+//   tag: "Social Good",
+// },
