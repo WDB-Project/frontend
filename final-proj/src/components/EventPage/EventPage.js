@@ -30,9 +30,11 @@ class EventPage extends React.Component {
 
             this.setState({volunteers: volunteers})
             if (this.state.data.volunteers.includes(JSON.stringify(this.state.user))) {
-                this.setState({join: "Leave Event", update: this.deleteVolunteer})
+                this.setState({button: <button className = "button-go" onClick = {this.deleteVolunteer} ref = {this.buttonRef}>Leave Event</button>})
+            } else if (!this.state.user) {
+                this.setState({button: <button className = "button-go" ref = {this.buttonRef}>Sign In to Join</button>})
             } else {
-                this.setState({join: "Join This Event!", update: this.addVolunteer})
+                this.setState({button: <button className = "button-go" onClick = {this.state.update} ref = {this.buttonRef}>Join this Event!</button>})
             }
             })    
         } catch(err) {
@@ -41,7 +43,7 @@ class EventPage extends React.Component {
         }
     }
 
-    
+     
     updateEvent(callback) {
         axios.get(url + `/events/get?_id=${this.props.eventID}`)
             .then((result) => {
@@ -130,7 +132,7 @@ class EventPage extends React.Component {
                                 </ol>
                             </div>
                             <div className = "add-vol">
-                                <button className = "button-go" onClick = {this.state.update} ref = {this.buttonRef}>{this.state.join}</button>
+                                {this.state.button}
                             </div>
                         </div>
                     </div>

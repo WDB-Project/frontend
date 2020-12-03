@@ -45,17 +45,11 @@ function App() {
             <HomePage />
           </div>
         </Route>
-<<<<<<< HEAD
-        <Router path="/create">
-          <CreateEventCard />
-        </Router>
-=======
         <Route path="/create">
           <div>
             <CreateEventCard />
           </div>
         </Route>
->>>>>>> 78d386784c3728ff2641a899e9fd27a9e85edd53
         <Route path="/event/:id" children={<GetEventID />} />
         <Route path="/">
           <Redirect to="/home" />
