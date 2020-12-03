@@ -20,12 +20,18 @@ import Event_Card from './components/Event_Card/Event_Card'
 
 import Register from './components/Register/Register'
 import AboutUs from './components/AboutUs/AboutUs'
+import Profile from './components/Profile/Profile'
 
 function App() {
   return (
 
     <Router>
       <Switch>
+      <Route path="/profile">
+          <div className="profile-wrapper">
+            <Profile />
+          </div>
+        </Route>
         <Route path="/signin">
           <div className="signin-wrapper">
             <SignIn />
