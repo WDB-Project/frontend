@@ -4,18 +4,20 @@
   height: 1000px;
   position: sticky;
 } */
-
+body {
+  background-color: #f1f7ed;
+}
 .dropdown-size {
   /* width: 20%; */
   /* margin-top: 20px; */
   padding: 0px 0px 0px 20px;
   /* float: right; */
-  background-color: inherit;
   position: absolute;
 }
 .flex {
   width: 20%;
   margin-top: 50px;
+
   float: right;
   display: flex;
   flex-wrap: wrap;

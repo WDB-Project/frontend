@@ -144,27 +144,25 @@ class Browse_Content extends Component {
         <div>
           <Header />
         </div>
-
-        <div>
-          <h1 className="title-browse">
-            Browse Events
-            <div id="available-events">5,237 Available Events</div>
-          </h1>
-
-          <Filter />
-
-          <div className="event-type">
-            <div className="event-list">
+        <Filter />
+        <div className="upcoming-past-sectioning">
+          <div className="entire-screen">
+            <div className="header">
+              <h1 className="title-browse">Browse Events</h1>
+              <div id="available-events">5,237 Available Events</div>
+            </div>
+            <div className="event-type">
+              <div class="subtitles">Upcoming Events </div>
               {Repeater(this.state.data.upcoming)}
             </div>
-          </div>
-          <div className="event-type">
-            <div className="event-list">
+            <div className="event-type">
+              <div class="subtitles">Ongoing Events </div>
               {Repeater(this.state.data.ongoing)}
             </div>
-          </div>
-          <div className="event-type">
-            <div className="event-list">{Repeater(this.state.data.past)}</div>
+            <div className="event-type">
+              <div class="subtitles">Past Events </div>
+              {Repeater(this.state.data.past)}
+            </div>
           </div>
         </div>
       </div>
@@ -173,39 +171,3 @@ class Browse_Content extends Component {
 }
 
 export default Browse_Content;
-
-// {
-//   title: "Birthday Party",
-//   location: "Alaska, CA",
-//   date: "May 29, 2020",
-//   time: "2:30PM",
-//   tag: "Music",
-// },
-// {
-//   title: "Career Fair",
-//   location: "Berkeley, CA",
-//   date: "August 23, 2018",
-//   time: "3:30PM",
-//   tag: "Professional",
-// },
-// {
-//   title: "Protest",
-//   location: "Walnut, CA",
-//   date: "March 23, 2018",
-//   time: "3:30PM",
-//   tag: "Social Good",
-// },
-// {
-//   title: "Protest",
-//   location: "Walnut, CA",
-//   date: "March 23, 2018",
-//   time: "3:30PM",
-//   tag: "Social Good",
-// },
-// {
-//   title: "Protest",
-//   location: "Walnut, CA",
-//   date: "March 23, 2018",
-//   time: "3:30PM",
-//   tag: "Social Good",
-// },
