@@ -1,7 +1,12 @@
-body,
-html {
+body, html {
   font-family: "Montserrat", sans-serif;
 }
+
+img {
+  max-height: 700px;
+  max-width: 300px
+}
+
 .title-card {
   margin: 0;
   font-size: 20px;

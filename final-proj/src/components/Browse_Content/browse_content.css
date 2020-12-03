@@ -2,9 +2,16 @@ body {
   background: #f1f7ed;
   padding-top: 60px;
 }
+
+.event-type {
+  background: #f1f7ed;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
 .wrapping-browsing {
   margin-top: 70px;
-  background: #f1f7ed;
+  /* background: #f1f7ed; */
   padding-top: 40px;
   display: flex;
   flex-wrap: wrap;
