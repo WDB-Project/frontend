@@ -21,6 +21,8 @@
     background: grey;
     display: flex;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .name-signup {
@@ -137,6 +139,7 @@
 }
 
 .title-image {
-    height: 100%;
-    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    flex-shrink: 0;
 }

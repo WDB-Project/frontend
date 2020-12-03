@@ -21,7 +21,6 @@ class EventPage extends React.Component {
         try {
             this.updateEvent(() => {
             var volunteers = []
-            console.log(this.state.data.volunteers)
             for (const [index, value] of this.state.data.volunteers.entries()) {
                 volunteers.push(<li className = "volunteer-list" key = {index}>{JSON.parse(value).realname}</li>)
             }
@@ -43,15 +42,16 @@ class EventPage extends React.Component {
     updateEvent(callback) {
         axios.get(url + `/events/get?_id=${this.props.eventID}`)
             .then((result) => {
-                if (!result.data) {
+                if (!result.data || result.data.upcoming) {
                     this.setState({isLoaded: false, error : "this event does not exist"})
-                    callback()
                 } else {
+                    console.log(result.data)
                 this.setState({
                     isLoaded: true,
                     data : result.data[0]
-                })}
-                callback()},
+                }) 
+                callback()}
+                },
                 (err) => {
                     console.log(err)
                     this.setState({isLoaded: false, error : err})
