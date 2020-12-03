@@ -15,66 +15,15 @@ import {
   Redirect,
 } from "react-router-dom";
 import HomePage from './components/Home_Page/Home_Page'
+import CreateEventCard from './components/Create_Event_Page/Create_Event_Card'
+import Event_Card from './components/Event_Card/Event_Card'
 
 import Register from './components/Register/Register'
+import AboutUs from './components/AboutUs/AboutUs'
+
 function App() {
   return (
-<<<<<<< HEAD
     <HomePage />
-    // <Router>
-    //   <Switch>
-    //     <Route path="/signin">
-    //       <div className="signin-wrapper">
-    //         <SignIn />
-    //       </div>
-    //     </Route>
-    //     <Route path="/register">
-    //       <div className="signin-wrapper">
-    //         <Register/>
-    //       </div>
-    //     </Route>
-    //     <Route path="/home">
-    //       <div>
-    //         <Browse_Content />
-    //       </div>
-    //     </Route>
-    //     <Route path="/event/:id" children={<GetEventID />} />
-    //     <Route path="/">
-    //       <Redirect to="/home" />
-    //     </Route>
-    //   </Switch>
-    // </Router>
-=======
-    <Router>
-      <Switch>
-        <Route path="/signin">
-          <div className="signin-wrapper">
-            <SignIn />
-          </div>
-        </Route>
-        <Route path="/register">
-          <div className="signin-wrapper">
-            <Register/>
-          </div>
-        </Route>
-        <Route path="/browse">
-          <div>
-            <Browse_Content />
-          </div>
-        </Route>
-        <Route path="/home" >
-          <div>
-            <PopEvents />
-          </div>
-        </Route>
-        <Route path="/event/:id" children={<GetEventID />} />
-        <Route path="/">
-          <Redirect to="/browse" />
-        </Route>
-      </Switch>
-    </Router>
-    // <EventPage eventID = "5fbf0065b49be52c2bed16bf" />
->>>>>>> 47f7702db79e5d9eef00fb6c581a9d61856f2f9a
   );
 }
 

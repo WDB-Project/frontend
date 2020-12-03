@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import Header from '/Users/isabelzheng/WDB_final_proj/front-end/final-proj/src/components/NavBar/NavBar'
-import PopEvents from  '/Users/isabelzheng/WDB_final_proj/front-end/final-proj/src/components/Popular_Events/Popular_Events'
-import SignInCard from '/Users/isabelzheng/WDB_final_proj/front-end/final-proj/src/components/Sign_In/Sign_In_Card'
+import Header from '../NavBar/NavBar'
+import PopEvents from  '../Popular_Events/Popular_Events'
+import SignInCard from '../Sign_In/Sign_In_Card'
+import Humans1 from './Humans1.png'
+import AboutUs from '../AboutUs/AboutUs'
+import './HomePage.css'
 
 class HomePage extends Component{
   render(){
@@ -11,25 +14,34 @@ class HomePage extends Component{
 
         <div className="d-flex flex-row justify-content-around align-items-center" style={{height: 600, backgroundColor: '#F1F7ED'}}>
           <div className="d-flex flex-column">
-            <h1>Up&Coming</h1>
+            <h1 className="title-style">Up&Coming</h1>
             <h4>
               subtitle blah blah blah blah blah
               blah blah blah
             </h4>
           </div>
           <div>
-            <img src={"./Humans1.png"}/>
+            <img src={Humans1} className="humans-style"/>
           </div>
         </div>
 
         <div className="d-flex flex-row justify-content-around align-items-center">
-          <div style={{padding: 20}}>
+          <div className="card-padding">
             <PopEvents />
           </div>
-          <div style={{padding: 20}}>
+          <div className="card-padding">
           <SignInCard />
           </div>
         </div>
+
+        <div>
+          <div className="d-flex justify-content-center about-text-padding">
+            <h2 className="about-style">About</h2>
+          </div>
+          <AboutUs />
+        </div>
+
+
 
       </div>
     )

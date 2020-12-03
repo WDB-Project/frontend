@@ -1,0 +1,23 @@
+.humans-style {
+  height: 300px;
+}
+
+.title-style {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 70px;
+}
+
+.card-padding {
+  padding: 20px 20px 20px 20px;
+}
+
+.about-text-padding {
+  padding: 40px 1px 1px 40px;
+}
+
+.about-style {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}

@@ -1,3 +1,15 @@
 .font {
   font-family: 'Montserrat', sans-serif;
 }
+
+.right-padding {
+  padding: 40px;
+}
+
+.browse-color {
+  color: 'white';
+}
+
+.bright-color {
+  background-color: red;
+}

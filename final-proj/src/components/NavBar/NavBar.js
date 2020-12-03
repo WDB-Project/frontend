@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./NavBar.css";
+import './NavBar.css';
+import Browse_Content from '../Browse_Content/browse_content';
 
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
@@ -19,9 +20,16 @@ class Header extends Component{
     const buttonStyle = {
       backgroundColor: "#7CA982",
       color: "white",
+      fontFamily: 'Montserrat',
+      fontSize: 14
     };
 
     const rightPadding = {
+      padding: 40
+    }
+
+    const browseStyle = {
+      color: 'white',
       padding: 40
     }
 
@@ -36,23 +44,25 @@ class Header extends Component{
                 <Nav className="mrx-auto" navbar>
 
                 <NavItem className="d-flex align-items-center">
-                  <NavLink className="font-weight-bold font" style={{color: "#7CA982"}} href="/">Up&Coming</NavLink>
+                  <NavLink className="font-weight-bold font" style={{color: "#7CA982", fontSize: 25}} href="/">Up&Coming</NavLink>
                 </NavItem>
 
                 </Nav>
               </Col>
 
+
               <Col className="d-none d-lg-flex justify-content-end">
-                <NavLink className="font-weight-bold font" style={rightPadding} href="/">Browse</NavLink>
+                <NavLink className="font" style={browseStyle} href="/Browse_Content">Browse</NavLink>
                 <Form inline>
-                  <Button type="submit font" style={buttonStyle} outline>Create Event</Button>
+                  <Button style={buttonStyle} outline>Create Event</Button>
                 </Form>
               </Col>
-              <NavItem className="d-flex align-items-center">
+              <NavItem className="d-flex align-items-center justify-content-end">
                 <NavLink className="font-weight-bold" style={rightPadding} href="/">
                   <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                 </NavLink>
               </NavItem>
+
 
             </Row>
           </Container>

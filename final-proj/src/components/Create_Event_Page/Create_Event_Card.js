@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 
 class CreateEventCard extends Component {
   render() {
