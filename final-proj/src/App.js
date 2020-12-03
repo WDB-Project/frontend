@@ -46,6 +46,9 @@ function App() {
             <HomePage />
           </div>
         </Route>
+        <Router path="/create">
+          <CreateEventCard />
+        </Router>
         <Route path="/event/:id" children={<GetEventID />} />
         <Route path="/">
           <Redirect to="/home" />
