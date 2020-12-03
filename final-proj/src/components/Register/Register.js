@@ -6,8 +6,8 @@ import "./Register.css"
 import {Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
-const dbUrl = "http://localhost:3000/auth/"
-const finalDbUrl = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/auth/"
+const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/auth/"
+
 class Register extends React.Component {
     constructor(props) {
         super(props)
@@ -35,7 +35,7 @@ class Register extends React.Component {
         const realName = this.realNameRef.current.value;
         const email = this.emailRef.current.value;
 
-        axios.post(finalDbUrl + "register", {
+        axios.post(url + "register", {
             username: uName,
             password: pwd,
             realname: realName,
