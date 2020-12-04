@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from '../NavBar/NavBar'
 import PopEvents from  '../Popular_Events/Popular_Events'
-import SignInCard from '../Sign_In/Sign_In_Card'
+import SignInCard from '../SignIn/SignIn'
 import Humans1 from './Humans1.png'
 import AboutUs from '../AboutUs/AboutUs'
 import './HomePage.css'
@@ -30,7 +30,7 @@ class HomePage extends Component{
             <PopEvents />
           </div>
           <div className="card-padding">
-          <SignInCard />
+            <SignInCard />
           </div>
         </div>
 

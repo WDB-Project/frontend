@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper-signin {
   display: flex;
   flex-direction: column;
   /* background: #f1f7ed; */
@@ -9,8 +9,8 @@
   width: 100%;
   background-color: rgb(36, 62, 54);
 }
-.separator {
-  height: 75px;
+.separator-signin {
+  height: 55px;
 }
 .content {
   /* margin-top: 30%; */
