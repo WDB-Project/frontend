@@ -26,10 +26,10 @@ class HomePage extends Component{
         </div>
 
         <div className="d-flex flex-row justify-content-around align-items-center">
-          <div className="card-padding">
+          <div className="card-padding" style = {{marginLeft: "50px"}}>
             <PopEvents />
           </div>
-          <div className="card-padding">
+          <div className="card-padding" style = {{marginRight: "150px"}}>
             <SignInCard />
           </div>
         </div>
