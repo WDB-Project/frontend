@@ -8,12 +8,14 @@ const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get"
 const EventRow = ({ event }) => {
   return (
     <ListGroup.Item>
+      <a href={`/event/${event._id}`}>
       <Row noGutters>
         <p style={ { marginBottom:0 } }>{event.name}</p>
         <Col className="d-flex justify-content-end">
           <p style={ { marginBottom:0 } }>{new Date(event.startDate).toString().slice(4, 15)}</p>
         </Col>
       </Row>
+      </a>
     </ListGroup.Item>
   )
 }
