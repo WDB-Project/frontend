@@ -64,7 +64,7 @@ class Header extends Component{
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
-                    <Button style={buttonStyle} outline>Create Event</Button>
+                      <Button onClick = {() => {this.history.push('/create')}} style={buttonStyle} outline>Create Event</Button>
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">
@@ -108,7 +108,9 @@ class Header extends Component{
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
-                    <Button style={buttonStyle} outline>Create Event</Button>
+                    <NavLink href = "/create">
+                      <Button onClick = {() => {this.history.push('/create')}} style={buttonStyle} outline>Create Event</Button>
+                    </NavLink>
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">

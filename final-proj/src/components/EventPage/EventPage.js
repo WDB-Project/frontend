@@ -29,10 +29,10 @@ class EventPage extends React.Component {
             }
 
             this.setState({volunteers: volunteers})
-            if (this.state.data.volunteers.includes(JSON.stringify(this.state.user))) {
-                this.setState({button: <button className = "button-go" onClick = {this.deleteVolunteer} ref = {this.buttonRef}>Leave Event</button>})
-            } else if (!this.state.user) {
+            if (!this.state.user) {
                 this.setState({button: <button className = "button-go" ref = {this.buttonRef}>Sign In to Join</button>})
+            } else if (this.state.data.volunteers.includes(JSON.stringify(this.state.user))) {
+                this.setState({button: <button className = "button-go" onClick = {this.deleteVolunteer} ref = {this.buttonRef}>Leave Event</button>})
             } else {
                 this.setState({button: <button className = "button-go" onClick = {this.addVolunteer} ref = {this.buttonRef}>Join this Event!</button>})
             }
