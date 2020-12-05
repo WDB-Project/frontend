@@ -70,7 +70,8 @@ class PopEvents extends Component{
     const cardStyle = {
       padding: 30,
       width: 500,
-      backgroundColor: '#7CA982'
+      backgroundColor: '#7CA982',
+      boxShadow: "5px 5px 30px 11px rgba(0, 0, 0, 0.26)"
     };
     const title = {
       backgroundColor: '#7CA982',
@@ -80,12 +81,12 @@ class PopEvents extends Component{
     };
     const pstyle = {
       marginBottom: 0
-    };  
+    };
     if (!this.state.isLoaded) {
       return (<div>Loading...</div>)
     } else {
       return (
-        <Card style={cardStyle}>
+        <Card className="box-style" style={cardStyle}>
           <Card.Header className="MontserratFont" style={title}>Upcoming</Card.Header>
           <ListGroup variant="flush">
             {DisplayEvents(this.state.data.upcoming)}

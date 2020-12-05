@@ -19,7 +19,7 @@ class Header extends Component{
     localStorage.removeItem('user');
     const history = createHistory();
     history.go(0)
-        
+
 }
   render(){
     const navStyle = {
@@ -45,22 +45,22 @@ class Header extends Component{
     if (localStorage.getItem('token') || localStorage.getItem('user')) {
       return (
         <div>
-          <Navbar fixed="top" light expand="xs" className="border-bottom border-gray" style={navStyle}>
-  
+          <Navbar fixed="top" expand="xs" className="border-bottom border-gray" style={navStyle}>
+
             <Container>
               <Row noGutters className="position-relative w-100 align-items-center">
-  
+
                 <Col className="d-none d-lg-flex justify-content-start">
                   <Nav className="mrx-auto" navbar>
-  
+
                   <NavItem className="d-flex align-items-center">
                     <NavLink className="font-weight-bold font" style={{color: "#7CA982", fontSize: 25}} href="/">Up&Coming</NavLink>
                   </NavItem>
-  
+
                   </Nav>
                 </Col>
-  
-  
+
+
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
@@ -77,34 +77,34 @@ class Header extends Component{
                     <Button style={buttonStyle} outline onClick={(e) => this.signout(e)}>Sign Out</Button>
                   </Form>
                 </NavItem>
-  
-  
+
+
               </Row>
             </Container>
-  
+
           </Navbar>
         </div>
       )
     }
-    else{ 
+    else{
       return (
         <div>
           <Navbar fixed="top" light expand="xs" className="border-bottom border-gray" style={navStyle}>
-  
+
             <Container>
               <Row noGutters className="position-relative w-100 align-items-center">
-  
+
                 <Col className="d-none d-lg-flex justify-content-start">
                   <Nav className="mrx-auto" navbar>
-  
+
                   <NavItem className="d-flex align-items-center">
                     <NavLink className="font-weight-bold font" style={{color: "#7CA982", fontSize: 25}} href="/">Up&Coming</NavLink>
                   </NavItem>
-  
+
                   </Nav>
                 </Col>
-  
-  
+
+
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
@@ -118,10 +118,10 @@ class Header extends Component{
                     <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                   </NavLink>
                 </NavItem>
-  
+
               </Row>
             </Container>
-  
+
           </Navbar>
         </div>
       )
