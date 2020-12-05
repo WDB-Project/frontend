@@ -15,7 +15,7 @@ class HomePage extends Component{
         <div className="d-flex flex-row justify-content-around align-items-center" style={{height: 600, backgroundColor: '#F1F7ED'}}>
           <div className="d-flex flex-column">
             <h1 className="title-style">Up&Coming</h1>
-            <h4>
+            <h4 className="subtitle-style">
               subtitle blah blah blah blah blah
               blah blah blah
             </h4>

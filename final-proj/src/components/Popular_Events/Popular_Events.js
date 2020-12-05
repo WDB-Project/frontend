@@ -82,13 +82,16 @@ class PopEvents extends Component{
     const pstyle = {
       marginBottom: 0
     };
+    const innertext = {
+      fontFamily: 'Open Sans'
+    }
     if (!this.state.isLoaded) {
       return (<div>Loading...</div>)
     } else {
       return (
         <Card className="box-style" style={cardStyle}>
           <Card.Header className="MontserratFont" style={title}>Upcoming</Card.Header>
-          <ListGroup variant="flush">
+          <ListGroup style={innertext} variant="flush">
             {DisplayEvents(this.state.data.upcoming)}
           </ListGroup>
         </Card>

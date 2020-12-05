@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from "../NavBar/NavBar.js" 
+import Header from "../NavBar/NavBar.js"
 import axios from 'axios'
 import "./SignIn.css"
 import {Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
@@ -53,14 +53,14 @@ class SignIn extends React.Component {
         this.props.history.push('/register');
     }
 
- 
+
     render() {
         const { incorrect } = this.state;
         let warn = <div></div>;
         if (incorrect) {
             warn = <div className="warning">Incorrect username/password. Try again.</div>
 
-        } 
+        }
         return(
             <div className = 'wrapper-signin' style={{display: "block"}}>
                 <div className = 'nav-bar' >
@@ -70,15 +70,15 @@ class SignIn extends React.Component {
 
                 </div>
                 <div className='content'>
-                    <div className="title">Sign In</div> 
+                    <div className="title">Sign In</div>
                     {warn}
                 <Form className="form">
                     <Form.Group className = "field" controlId="formBasicUsername">
-                        <Form.Control ref={this.usernameRef} type="name" placeholder="Username" />
+                        <Form.Control ref={this.usernameRef} type="name" placeholder="Username" className="secondry-font"/>
                     </Form.Group>
 
                     <Form.Group className = "field" controlId="formBasicPassword">
-                        <Form.Control ref={this.passwordRef} type="password" placeholder="Password" />
+                        <Form.Control ref={this.passwordRef} type="password" placeholder="Password" className="secondry-font"/>
                     </Form.Group>
 
                     <Button className = "submitButton" id="login" onClick={(e) => this.loginAttempt(e)} variant="primary" type="submit">
@@ -89,7 +89,7 @@ class SignIn extends React.Component {
                 </div>
             </div>
         )
-        
+
     }
 }
 

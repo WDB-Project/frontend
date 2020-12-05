@@ -29,6 +29,8 @@
 
 .title {
   font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
 }
 
 .form {
@@ -42,12 +44,14 @@
 .subtext {
   font-size: 12px;
   margin-top: 5%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .submitButton {
   background-color: white !important;
   color: black !important;
   border-color: white !important;
+  font-family: 'Montserrat', sans-serif;
 }
 .field {
   width: 20vw;
@@ -55,4 +59,8 @@
 
 .warning {
   color: red;
+}
+
+.secondry-font {
+  font-family: 'Open Sans', sans-serif;
 }

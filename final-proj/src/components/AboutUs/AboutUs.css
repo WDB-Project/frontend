@@ -6,3 +6,55 @@
 .align {
   text-align: center;
 }
+
+.button-style {
+  padding: 20px 30px;
+  cursor: pointer;
+  opacity: 0.6;
+  background: white;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid transparent;
+  transition: ease border-bottom 250ms;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color: #7CA982;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.product-text {
+  width: 700px;
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+  text-align: right;
+  font-size: 25px;
+}
+
+.humans-2 {
+  width: 480px;
+  padding: 20px;
+}
+
+.move-down {
+  padding-top: 10px;
+}
+.people-text {
+  font-family: 'Montserrat', sans-serif;
+  color: #7CA982;
+  font-size: 20px;
+}
+
+.people-description-text {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.icon-style {
+  display: block;
+  width: 40px;
+  padding: 5px;
+}
