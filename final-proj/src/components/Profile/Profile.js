@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Header from "../NavBar/NavBar.js";
 import axios from "axios";
-import "./Profile.css";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Event_Card from "../Event_Card/Event_Card";
 
@@ -17,9 +16,15 @@ const Repeater = (items) => {
   return (
     <div>
       <ul>
-        {items.map((event) => {
-          return <Event_Card event={event} />;
-        })}
+        <div>
+          {items.map((event) => {
+            return (
+              <div class="individual-event">
+                <Event_Card event={event} />{" "}
+              </div>
+            );
+          })}
+        </div>
       </ul>
     </div>
   );
@@ -114,6 +119,7 @@ class Profile extends React.Component {
   };
 
   render() {
+    require("./Profile.css");
     if (!this.state.user) {
       console.log("Loading");
       if (this.state.error) {
@@ -141,12 +147,26 @@ class Profile extends React.Component {
                 <p className="description-text">{this.state.user.username}</p>
               </div>
             </div>
-            <div className="description">
-              <div className="description-wrapper">
-                <div className="banner">
-                  <p className="banner-text">My Upcoming Events</p>
+            <div className="description-wrapper">
+              <div className="flex-on-myevent">
+                <div className="event-type">
+                  <div className="banner">
+                    <p className="banner-text">My Upcoming Events</p>
+                    {Repeater(this.state.data?.upcoming)}
+                  </div>
                 </div>
-                <div>{Repeater(this.state.data?.upcoming)}</div>
+                <div className="event-type">
+                  <div className="banner">
+                    <p className="banner-text">My Past Events</p>
+                  </div>
+                  {Repeater(this.state.data?.past)}
+                </div>
+                <div className="event-type">
+                  <div className="banner">
+                    <p className="banner-text">Events Created By Me</p>
+                  </div>
+                  {Repeater(this.state.data?.past)}
+                </div>
               </div>
             </div>
           </div>
