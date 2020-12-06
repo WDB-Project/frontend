@@ -5,10 +5,17 @@ import axios from "axios";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Event_Card from "../Event_Card/Event_Card";
 
-const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get";
+const url =
+  "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/profile/get_events";
 
 // `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
-
+function myEvents(data) {
+  return data && data.length > 0 ? (
+    Repeater(data)
+  ) : (
+    <p id="nothing-to-see">Nothing to see here...</p>
+  );
+}
 const Repeater = (items) => {
   if (items == undefined) {
     return null;
@@ -20,7 +27,7 @@ const Repeater = (items) => {
           {items.map((event) => {
             return (
               <div class="individual-event">
-                <Event_Card event={event} />{" "}
+                <Event_Card event={event} />
               </div>
             );
           })}
@@ -152,20 +159,20 @@ class Profile extends React.Component {
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Upcoming Events</p>
-                    {Repeater(this.state.data?.upcoming)}
+                    <div>{myEvents(this.state.user.events)}</div>
                   </div>
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Past Events</p>
                   </div>
-                  {Repeater(this.state.data?.past)}
+                  {myEvents(this.state.user.events)}
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">Events Created By Me</p>
                   </div>
-                  {Repeater(this.state.data?.past)}
+                  {Repeater(this.state.data?.upcoming)}
                 </div>
               </div>
             </div>
