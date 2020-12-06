@@ -2,15 +2,19 @@ import React, { Component } from "react";
 import './NavBar.css';
 import Browse_Content from '../Browse_Content/browse_content';
 import createHistory from 'history/createBrowserHistory'
+import {Link} from 'react-router-dom'
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
   DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 
-const AVATAR = 'https://www.gravatar.com/avatar/429e504af19fc3e1cfa5c4326ef3394c?s=240&d=mm&r=pg';
+const AVATAR = 'https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/m/mountain-gorilla_thumb.jpg';
 
 class Header extends Component{
+  constructor(props) {
+    super(props)
+  }
 
   signout = (e) => {
     console.log()
@@ -64,11 +68,13 @@ class Header extends Component{
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
-                      <Button onClick = {() => {this.history.push('/create')}} style={buttonStyle} outline>Create Event</Button>
+                    <Link path = "/create">
+                      <Button style={buttonStyle} outline>Create Event</Button>
+                    </Link>
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">
-                  <NavLink className="font-weight-bold" style={rightPadding} href="/">
+                  <NavLink className="font-weight-bold" style={rightPadding} href="/profile">
                     <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                   </NavLink>
                 </NavItem>
@@ -109,7 +115,9 @@ class Header extends Component{
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
                     <NavLink href = "/create">
-                      <Button onClick = {() => {this.history.push('/create')}} style={buttonStyle} outline>Create Event</Button>
+                      <Link path = 'create'>
+                      <Button style={buttonStyle} outline>Create Event</Button>
+                      </Link>
                     </NavLink>
                   </Form>
                 </Col>

@@ -203,3 +203,7 @@
 .event-date {
     margin-top: 10px;
 }
+
+#root {
+  height: 125vh;
+}

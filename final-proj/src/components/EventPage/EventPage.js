@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Header from "../NavBar/NavBar.js";
 import axios from "axios";
-import "./EventPage.css";
 import ErrorPage from "../ErrorPage/ErrorPage";
 const url = `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
 
@@ -42,7 +41,7 @@ class EventPage extends React.Component {
             ),
           });
         } else if (
-          this.state.data.volunteers.includes(JSON.stringify(this.state.user))
+          this.state.data.volunteers.some(item => JSON.parse(item) && JSON.parse(item)._id === this.state.user._id)
         ) {
           this.setState({
             button: (
@@ -84,12 +83,24 @@ class EventPage extends React.Component {
             error: "this event does not exist",
           });
         } else {
-          console.log(result.data);
           this.setState({
             isLoaded: true,
             data: result.data[0],
           });
-          callback();
+          let config = {
+            headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+          };
+          axios.get(url + `/profile/basic?uid=${this.state.user._id}`, config).then(
+            (result) => {
+              this.setState({user: result.data})
+              localStorage.setItem('user', JSON.stringify(result.data))
+              callback()
+            },
+            (err) => {
+              console.log(err)
+              this.setState({isLoaded: false, error: err})
+            }
+          )
         }
       },
       (err) => {
@@ -111,7 +122,6 @@ class EventPage extends React.Component {
     axios.put(url + "/events/signup", body, config).then(
       (result) => {
         this.setState({ join: "Leave Event", update: this.deleteVolunteer });
-        this.componentDidMount();
       },
       (err) => {
         console.log(err);
@@ -119,6 +129,16 @@ class EventPage extends React.Component {
         this.state.data.volunteers.pop();
       }
     );
+    this.state.user.events.push(this.props.eventID)
+    axios.put(url + "/profile/join", {id: this.state.user._id, events: this.state.user.events}, config).then(
+      (result) => {
+        this.componentDidMount();
+      },
+      (err) => {
+        console.log(err)
+        this.state.user.events.pop()
+      }
+    )
   };
 
   deleteVolunteer = () => {
@@ -136,7 +156,6 @@ class EventPage extends React.Component {
     axios.put(url + "/events/signup", body, config).then(
       (result) => {
         this.setState({ join: "Join This Event!", update: this.addVolunteer });
-        this.componentDidMount();
       },
       (err) => {
         console.log(err);
@@ -144,9 +163,24 @@ class EventPage extends React.Component {
         this.state.data.volunteers.push(this.state.user);
       }
     );
+    var userIndex = this.state.user.events.indexOf(
+      this.props.eventID
+    )
+    this.state.user.events.splice(userIndex, 1)
+    axios.put(url + "/profile/join", {id: this.state.user._id, events: this.state.user.events}, config).then(
+      (result) => {
+        this.componentDidMount();
+      },
+      (err) => {
+        console.log(err)
+        this.state.user.events.push(this.props.eventID)
+      }
+    )
   };
 
+
   render() {
+    require('./EventPage.css')
     if (!this.state.isLoaded) {
       console.log("Loading");
       if (this.state.error) {
