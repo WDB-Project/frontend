@@ -5,7 +5,7 @@ import Filter from "../filter/filter";
 import Header from "../NavBar/NavBar";
 import axios from "axios";
 
-const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get"
+const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get";
 
 const Repeater = (items) => {
   if (items == undefined) {
@@ -39,11 +39,16 @@ class Browse_Content extends Component {
   }
 
   availableEvents() {
-    return (this.state.data.upcoming.length + this.state.data.ongoing.length + this.state.data.past.length)
+    return (
+      this.state.data.upcoming.length +
+      this.state.data.ongoing.length +
+      this.state.data.past.length
+    );
   }
 
   getEvents() {
-    axios.get(url)
+    axios
+      .get(url)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -81,7 +86,9 @@ class Browse_Content extends Component {
           <div className="entire-screen">
             <div className="header">
               <h1 className="title-browse">Browse Events</h1>
-              <div id="available-events">{this.availableEvents()} Available Events</div>
+              <div id="available-events">
+                {this.availableEvents()} Available Events
+              </div>
             </div>
             <div className="event-type">
               <div class="subtitles">Upcoming Events </div>

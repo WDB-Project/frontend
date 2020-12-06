@@ -1,12 +1,9 @@
-import {useParams} from "react-router-dom"
-import EventPage from "./EventPage"
-
+import { useParams } from "react-router-dom";
+import EventPage from "./EventPage";
 
 function EPage() {
-    let {id} = useParams()
-    return (
-        <EventPage eventID = {id}/>
-    )
+  let { id } = useParams();
+  return <EventPage eventID={id} />;
 }
 
-export default EPage
+export default EPage;
