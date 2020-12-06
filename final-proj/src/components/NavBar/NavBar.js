@@ -25,6 +25,13 @@ class Header extends Component{
     history.go(0)
 
 }
+
+  create = (e) => {
+    e.preventDefault()
+    const history = createHistory()
+    history.push('/create')
+    history.go(0)
+  }
   render(){
     const navStyle = {
       backgroundColor: "#243E36",
@@ -68,9 +75,7 @@ class Header extends Component{
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
-                    <Link path = "/create">
-                      <Button style={buttonStyle} outline>Create Event</Button>
-                    </Link>
+                      <Button onClick = {(e) => this.create(e)}style={buttonStyle} outline>Create Event</Button>
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">
@@ -114,15 +119,11 @@ class Header extends Component{
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
-                    <NavLink href = "/create">
-                      <Link path = 'create'>
-                      <Button style={buttonStyle} outline>Create Event</Button>
-                      </Link>
-                    </NavLink>
+                      <Button onClick = {(e) => this.create(e)}style={buttonStyle} outline>Create Event</Button>
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">
-                  <NavLink className="font-weight-bold" style={rightPadding} href="/">
+                  <NavLink className="font-weight-bold" style={rightPadding} href="/profile">
                     <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                   </NavLink>
                 </NavItem>
