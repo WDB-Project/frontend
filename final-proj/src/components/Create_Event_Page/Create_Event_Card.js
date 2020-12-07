@@ -71,8 +71,12 @@ class CreateEventCard extends Component {
       endDate: end,
     };
 
+    let config = {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    };
+
     axios
-      .post(url, eventAttributes)
+      .post(url, eventAttributes, config)
       .then(
         (result) => {
           if (result.data.message == "success") {
