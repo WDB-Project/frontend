@@ -6,7 +6,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Event_Card from "../Event_Card/Event_Card";
 
 const url =
-  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events";
+  `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events?id=`;
 
 // `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
 function myEvents(data) {
@@ -64,8 +64,11 @@ class Profile extends React.Component {
 
   getEvents() {
     console.log("hello");
+    let config = {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    };
     axios
-      .get(url)
+      .get(url + this.state.user._id, config)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -127,7 +130,7 @@ class Profile extends React.Component {
 
   render() {
     require("./Profile.css");
-    if (!this.state.user) {
+    if (!this.state.user || !this.state.isLoaded) {
       console.log("Loading");
       if (this.state.error) {
         return <ErrorPage />;
@@ -159,14 +162,14 @@ class Profile extends React.Component {
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Upcoming Events</p>
-                    <div>{myEvents(this.state.user.events)}</div>
+                    <div>{myEvents(this.state.data.upcoming)}</div>
                   </div>
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Past Events</p>
                   </div>
-                  {myEvents(this.state.user.events)}
+                  {myEvents(this.state.data.past)}
                 </div>
                 <div className="event-type">
                   <div className="banner">
