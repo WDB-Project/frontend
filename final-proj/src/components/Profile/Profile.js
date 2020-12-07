@@ -19,7 +19,8 @@ function myEvents(data) {
 
 
 const Repeater = (items) => {
-  if (items.length == 0) {
+  console.log(items)
+  if (!items || items.length == 0) {
     return(<p id="nothing-to-see">Nothing to see here...</p>);
   }
   return (
@@ -93,6 +94,19 @@ class Profile extends React.Component {
             error: error,
           });
         });
+        axios.get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_myevents?id=${this.state.user._id}`, config)
+          .then((res) => {
+            console.log(res.data)
+            this.setState({
+              isLoaded: true,
+              myEvents: res.data
+            })
+          }, (err) => {
+            this.setState({
+              isLoaded: false,
+              error: err
+            })
+          })
       }, (err) => {
         console.log("uoh")
         console.log(err)
@@ -189,7 +203,7 @@ class Profile extends React.Component {
                   <div className="banner">
                     <p className="banner-text">Events Created By Me</p>
                   </div>
-                  {Repeater(this.state.user.myEvents)}
+                  {Repeater(this.state.myEvents)}
                 </div>
               </div>
             </div>

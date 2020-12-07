@@ -15,6 +15,7 @@ function daysLeft(event, condition) {
 }
 
 const Event_Card = (props) => {
+  console.log(props.event)
   return (
     <div>
       <a href={`/event/${props.event._id}`} className="link">

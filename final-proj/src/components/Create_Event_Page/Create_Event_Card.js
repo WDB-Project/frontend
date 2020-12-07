@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import {Redirect} from "react-router-dom"
 import TimePicker from "react-bootstrap-time-picker";
 import axios from "axios";
 import './CreateEventCard.css'
@@ -118,7 +119,7 @@ class CreateEventCard extends Component {
     };
 
     if (this.state.submitted == true) {
-      return <div>Submitted!</div>;
+      return (<Redirect path="/browse" />)
     } else {
       return (
         <div>
