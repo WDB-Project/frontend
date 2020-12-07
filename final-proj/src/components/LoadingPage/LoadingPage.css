@@ -1,0 +1,33 @@
+.entire-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    border-width: 0px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(124, 169, 130);
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box:hover {
+    background-color:rgb(36, 62, 54);
+    width: 200px;
+    height: 200px;
+    transform: rotate(360deg);
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+}
+
+.box:hover > .box-text {
+    transform: rotate(-360deg)
+}
+
+.box-text {
+    color: white;
+}

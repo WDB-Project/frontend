@@ -5,7 +5,6 @@ import TimePicker from "react-bootstrap-time-picker";
 import axios from "axios";
 import './CreateEventCard.css'
 
-// const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/create"
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/create";
 
 class CreateEventCard extends Component {
@@ -82,7 +81,7 @@ class CreateEventCard extends Component {
       .post(url, eventAttributes, config)
       .then(
         (result) => {
-          if (result.data.message == "success") {
+          if (result.data.message === "success") {
             console.log("Event created successfully");
             this.setState({ submitted: true });
             axios.put("http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/create", {id: this.state.user._id, event: result.data.id}, config).then(

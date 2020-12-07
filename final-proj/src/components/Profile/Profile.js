@@ -3,20 +3,42 @@ import ReactDOM from "react-dom";
 import Header from "../NavBar/NavBar.js";
 import axios from "axios";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Profile_Card from "../Profile_Card/Profile_Card";
 import Event_Card from "../Event_Card/Event_Card";
 
-const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events?id=`;
+const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
+
+// const dbUrl =
+// `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
+
+const dbUrl =
+`http://localhost:3000/profile/`;
 
 // `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
-function myEvents(data) {
+function myEvents(data, condition) {
   return data && data.length > 0 ? (
-    Repeater(data)
+    Repeater(data, condition)
   ) : (
     <p id="nothing-to-see">Nothing to see here...</p>
   );
 }
 
-const Repeater = (items) => {
+function myProfileArea(data) {
+  return data ? (
+    ProfileFormatter(data)
+  ) : (
+    <p id="nothing-to-see">Nothing to see here...</p>
+  );
+}
+const ProfileFormatter = (data) => {
+  console.log(data)
+  return (
+    <Profile_Card user={data.user} events={data.events} myEvents={data.myEvents} />
+
+  );
+};
+
+const Repeater = (items, condition) => {
   console.log(items);
   if (!items || items.length == 0) {
     return <p id="nothing-to-see">Nothing to see here...</p>;
@@ -28,7 +50,7 @@ const Repeater = (items) => {
           {items.map((event) => {
             return (
               <div class="individual-event">
-                <Event_Card event={event} />
+                <Event_Card event={event} condition={condition} />
               </div>
             );
           })}
@@ -44,7 +66,7 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = { isLoaded: false, data: undefined };
-    this.getEvents = this.getEvents.bind(this);
+    this.getProfileInfo = this.getProfileInfo.bind(this);
     // this.updateProfile = this.updateProfile.bind(this)
     this.buttonRef = React.createRef();
     this.state.user = JSON.parse(localStorage.getItem("user"));
@@ -53,8 +75,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     if (this.state.user) {
-      this.getEvents();
-      console.log(this.state.data);
+      this.getProfileInfo();
     } else {
       this.setState({ isLoaded: false });
     }
@@ -68,91 +89,24 @@ class Profile extends React.Component {
     }
   }
 
-  getEvents() {
-    console.log("hello");
+  async getProfileInfo() {
+    console.log('get profile info')
     let config = {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token") 
+      }
     };
-    axios
-      .get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/basic?id=${this.state.user._id}`, config)
-      .then((res) => {
-        this.state.user = res.data
+    axios.get(url +'basic', config).then((res) => {
+      let result = res.data
+      console.log(result)
+      this.setState({user: result.userProfile, events: result.userEvents, myEvents: result.myEvents, isLoaded: true})
 
-        axios
-        .get(url + this.state.user._id, config)
-        .then((response) => {
-          this.setState({
-            data: response.data,
-          });
-          axios.get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_myevents?id=${this.state.user._id}`, config)
-          .then((res) => {
-            console.log(res.data)
-            this.setState({
-              isLoaded: true,
-              myEvents: res.data
-            })
-          }, (err) => {
-            this.setState({
-              isLoaded: false,
-              error: err
-            })
-          })
-        })
-        .catch((error) => {
-          console.log(error);
-          this.setState({
-            isLoaded: false,
-            error: error,
-          });
-        });
-      }, (err) => {
-        console.log("uoh")
-        console.log(err)
-      })
+    }).catch((err) => {
+      console.log(err);
+      this.setState({isLoaded: true, error: err})
+    });
+    
   }
-
-  // updateProfile() {
-  //     let config = {headers : {"Authorization" : "Bearer " + localStorage.getItem('token')}}
-  //     axios.get(url + `/auth/get`, config)
-  //         .then((result) => {
-  //             if (!result.data || result.data.upcoming) {
-  //                 this.setState({isLoaded: false, error : "this user does not exist"})
-  //             } else {
-  //                 console.log(result.data)
-  //             this.setState({
-  //                 isLoaded: true,
-  //                 data : result.data[0]
-  //             })
-  //             callback()}
-  //             },
-  //             (err) => {
-  //                 console.log(err)
-  //                 this.setState({isLoaded: false, error : err})
-  //             }
-  //         )
-  // }
-
-  // addVolunteer = () => {
-  //   this.state.data.volunteers.push(JSON.stringify(this.state.user));
-  //   let config = {
-  //     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-  //   };
-  //   let body = {
-  //     id: this.state.data._id,
-  //     volunteers: this.state.data.volunteers,
-  //   };
-  //   axios.put(url + "/events/signup", body, config).then(
-  //     (result) => {
-  //       this.setState({ join: "Leave Event", update: this.deleteVolunteer });
-  //       this.componentDidMount();
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //       alert("Volunteer addition failed");
-  //       this.state.data.volunteers.pop();
-  //     }
-  //   );
-  // };
 
   render() {
     require("./Profile.css");
@@ -164,23 +118,33 @@ class Profile extends React.Component {
         return <div>Loading...</div>;
       }
     } else {
+      let pfp = "https://i.stack.imgur.com/34AD2.jpg"
+      if (this.state.user.profilepic && this.state.user.profilepic != "") {
+        pfp = this.state.user.profilepic
+      }
+      console.log("the profile pic is...")
+      console.log(this.state.user)
       return (
         <div className="wrapper">
           <div className="nav-bar">
-            <Header />
+            <Header pfp={pfp} />
           </div>
 
           <div className="eventpage-content">
-            <div className="realname">
+            <div className="profile-personal">
               <div className="name-wrap">
                 <img
-                  className="profile-pic"
-                  src="https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/m/mountain-gorilla_thumb.jpg"
+                  className="profile-pic" 
+                  src={pfp}
                   alt=""
                 />
-                <h1 className="name">{this.state.user.realname}</h1>
+                <div className="profile-box">
 
-                <p className="description-text">{this.state.user.username}</p>
+                <div className="banner">
+                    <p className="banner-text">About Me</p>
+                    <div>{myProfileArea({user: this.state.user, events: this.state.events, myEvents: this.state.myEvents})}</div>
+                  </div>
+              </div>
               </div>
             </div>
             <div className="description-wrapper">
@@ -188,20 +152,20 @@ class Profile extends React.Component {
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Upcoming Events</p>
-                    <div>{myEvents(this.state.data.upcoming)}</div>
+                    <div>{myEvents(this.state.events.upcoming, 'start')}</div>
                   </div>
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Past Events</p>
                   </div>
-                  {myEvents(this.state.data.past)}
+                  {myEvents(this.state.events.past, 'ongoing')}
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">Events Created By Me</p>
                   </div>
-                  {Repeater(this.state.myEvents)}
+                  {Repeater(this.state.myEvents, 'end')}
                 </div>
               </div>
             </div>

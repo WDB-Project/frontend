@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Header from "../NavBar/NavBar.js";
 import axios from "axios";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import LoadingPage from "../LoadingPage/LoadingPage"
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
 
 class EventPage extends React.Component {
@@ -91,7 +92,7 @@ class EventPage extends React.Component {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") },
           };
           if (localStorage.getItem("user")) {
-            axios.get(url + `/profile/basic?uid=${this.state.user._id}`, config).then(
+            axios.get(url + `/profile/basicold?uid=${this.state.user._id}`, config).then(
               (result) => {
                 this.setState({user: result.data})
                 localStorage.setItem('user', JSON.stringify(result.data))
@@ -179,7 +180,7 @@ class EventPage extends React.Component {
       if (this.state.error) {
         return <ErrorPage />;
       } else {
-        return <div>Loading...</div>;
+        return <LoadingPage />;
       }
     }
 

@@ -8,6 +8,7 @@ import {
   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
   DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 const AVATAR = 'https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/m/mountain-gorilla_thumb.jpg';
 
@@ -21,8 +22,7 @@ class Header extends Component{
     e.preventDefault();
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    const history = createHistory();
-    history.go(0)
+    this.props.history.push('/home');
 
 }
 
@@ -33,6 +33,7 @@ class Header extends Component{
     history.go(0)
   }
   render(){
+
     const navStyle = {
       backgroundColor: "#243E36",
       height: 75
@@ -54,6 +55,11 @@ class Header extends Component{
       padding: 40
     }
     if (localStorage.getItem('token') || localStorage.getItem('user')) {
+      let pfp = "https://i.stack.imgur.com/34AD2.jpg"
+      let user = JSON.parse(localStorage.getItem('user'))
+      if (user.profilepic && user.profilepic != "") {
+        pfp = user.profilepic
+      }
       return (
         <div>
           <Navbar fixed="top" expand="xs" className="border-bottom border-gray" style={navStyle}>
@@ -80,7 +86,7 @@ class Header extends Component{
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">
                   <NavLink className="font-weight-bold" style={rightPadding} href="/profile">
-                    <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
+                    <img src={pfp} alt="avatar" className="nav-profile-pic" />
                   </NavLink>
                 </NavItem>
                 <NavItem className="d-flex align-items-center justify-content-end">
@@ -122,11 +128,6 @@ class Header extends Component{
                       <Button onClick = {(e) => this.create(e)}style={buttonStyle} outline>Create Event</Button>
                   </Form>
                 </Col>
-                <NavItem className="d-flex align-items-center justify-content-end">
-                  <NavLink className="font-weight-bold" style={rightPadding} href="/signin">
-                    <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
-                  </NavLink>
-                </NavItem>
 
               </Row>
             </Container>
@@ -139,4 +140,4 @@ class Header extends Component{
 
 }
 
-export default Header;
+export default withRouter(Header);

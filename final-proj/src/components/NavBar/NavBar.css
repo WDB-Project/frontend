@@ -9,3 +9,9 @@
 .browse-color {
   color: 'white';
 }
+
+.nav-profile-pic {
+  width: 90px;
+  clip-path: circle(30px at center);
+
+}
