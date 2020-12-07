@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./event_card.css";
 
 function daysLeft(event, condition) {
@@ -11,17 +11,19 @@ function daysLeft(event, condition) {
       return `${days(now - event.endDate)} days ago`
     case 'ongoing':
       return `${days(now - event.startDate)} days left`
+    default: 
+      return null
   }
 }
 
-const Event_Card = (props) => {
+const EventCard = (props) => {
   console.log(props.event)
   return (
     <div>
       <a href={`/event/${props.event._id}`} className="link">
         <div className="padding-between-cards">
           <div className="image-spacing">
-            <img src={props.event.image} alt="event image" />
+            <img src={props.event.image} alt="event banner"/>
           </div>
           <div className="card-body">
             <h5 className="title-card">{props.event.name}</h5>
@@ -51,4 +53,4 @@ const Event_Card = (props) => {
   );
 };
 
-export default Event_Card;
+export default EventCard;

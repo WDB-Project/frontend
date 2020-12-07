@@ -3,20 +3,20 @@ import ReactDOM from "react-dom";
 import Header from "../NavBar/NavBar.js";
 import axios from "axios";
 import ErrorPage from "../ErrorPage/ErrorPage";
-import Event_Card from "../Event_Card/Event_Card";
+import EventCard from "../Event_Card/Event_Card";
 
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events?id=`;
 
 // `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
-function myEvents(data) {
+function myEvents(data, condition) {
   return data && data.length > 0 ? (
-    Repeater(data)
+    Repeater(data, condition)
   ) : (
     <p id="nothing-to-see">Nothing to see here...</p>
   );
 }
 
-const Repeater = (items) => {
+const Repeater = (items, condition) => {
   console.log(items);
   if (!items || items.length == 0) {
     return <p id="nothing-to-see">Nothing to see here...</p>;
@@ -28,7 +28,7 @@ const Repeater = (items) => {
           {items.map((event) => {
             return (
               <div class="individual-event">
-                <Event_Card event={event} />
+                <EventCard event={event} condition={condition} />
               </div>
             );
           })}
@@ -188,20 +188,20 @@ class Profile extends React.Component {
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Upcoming Events</p>
-                    <div>{myEvents(this.state.data.upcoming)}</div>
+                    <div>{myEvents(this.state.data.upcoming, 'start')}</div>
                   </div>
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Past Events</p>
                   </div>
-                  {myEvents(this.state.data.past)}
+                  {myEvents(this.state.data.past, 'ongoing')}
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">Events Created By Me</p>
                   </div>
-                  {Repeater(this.state.myEvents)}
+                  {Repeater(this.state.myEvents, 'end')}
                 </div>
               </div>
             </div>
