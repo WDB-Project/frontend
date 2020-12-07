@@ -6,7 +6,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Event_Card from "../Event_Card/Event_Card";
 
 const url =
-  "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/profile/get_events";
+  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events";
 
 // `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
 function myEvents(data) {

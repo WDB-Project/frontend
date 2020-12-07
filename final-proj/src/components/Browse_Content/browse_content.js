@@ -5,7 +5,7 @@ import Filter from "../filter/filter";
 import Header from "../NavBar/NavBar";
 import axios from "axios";
 
-const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/get";
+const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
 
 const Repeater = (items) => {
   if (items == undefined) {

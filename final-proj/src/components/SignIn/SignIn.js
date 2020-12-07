@@ -8,7 +8,7 @@ import {Redirect} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 const dbUrl = "http://localhost:3000/auth/"
-const finalDbUrl = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/auth/"
+const finalDbUrl = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
 class SignIn extends React.Component {
     constructor(props) {
         super(props)

@@ -123,7 +123,7 @@ class Header extends Component{
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">
-                  <NavLink className="font-weight-bold" style={rightPadding} href="/profile">
+                  <NavLink className="font-weight-bold" style={rightPadding} href="/signin">
                     <img src={AVATAR} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                   </NavLink>
                 </NavItem>

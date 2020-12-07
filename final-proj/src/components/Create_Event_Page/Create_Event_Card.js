@@ -4,7 +4,7 @@ import TimePicker from "react-bootstrap-time-picker";
 import axios from "axios";
 
 // const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/create"
-const url = "http://localhost:3030/events/create";
+const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/create";
 
 class CreateEventCard extends Component {
   constructor(props) {

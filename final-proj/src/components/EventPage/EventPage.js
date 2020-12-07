@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Header from "../NavBar/NavBar.js";
 import axios from "axios";
 import ErrorPage from "../ErrorPage/ErrorPage";
-const url = `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
+const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
 
 class EventPage extends React.Component {
   _isMounted = false;

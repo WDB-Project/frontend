@@ -6,7 +6,7 @@ import "./Register.css"
 import {Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
-const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/auth/"
+const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
 
 class Register extends React.Component {
     constructor(props) {
