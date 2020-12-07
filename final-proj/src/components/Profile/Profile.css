@@ -17,6 +17,7 @@
 .eventpage-content {
   display: flex;
   flex-direction: row;
+  background-color: #f1f7ed;
 }
 
 .profile-personal {

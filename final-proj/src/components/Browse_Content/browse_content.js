@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "./browse_content.css";
-import Event_Card from "../Event_Card/Event_Card";
+import EventCard from "../Event_Card/Event_Card";
 import Filter from "../filter/filter";
 import Header from "../NavBar/NavBar";
 import axios from "axios";
+
+import "./browse_content.css";
 import "../filter/filter.css"
 
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
@@ -16,7 +17,7 @@ function Repeater(items, condition) {
     <div id="background-coloring">
       <ul className="wrapping-browsing">
         {items.map((event) => {
-          return <Event_Card key={event._id} event={event} condition={condition}/>;
+          return <EventCard key={event._id} event={event} condition={condition}/>;
         })}
       </ul>
     </div>
@@ -96,6 +97,7 @@ class Browse_Content extends Component {
     axios.get(url + this.filterParams()) 
       .then((response) => {
         console.log(response);
+        console.log(response.data)
         this.setState({
           isLoaded: true,
           data: response.data,
@@ -150,7 +152,5 @@ class Browse_Content extends Component {
     }
   }
 }
-
-// <Filter state={this.state} startRef={this.startRef} endRef={this.endRef} tagRef={this.tagRef} onClick={this.handleClick}/>
 
 export default Browse_Content;

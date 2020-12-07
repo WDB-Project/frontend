@@ -6,8 +6,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Profile_Card from "../Profile_Card/Profile_Card";
 import Event_Card from "../Event_Card/Event_Card";
 
-const url =
-  `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events?id=`;
+const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events?id=`;
 
 // const dbUrl =
 // `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
@@ -16,9 +15,9 @@ const dbUrl =
 `http://localhost:3000/profile/`;
 
 // `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
-function myEvents(data) {
+function myEvents(data, condition) {
   return data && data.length > 0 ? (
-    Repeater(data)
+    Repeater(data, condition)
   ) : (
     <p id="nothing-to-see">Nothing to see here...</p>
   );
@@ -39,10 +38,10 @@ const ProfileFormatter = (data) => {
   );
 };
 
-const Repeater = (items) => {
-  console.log(items)
+const Repeater = (items, condition) => {
+  console.log(items);
   if (!items || items.length == 0) {
-    return(<p id="nothing-to-see">Nothing to see here...</p>);
+    return <p id="nothing-to-see">Nothing to see here...</p>;
   }
   return (
     <div>
@@ -51,7 +50,7 @@ const Repeater = (items) => {
           {items.map((event) => {
             return (
               <div class="individual-event">
-                <Event_Card event={event} />
+                <Event_Card event={event} condition={condition} />
               </div>
             );
           })}
@@ -71,15 +70,15 @@ class Profile extends React.Component {
     // this.updateProfile = this.updateProfile.bind(this)
     this.buttonRef = React.createRef();
     this.state.user = JSON.parse(localStorage.getItem("user"));
+    console.log(this.state.user);
   }
 
   componentDidMount() {
     if (this.state.user) {
       this.getProfileInfo();
     } else {
-      this.setState({isLoaded: false})
+      this.setState({ isLoaded: false });
     }
-    
 
     this._isMounted = true;
     try {
@@ -151,20 +150,20 @@ class Profile extends React.Component {
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Upcoming Events</p>
-                    <div>{myEvents(this.state.events.upcoming)}</div>
+                    <div>{myEvents(this.state.events.upcoming, 'start')}</div>
                   </div>
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">My Past Events</p>
                   </div>
-                  {myEvents(this.state.events.past)}
+                  {myEvents(this.state.events.past, 'ongoing')}
                 </div>
                 <div className="event-type">
                   <div className="banner">
                     <p className="banner-text">Events Created By Me</p>
                   </div>
-                  {Repeater(this.state.myEvents)}
+                  {Repeater(this.state.myEvents, 'end')}
                 </div>
               </div>
             </div>
