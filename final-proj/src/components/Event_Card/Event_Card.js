@@ -1,35 +1,46 @@
 import React, { Component } from "react";
 import "./event_card.css";
 
-const Event_Card = ({ event }) => {
+function daysLeft(event, condition) {
+  const now = Date.now()
+  const days = (time) => {return Math.floor(time / 86400000)}
+  switch (condition) {
+    case 'start':
+      return `In ${days(event.startDate - now)} days`
+    case 'end':
+      return `${days(now - event.endDate)} days ago`
+    case 'ongoing':
+      return `${days(now - event.startDate)} days left`
+  }
+}
+
+const Event_Card = (props) => {
   return (
     <div>
-      <a href={`/event/${event._id}`} class="link">
-        <div class="padding-between-cards">
-          <div class="image-spacing">
-            <img src={event.image} alt="event image" />
+      <a href={`/event/${props.event._id}`} className="link">
+        <div className="padding-between-cards">
+          <div className="image-spacing">
+            <img src={props.event.image} alt="event image" />
           </div>
-          <div class="card-body">
-            <h5 class="title-card">{event.name}</h5>
-            <div class="date-event">
-              <div class="upcoming-past">UPCOMING</div>
+          <div className="card-body">
+            <h5 className="title-card">{props.event.name}</h5>
+            <div className="date-event">
+              <div className="upcoming-past">{daysLeft(props.event, props.condition)}</div>
             </div>
-            <div class="date-event">
-              <div class="date">
-                Start: {new Date(event.startDate).toString().slice(4, 15)}
+            <div className="date-event">
+              <div className="date">
+                Start: {new Date(props.event.startDate).toString().slice(4, 15)}
               </div>
-              <div class="date">
-                End: {new Date(event.endDate).toString().slice(4, 15)}
+              <div className="date">
+                End: {new Date(props.event.endDate).toString().slice(4, 15)}
               </div>
             </div>
-            <div class="date-event">
-              <div>Location: {event.location}</div>
+            <div className="date-event">
+              <div>Location: {props.event.location}</div>
             </div>
             <ul className="tags">
-              <li>
-                <a href="#" class="tag">
-                  {event.tag}
-                </a>
+              <li className="tag">
+                  {props.event.tag}
               </li>
             </ul>
           </div>

@@ -4,42 +4,39 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 
 const options = [
-  { value: "all-tags", label: "All Tags" },
+  { value: "", label: "All Tags" },
   {
-    value: "social-good",
+    value: "Social Good",
     label: "Social Good",
-    className: "myOptionClassName",
+    className: "myOptionclassName",
   },
   {
-    value: "food-&-drink",
+    value: "Food & Drink",
     label: "Food & Drink",
-    className: "myOptionClassName",
+    className: "myOptionclassName",
   },
   {
-    value: "educational",
+    value: "Educational",
     label: "Educational",
-    className: "myOptionClassName",
+    className: "myOptionclassName",
   },
   {
-    value: "professional",
+    value: "Professional",
     label: "Professional",
-    className: "myOptionClassName",
+    className: "myOptionclassName",
   },
   {
-    value: "personal",
+    value: "Personal",
     label: "Personal",
-    className: "myOptionClassName",
+    className: "myOptionclassName",
   },
 ];
 
-const defaultOption = options[0];
-
-class Filter extends Component {
-  render() {
+const Filter = (props) => {
     return (
-      <div class="dropdown">
+      <div className="dropdown">
         <a
-          class="btn btn-secondary dropdown-toggle"
+          className="btn btn-secondary dropdown-toggle"
           role="button"
           id="dropdownMenuLink"
           data-toggle="dropdown"
@@ -49,50 +46,110 @@ class Filter extends Component {
           Advanced Search
         </a>
 
-        <div class="dropdown-menu">
-          <form class="px-4 py-3">
-            <div class="form-group">
-              <div class="sort-start-date">
-                <label for="start-range1">Sort by Start Date:</label>
-                <label for="start-range2">From:</label>
+        <div className="dropdown-menu">
+          <form className="px-4 py-3">
+            <div className="form-group">
+              <div className="sort-start-date">
+                
+                <label htmlFor="start-range1">Sort by Date:</label>
+                <label htmlFor="start-range2">Start Date:</label>
 
                 <input
+                  value={props.state.start}
+                  onChange={props.onChange}
                   type="date"
                   id="start-range1"
-                  name="trip-start"
-                  min="2018-01-01"
-                  // value=""
-                  max="2021-12-31"
+                  name="start"
                 />
+
               </div>
-              <label for="start-range2">To: </label>
-              <input
-                type="date"
-                id="start-range2"
-                name="trip-start"
-                min="2018-01-01"
-                max="2021-12-31"
-              />
-            </div>
-            <div className="sort-tag">
-              <p> Sort By Tag: </p>
-              <Dropdown
-                options={options}
-                onChange={this._onSelect}
-                value={defaultOption}
-                placeholder="Select an option"
-                className="dropdown-size"
-              />
+
+                <label htmlFor="start-range2">End Date: </label>
+                
+                <input
+                  value={props.state.end}
+                  onChange={props.onChange}
+                  type="date"
+                  id="start-range2"
+                  name="end"
+                />
             </div>
 
-            <button type="submit" class="btn btn-primary" id="search-button">
+            <div className="sort-tag">
+              <p> Sort By Tag: </p>
+              <select name="tag" value={props.state.tag} onChange={props.onChange}>
+                <option>All</option>
+                <option>Food & Drink</option>
+                <option>Educational</option>
+                <option>Social Good</option>
+                <option>Professional</option>
+                <option>Personal</option>
+              </select>
+            </div>
+
+            <button type="submit" className="btn btn-primary" id="search-button" onClick={props.onClick}>
               Search
             </button>
           </form>
         </div>
       </div>
     );
-  }
 }
+
+// className Filter extends Component {
+//   render() {
+//     return (
+//       <div className="dropdown">
+//         <a
+//           className="btn btn-secondary dropdown-toggle"
+//           role="button"
+//           id="dropdownMenuLink"
+//           data-toggle="dropdown"
+//           aria-haspopup="true"
+//           aria-expanded="false"
+//         >
+//           Advanced Search
+//         </a>
+
+//         <div className="dropdown-menu">
+//           <form className="px-4 py-3">
+//             <div className="form-group">
+//               <div className="sort-start-date">
+//                 <label for="start-range1">Sort by Date:</label>
+//                 <label for="start-range2">Start Date:</label>
+
+//                 <input
+//                   type="date"
+//                   id="start-range1"
+//                   name="startDate"
+//                 />
+//               </div>
+//               <label for="start-range2">End Date: </label>
+//               <input
+//                 type="date"
+//                 id="start-range2"
+//                 name="endDate"
+//               />
+//             </div>
+//             <div className="sort-tag">
+//               <p> Sort By Tag: </p>
+//               <Dropdown
+//                 options={options}
+//                 value={options[0]}
+//                 placeholder="Select an option"
+//                 className="dropdown-size"
+//                 onChange={this._onSelect}
+//               />
+//             </div>
+
+//             <button type="submit" className="btn btn-primary" id="search-button">
+//               Search
+//             </button>
+//           </form>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 
 export default Filter;
