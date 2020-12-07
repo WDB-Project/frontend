@@ -6,7 +6,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Profile_Card from "../Profile_Card/Profile_Card";
 import Event_Card from "../Event_Card/Event_Card";
 
-const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_events?id=`;
+const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
 
 // const dbUrl =
 // `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
@@ -96,7 +96,7 @@ class Profile extends React.Component {
         Authorization: "Bearer " + localStorage.getItem("token") 
       }
     };
-    axios.get(dbUrl +'basic', config).then((res) => {
+    axios.get(url +'basic', config).then((res) => {
       let result = res.data
       console.log(result)
       this.setState({user: result.userProfile, events: result.userEvents, myEvents: result.myEvents, isLoaded: true})
