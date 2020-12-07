@@ -16,6 +16,7 @@ class Register extends React.Component {
         this.passwordRef = React.createRef();
         this.realNameRef = React.createRef();
         this.emailRef = React.createRef();
+        this.pfpRef = React.createRef();
 
     }
 
@@ -34,12 +35,19 @@ class Register extends React.Component {
         const pwd = this.passwordRef.current.value;
         const realName = this.realNameRef.current.value;
         const email = this.emailRef.current.value;
+        const pfpUrl = this.pfpRef.current.value
+        if (pfpUrl == null || pfpUrl == undefined) {
+            pfpUrl = ""
+        }
+        console.log(pfpUrl)
+        // return;
 
         axios.post(url + "register", {
             username: uName,
             password: pwd,
             realname: realName,
-            email: email
+            email: email,
+            pfp: pfpUrl
         }).then((result) => {
                 if (result.data.message == "success") {
                     console.log("Registered success in! Token: ");
@@ -87,6 +95,14 @@ class Register extends React.Component {
                     <Form.Group className = "field" controlId="formBasicPassword">
                         <Form.Control ref={this.passwordRef} type="password" placeholder="Password" />
                     </Form.Group>
+                    <Form.Group className = "field" controlId="formBasicPfp">
+                        <Form.Control ref={this.pfpRef} type="name" placeholder="Profile Picture link" />
+                    </Form.Group>
+                    {/* <Form.File ref={this.pfpRef}
+                        id="custom-file"
+                        label="Upload a profile picture (optional)!"
+                        custom
+                    /> */}
 
                     <Button className = "submitButton" onClick={(e) => this.registerAttempt(e)} id="register" variant="primary" type="submit">
                         Register

@@ -122,17 +122,19 @@ class Profile extends React.Component {
       if (this.state.user.profilepic && this.state.user.profilepic != "") {
         pfp = this.state.user.profilepic
       }
+      console.log("the profile pic is...")
+      console.log(this.state.user)
       return (
         <div className="wrapper">
           <div className="nav-bar">
-            <Header />
+            <Header pfp={pfp} />
           </div>
 
           <div className="eventpage-content">
             <div className="profile-personal">
               <div className="name-wrap">
                 <img
-                  className="profile-pic"
+                  className="profile-pic" 
                   src={pfp}
                   alt=""
                 />
