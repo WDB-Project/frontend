@@ -29,7 +29,11 @@ class Header extends Component{
   create = (e) => {
     e.preventDefault()
     const history = createHistory()
-    history.push('/create')
+    if (!(localStorage.getItem('user') && localStorage.getItem('token'))) {
+      history.push('/signin')
+    } else {
+      history.push('/create')
+    }
     history.go(0)
   }
   render(){

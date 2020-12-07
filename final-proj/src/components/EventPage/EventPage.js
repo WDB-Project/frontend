@@ -91,7 +91,7 @@ class EventPage extends React.Component {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") },
           };
           if (localStorage.getItem("user")) {
-            axios.get(url + `/profile/basic?uid=${this.state.user._id}`, config).then(
+            axios.get(url + `/profile/basicold?uid=${this.state.user._id}`, config).then(
               (result) => {
                 this.setState({user: result.data})
                 localStorage.setItem('user', JSON.stringify(result.data))
