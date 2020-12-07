@@ -6,6 +6,9 @@ import './AboutUs.css'
 import {Button} from "react-bootstrap";
 import LinkedIn from './linkedin.png'
 import Email from './mail.png'
+import Anjan from './Pictures/Anjan.png'
+import Kim from './Pictures/Kim.jpg'
+import Isabel from './Pictures/Isabel.png'
 
 class AboutUs extends Component {
   constructor(props) { //runs everytime the file starts
@@ -65,7 +68,7 @@ class AboutUs extends Component {
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Humans1}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Kim}></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Kim
                 </h4>
@@ -100,7 +103,7 @@ class AboutUs extends Component {
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Humans1}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Isabel}></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Isabel
                 </h4>
@@ -119,7 +122,7 @@ class AboutUs extends Component {
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Humans1}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Anjan}></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Anjan
                 </h4>
