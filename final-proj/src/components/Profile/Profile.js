@@ -79,22 +79,14 @@ class Profile extends React.Component {
       .get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/basic?id=${this.state.user._id}`, config)
       .then((res) => {
         this.state.user = res.data
+
         axios
         .get(url + this.state.user._id, config)
         .then((response) => {
           this.setState({
-            isLoaded: true,
             data: response.data,
           });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.setState({
-            isLoaded: true,
-            error: error,
-          });
-        });
-        axios.get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_myevents?id=${this.state.user._id}`, config)
+          axios.get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_myevents?id=${this.state.user._id}`, config)
           .then((res) => {
             console.log(res.data)
             this.setState({
@@ -107,6 +99,14 @@ class Profile extends React.Component {
               error: err
             })
           })
+        })
+        .catch((error) => {
+          console.log(error);
+          this.setState({
+            isLoaded: false,
+            error: error,
+          });
+        });
       }, (err) => {
         console.log("uoh")
         console.log(err)
