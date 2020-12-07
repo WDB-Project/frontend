@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import EventCard from "../Event_Card/Event_Card";
 import Filter from "../filter/filter";
 import Header from "../NavBar/NavBar";
+import LoadingPage from "../LoadingPage/LoadingPage"
 import axios from "axios";
 
 import "./browse_content.css";
@@ -116,7 +117,7 @@ class Browse_Content extends Component {
       if (this.state.error) {
         return <div>{this.state.error}</div>;
       } else {
-        return <div>Loading...</div>;
+        return <LoadingPage />;
       }
     } else {
       return (
