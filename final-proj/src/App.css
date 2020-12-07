@@ -6,7 +6,6 @@ body {
   text-align: center;
 }
 
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -53,4 +52,5 @@ body {
   background-image: url(https://burst.shopifycdn.com/photos/concert-audience.jpg?width=1200&format=pjpg&exif=0&iptc=0);
   background-size: cover;
   background-repeat: no-repeat;
+  height: 688px;
 }
