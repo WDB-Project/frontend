@@ -22,10 +22,10 @@ class EventPage extends React.Component {
       this.updateEvent(() => {
         var volunteers = [];
         for (const [index, value] of this.state.data.volunteers.entries()) {
-          if (JSON.parse(value)) {
+          if (value) {
             volunteers.push(
               <li className="volunteer-list" key={index}>
-                {JSON.parse(value).realname}
+                {value.realname}
               </li>
             );
           }
@@ -41,7 +41,7 @@ class EventPage extends React.Component {
             ),
           });
         } else if (
-          this.state.data.volunteers.some(item => JSON.parse(item) && JSON.parse(item)._id === this.state.user._id)
+          this.state.data.volunteers.some(item => item._id === this.state.user._id)
         ) {
           this.setState({
             button: (
@@ -115,69 +115,57 @@ class EventPage extends React.Component {
   }
 
   addVolunteer = () => {
-    this.state.data.volunteers.push(JSON.stringify(this.state.user));
     let config = {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     };
     let body = {
       id: this.state.data._id,
-      volunteers: this.state.data.volunteers,
+      volunteer: {realname: this.state.user.realname, _id: this.state.user._id},
     };
     axios.put(url + "/events/signup", body, config).then(
       (result) => {
         this.setState({ join: "Leave Event", update: this.deleteVolunteer });
-        this.state.user.events.push(this.props.eventID)
-        axios.put(url + "/profile/join", {id: this.state.user._id, events: this.state.user.events}, config).then(
+        this.componentDidMount();
+        axios.put(url + "/profile/join", {id: this.state.user._id, event: this.props.eventID}, config).then(
         (result) => {
-          this.componentDidMount();
+          
         },
         (err) => {
           console.log(err)
-          this.state.user.events.pop()
       }
     )
       },
       (err) => {
         console.log(err);
         alert("Volunteer addition failed");
-        this.state.data.volunteers.pop();
       }
     );
   };
 
   deleteVolunteer = () => {
-    var index = this.state.data.volunteers.indexOf(
-      JSON.stringify(this.state.user)
-    );
-    this.state.data.volunteers.splice(index, 1);
     let config = {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     };
     let body = {
       id: this.state.data._id,
-      volunteers: this.state.data.volunteers,
+      volunteer: {realname: this.state.user.realname, _id: this.state.user._id},
     };
-    axios.put(url + "/events/signup", body, config).then(
+    axios.put(url + "/events/leave", body, config).then(
       (result) => {
         this.setState({ join: "Join This Event!", update: this.addVolunteer });
-        var userIndex = this.state.user.events.indexOf(
-          this.props.eventID
-        )
-        this.state.user.events.splice(userIndex, 1)
-        axios.put(url + "/profile/join", {id: this.state.user._id, events: this.state.user.events}, config).then(
+        this.componentDidMount();
+        axios.put(url + "/profile/leave", {id: this.state.user._id, event: this.props.eventID}, config).then(
           (result) => {
-            this.componentDidMount();
+            
           },
           (err) => {
             console.log(err)
-            this.state.user.events.push(this.props.eventID)
           }
         )
       },
       (err) => {
         console.log(err);
         alert("Volunteer deletion failed");
-        this.state.data.volunteers.push(this.state.user);
       }
     );
 
