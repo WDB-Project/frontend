@@ -16,9 +16,11 @@ function myEvents(data) {
     <p id="nothing-to-see">Nothing to see here...</p>
   );
 }
+
+
 const Repeater = (items) => {
-  if (items == undefined) {
-    return null;
+  if (items.length == 0) {
+    return(<p id="nothing-to-see">Nothing to see here...</p>);
   }
   return (
     <div>
@@ -50,8 +52,13 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.getEvents();
-    console.log(this.state.data);
+    if (this.state.user) {
+      this.getEvents();
+      console.log(this.state.data);
+    } else {
+      this.setState({isLoaded: false})
+    }
+    
 
     this._isMounted = true;
     try {
@@ -68,21 +75,28 @@ class Profile extends React.Component {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     };
     axios
-      .get(url + this.state.user._id, config)
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          isLoaded: true,
-          data: response.data,
+      .get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/basic?id=${this.state.user._id}`, config)
+      .then((res) => {
+        this.state.user = res.data
+        axios
+        .get(url + this.state.user._id, config)
+        .then((response) => {
+          this.setState({
+            isLoaded: true,
+            data: response.data,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.setState({
+            isLoaded: true,
+            error: error,
+          });
         });
+      }, (err) => {
+        console.log("uoh")
+        console.log(err)
       })
-      .catch((error) => {
-        console.log(error);
-        this.setState({
-          isLoaded: true,
-          error: error,
-        });
-      });
   }
 
   // updateProfile() {
@@ -175,7 +189,7 @@ class Profile extends React.Component {
                   <div className="banner">
                     <p className="banner-text">Events Created By Me</p>
                   </div>
-                  {Repeater(this.state.data?.upcoming)}
+                  {Repeater(this.state.user.myEvents)}
                 </div>
               </div>
             </div>

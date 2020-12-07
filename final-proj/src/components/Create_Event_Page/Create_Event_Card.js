@@ -13,6 +13,7 @@ class CreateEventCard extends Component {
       submitted: false,
       startTime: 0,
       endTime: 0,
+      user: JSON.parse(localStorage.getItem('user'))
     };
     this.nameRef = React.createRef();
     this.descriptionRef = React.createRef();
@@ -82,6 +83,13 @@ class CreateEventCard extends Component {
           if (result.data.message == "success") {
             console.log("Event created successfully");
             this.setState({ submitted: true });
+            axios.put("http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/create", {id: this.state.user._id, event: result.data.id}, config).then(
+              (result) => {
+
+              }, (err) => {
+                console.log(err)
+              }
+            )
           } else {
             console.log("Failed to create Event");
             this.setState({ submitted: false });
