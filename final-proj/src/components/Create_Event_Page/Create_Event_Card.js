@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import TimePicker from "react-bootstrap-time-picker";
 import axios from "axios";
+import './CreateEventCard.css'
 
 // const url = "http://ec2-3-86-143-220.compute-1.amazonaws.com:3000/events/create"
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/create";
@@ -107,20 +108,29 @@ class CreateEventCard extends Component {
       });
   };
 
+
   render() {
+    const cardStyle = {
+      padding: 30,
+      width: 1000,
+      backgroundColor: '#7CA982',
+      boxShadow: "5px 5px 30px 11px rgba(0, 0, 0, 0.26)"
+    };
+
     if (this.state.submitted == true) {
       return <div>Submitted!</div>;
     } else {
       return (
         <div>
-          <Form>
+          <Form style={cardStyle}>
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Event Name</Form.Label>
+                <Form.Label className="title-text-style">Event Name</Form.Label>
                 <Form.Control
                   ref={this.nameRef}
                   size="lg"
                   type="text"
+                  className="placeholder-text-style"
                   placeholder="Enter event name"
                 />
               </Form.Group>
@@ -128,24 +138,29 @@ class CreateEventCard extends Component {
 
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Description</Form.Label>
+                <Form.Label className="title-text-style">Description</Form.Label>
                 <Form.Control
                   ref={this.descriptionRef}
                   type="text"
+                  className="placeholder-text-style"
                   placeholder="Enter event description"
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Organization</Form.Label>
+                <Form.Label className="title-text-style">Organization</Form.Label>
                 <Form.Control
                   ref={this.organizationRef}
                   type="text"
+                  className="placeholder-text-style"
                   placeholder="Enter the name of your organization"
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Tag</Form.Label>
-                <Form.Control ref={this.tagRef} as="select">
+                <Form.Label className="title-text-style">Tag</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.tagRef}
+                  as="select">
                   <option>Food & Drink</option>
                   <option>Music</option>
                   <option>Professional</option>
@@ -158,8 +173,9 @@ class CreateEventCard extends Component {
 
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Start Time:</Form.Label>
+                <Form.Label className="title-text-style">Start Time:</Form.Label>
                 <TimePicker
+                  className="placeholder-text-style"
                   ref={this.startTimeRef}
                   onClick={this.handleTimeChangeStart}
                   value={this.state.startTime}
@@ -169,8 +185,9 @@ class CreateEventCard extends Component {
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>End Time:</Form.Label>
+                <Form.Label className="title-text-style">End Time:</Form.Label>
                 <TimePicker
+                  className="placeholder-text-style"
                   ref={this.endTimeRef}
                   onClick={this.handleTimeChangeEnd}
                   value={this.state.endTime}
@@ -183,16 +200,20 @@ class CreateEventCard extends Component {
 
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Day</Form.Label>
+                <Form.Label className="title-text-style">Day</Form.Label>
                 <Form.Control
+                  className="placeholder-text-style"
                   ref={this.startDayRef}
                   type="text"
                   placeholder="1-31"
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Month</Form.Label>
-                <Form.Control ref={this.startMonthRef} as="select">
+                <Form.Label className="title-text-style">Month</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.startMonthRef}
+                  as="select">
                   <option>January</option>
                   <option>February</option>
                   <option>March</option>
@@ -208,20 +229,27 @@ class CreateEventCard extends Component {
                 </Form.Control>
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Year</Form.Label>
-                <Form.Control ref={this.startYearRef} type="text" />
+                <Form.Label className="title-text-style">Year</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.startYearRef}
+                  type="text" />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Day</Form.Label>
+                <Form.Label className="title-text-style">Day</Form.Label>
                 <Form.Control
+                  className="placeholder-text-style"
                   ref={this.endDayRef}
                   type="text"
                   placeholder="1-31"
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Month</Form.Label>
-                <Form.Control ref={this.endMonthRef} as="select">
+                <Form.Label className="title-text-style">Month</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.endMonthRef}
+                  as="select">
                   <option>January</option>
                   <option>February</option>
                   <option>March</option>
@@ -238,14 +266,18 @@ class CreateEventCard extends Component {
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label>Year</Form.Label>
-                <Form.Control ref={this.endYearRef} type="text" />
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.endYearRef}
+                  type="text" />
               </Form.Group>
             </Form.Row>
 
             <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Email</Form.Label>
+                <Form.Label className="title-text-style">Email</Form.Label>
                 <Form.Control
+                  className="placeholder-text-style"
                   ref={this.emailRef}
                   type="email"
                   placeholder="Enter email"
@@ -253,8 +285,9 @@ class CreateEventCard extends Component {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridWebsite">
-                <Form.Label>Website</Form.Label>
+                <Form.Label className="title-text-style">Website</Form.Label>
                 <Form.Control
+                  className="placeholder-text-style"
                   ref={this.websiteRef}
                   type="text"
                   placeholder="Enter event website"
@@ -262,8 +295,9 @@ class CreateEventCard extends Component {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridImage">
-                <Form.Label>Image</Form.Label>
+                <Form.Label className="title-text-style">Image</Form.Label>
                 <Form.Control
+                  className="placeholder-text-style"
                   ref={this.imageRef}
                   type="text"
                   placeholder="Enter the link to the image"
@@ -272,16 +306,18 @@ class CreateEventCard extends Component {
             </Form.Row>
 
             <Form.Group controlId="formGridAddress1">
-              <Form.Label>Address</Form.Label>
+              <Form.Label className="title-text-style">Address</Form.Label>
               <Form.Control
+                className="placeholder-text-style"
                 ref={this.addressOneRef}
                 placeholder="1234 Main St"
               />
             </Form.Group>
 
             <Form.Group controlId="formGridAddress2">
-              <Form.Label>Address 2</Form.Label>
+              <Form.Label className="title-text-style">Address 2</Form.Label>
               <Form.Control
+                className="placeholder-text-style"
                 ref={this.addressTwoRef}
                 placeholder="Apartment, studio, or floor"
               />
@@ -289,13 +325,19 @@ class CreateEventCard extends Component {
 
             <Form.Row>
               <Form.Group as={Col} controlId="formGridCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control ref={this.cityRef} type="text" />
+                <Form.Label className="title-text-style">City</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.cityRef}
+                  type="text" />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Control ref={this.stateRef} as="select">
+                <Form.Label className="title-text-style">State</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.stateRef}
+                  as="select">
                   <option>Alabama</option>
                   <option>Alaska</option>
                   <option>Arizona</option>
@@ -350,22 +392,26 @@ class CreateEventCard extends Component {
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridZip">
-                <Form.Label>Zip</Form.Label>
-                <Form.Control ref={this.zipRef} type="text" />
+                <Form.Label className="title-text-style">Zip</Form.Label>
+                <Form.Control
+                  className="placeholder-text-style"
+                  ref={this.zipRef}
+                  type="text" />
               </Form.Group>
             </Form.Row>
 
-            <Form.Group id="formGridCheckbox">
+            {/* <Form.Group id="formGridCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+            </Form.Group> */}
 
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={(e) => this.createEvent(e)}
-            >
-              Submit
-            </Button>
+            <div className="butn-padding">
+              <Button
+                className="submit-button-event-card"
+                onClick={(e) => this.createEvent(e)}
+              >
+                Submit
+              </Button>
+            </div>
           </Form>
         </div>
       );

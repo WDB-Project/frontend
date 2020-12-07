@@ -21,6 +21,7 @@ import Event_Card from "./components/Event_Card/Event_Card";
 import Register from './components/Register/Register'
 import AboutUs from './components/AboutUs/AboutUs'
 import Profile from './components/Profile/Profile'
+import CreateEventPage from './components/Create_Event_Page/Create_Event_Page'
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
         </Route>
         <Route path="/create">
           <div>
-            <CreateEventCard />
+            <CreateEventPage />
           </div>
         </Route>
         <Route path="/event/:id" children={<GetEventID />} />

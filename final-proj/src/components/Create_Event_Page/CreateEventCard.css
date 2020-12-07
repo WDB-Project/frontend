@@ -1,0 +1,18 @@
+.submit-button-event-card {
+  background-color: #E0EEC6 !important;
+  color: black !important;
+  border-color: white !important;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title-text-style {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.butn-padding {
+  padding-top: 10px;
+}
+
+.placeholder-text-style {
+  font-family: 'Open Sans', sans-serif;
+}
