@@ -9,6 +9,8 @@
 }
 
 .subtitle-style {
+  position: absolute;
+  left: 125px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -26,4 +28,48 @@
   font-size: 40px;
   color: #243E36;
   padding-top: 40px;
+}
+
+.home-blob1 {
+  position: absolute;
+  z-index: 0;
+  top: 600px;
+  left: -150px;
+  height: 700px;
+  opacity: .25;
+}
+
+.home-blob2 {
+  position: absolute;
+  z-index: 0;
+  top: 800px;
+  left: 200px;
+  height: 400px;
+  opacity: .75;
+}
+
+.home-blob3 {
+  position: absolute;
+  z-index: 0;
+  top: 700px;
+  right: -100px;
+  height: 700px;
+  opacity: .25;
+}
+
+.home-blob4 {
+  position: absolute;
+  z-index: 0;
+  top: 650px;
+  right: 400px;
+  height: 250px;
+  opacity: .75;
+}
+/* FONTS USED THROUGHOUT APP */
+.primary-mont {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.secondary-sans {
+  font-family: 'Open Sans', sans-serif;
 }
