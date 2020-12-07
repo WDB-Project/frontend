@@ -13,7 +13,7 @@ body {
   flex-wrap: wrap;
 }
 .upcoming-past-sectioning {
-  background: linear-gradient(to bottom, white 9%, #f1f7ed 0%);
+  background: linear-gradient(to bottom, white 150px, #f1f7ed 0%);
 }
 
 .header {
