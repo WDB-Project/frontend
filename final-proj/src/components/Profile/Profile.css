@@ -19,10 +19,10 @@
   flex-direction: row;
 }
 
-.realname {
+.profile-personal {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
 }
 
 .name-wrap {
@@ -171,6 +171,14 @@
 .event-type {
   background-color: #fff;
   min-height: 100px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.profile-box {
+  background-color: #fff;
+  min-height: 300px;
   margin: 20px;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
