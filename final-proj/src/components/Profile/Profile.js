@@ -16,11 +16,10 @@ function myEvents(data) {
   );
 }
 
-
 const Repeater = (items) => {
-  console.log(items)
+  console.log(items);
   if (!items || items.length == 0) {
-    return(<p id="nothing-to-see">Nothing to see here...</p>);
+    return <p id="nothing-to-see">Nothing to see here...</p>;
   }
   return (
     <div>
@@ -49,6 +48,7 @@ class Profile extends React.Component {
     // this.updateProfile = this.updateProfile.bind(this)
     this.buttonRef = React.createRef();
     this.state.user = JSON.parse(localStorage.getItem("user"));
+    console.log(this.state.user);
   }
 
   componentDidMount() {
@@ -56,9 +56,8 @@ class Profile extends React.Component {
       this.getEvents();
       console.log(this.state.data);
     } else {
-      this.setState({isLoaded: false})
+      this.setState({ isLoaded: false });
     }
-    
 
     this._isMounted = true;
     try {
@@ -75,41 +74,54 @@ class Profile extends React.Component {
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     };
     axios
-      .get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/basic?id=${this.state.user._id}`, config)
-      .then((res) => {
-        this.state.user = res.data
-        axios
-        .get(url + this.state.user._id, config)
-        .then((response) => {
-          this.setState({
-            isLoaded: true,
-            data: response.data,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-          this.setState({
-            isLoaded: true,
-            error: error,
-          });
-        });
-        axios.get(`http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_myevents?id=${this.state.user._id}`, config)
-          .then((res) => {
-            console.log(res.data)
-            this.setState({
-              isLoaded: true,
-              myEvents: res.data
+      .get(
+        `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/basic?id=${this.state.user._id}`,
+        config
+      )
+      .then(
+        (res) => {
+          this.state.user = res.data;
+          axios
+            .get(url + this.state.user._id, config)
+            .then((response) => {
+              this.setState({
+                isLoaded: true,
+                data: response.data,
+              });
             })
-          }, (err) => {
-            this.setState({
-              isLoaded: false,
-              error: err
-            })
-          })
-      }, (err) => {
-        console.log("uoh")
-        console.log(err)
-      })
+            .catch((error) => {
+              console.log(error);
+              this.setState({
+                isLoaded: true,
+                error: error,
+              });
+            });
+          axios
+            .get(
+              `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/get_myevents?id=${this.state.user._id}`,
+              config
+            )
+            .then(
+              (res) => {
+                console.log(res.data);
+                this.setState({
+                  isLoaded: true,
+                  myEvents: res.data,
+                });
+              },
+              (err) => {
+                this.setState({
+                  isLoaded: false,
+                  error: err,
+                });
+              }
+            );
+        },
+        (err) => {
+          console.log("uoh");
+          console.log(err);
+        }
+      );
   }
 
   // updateProfile() {
@@ -133,27 +145,27 @@ class Profile extends React.Component {
   //         )
   // }
 
-  addVolunteer = () => {
-    this.state.data.volunteers.push(JSON.stringify(this.state.user));
-    let config = {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    };
-    let body = {
-      id: this.state.data._id,
-      volunteers: this.state.data.volunteers,
-    };
-    axios.put(url + "/events/signup", body, config).then(
-      (result) => {
-        this.setState({ join: "Leave Event", update: this.deleteVolunteer });
-        this.componentDidMount();
-      },
-      (err) => {
-        console.log(err);
-        alert("Volunteer addition failed");
-        this.state.data.volunteers.pop();
-      }
-    );
-  };
+  // addVolunteer = () => {
+  //   this.state.data.volunteers.push(JSON.stringify(this.state.user));
+  //   let config = {
+  //     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  //   };
+  //   let body = {
+  //     id: this.state.data._id,
+  //     volunteers: this.state.data.volunteers,
+  //   };
+  //   axios.put(url + "/events/signup", body, config).then(
+  //     (result) => {
+  //       this.setState({ join: "Leave Event", update: this.deleteVolunteer });
+  //       this.componentDidMount();
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //       alert("Volunteer addition failed");
+  //       this.state.data.volunteers.pop();
+  //     }
+  //   );
+  // };
 
   render() {
     require("./Profile.css");
