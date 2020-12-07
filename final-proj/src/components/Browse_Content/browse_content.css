@@ -2,18 +2,17 @@ body {
   padding-top: 60px;
 }
 
-.event-type {
-  flex-flow: row wrap;
-}
+/* .event-type {
+  width: 100%;
+} */
 
 .wrapping-browsing {
   padding-top: 8px;
   padding-bottom: 0px;
   display: flex;
   flex-wrap: wrap;
-}
-.upcoming-past-sectioning {
-  background: linear-gradient(to bottom, white 150px, #f1f7ed 0%);
+  /* flex-grow: 1; */
+  width: inherit;
 }
 
 .header {
@@ -42,4 +41,7 @@ body {
 .entire-screen {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(to bottom, white 150px, #f1f7ed 0%);
 }
