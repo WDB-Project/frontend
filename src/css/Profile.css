@@ -26,6 +26,11 @@
   width: 40%;
 }
 
+.centered-text {
+  padding-top: 2.5%;
+  text-align: center;
+}
+
 .name-wrap {
   margin-top: 10%;
   margin-left: 20%;

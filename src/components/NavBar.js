@@ -9,14 +9,13 @@ import { withRouter } from 'react-router-dom';
 import '../css/NavBar.css';
 
 class Header extends Component{
-
+  
   signout = (e) => {
     console.log()
     e.preventDefault();
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.props.history.push('/home');
-
   }
 
   signin = (e) => {

@@ -58,24 +58,21 @@ function getPopularTags(events, myEvents) {
       }
     }
   }
-  console.log(dict)
   let keysSorted = Object.keys(dict).sort(function(a,b){return dict[a]-dict[b]})
-  console.log(keysSorted)
   for (let key of keysSorted) {
     str += key + ", "
   }
 
   str = str.substring(0, str.length - 2)
+  if (str == "Favorite interests") {
+    return ""
+  }
   return str
 
 }
 
 const ProfileCard = (props) => {
-  console.log(props.user)
-  console.log(props.events)
-  console.log("myevents")
-  console.log(props.myEvents)
-  console.log("myeventsdone")
+
 
   return (
     <div>
