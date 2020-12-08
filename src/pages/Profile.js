@@ -7,8 +7,7 @@
   import { withRouter } from 'react-router-dom';
 
   import axios from "axios";
-  // const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
-  const url = `http://localhost:3000/profile/`;
+  const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
 
 
   function myEvents(data, condition) {
@@ -65,7 +64,6 @@
       this.getProfileInfo = this.getProfileInfo.bind(this);
       this.handleClose = this.handleClose.bind(this);
       this.handleShow = this.handleShow.bind(this);
-      // this.updateProfile = this.updateProfile.bind(this)
       this.buttonRef = React.createRef();
       this.pfpRef = React.createRef();
 
@@ -82,7 +80,6 @@
 
       this._isMounted = true;
       try {
-        // this.updateProfile();
       } catch (err) {
         console.log(err);
         this.setState({ isLoaded: false });
@@ -108,7 +105,6 @@
                 localStorage.setItem('user', JSON.stringify(user1))
             } else {
                 console.log("Did not register");
-                 // switch page to proper url
             }
            this.setState({modalRequested: false})
           },(err) => {
