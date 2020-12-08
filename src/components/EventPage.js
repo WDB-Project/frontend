@@ -7,6 +7,29 @@ import { withRouter } from "react-router";
 import axios from "axios";
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
 
+function displayLocation(event) {
+  console.log(event['state'])
+  const attributes = ['addressOne', 'addressTwo', 'city', 'state', 'zip']
+  var location = ''
+  for (const attribute of attributes) {
+    if (event[attribute] !== '')
+     location += (event[attribute] + ', ')
+  }
+  console.log(location)
+  return location.slice(0, -2)
+}
+
+function displayTime(timeInput) {
+  const time = new Date(timeInput)
+  const hours = (time.getHours() > 12) ? time.getHours() - 12 : time.getHours()
+  const mid = (time.getHours() > 12) ? 'pm' : 'am'
+  const minutes = (time.getMinutes() < 10) ? `0${time.getMinutes()}` : time.getMinutes()
+  const day = time.getDate()
+  const month = time.toString().slice(4, 7)
+  const year = time.getFullYear()
+  return `${hours}:${minutes} ${mid}, ${day} ${month} ${year}`
+}
+
 class EventPage extends React.Component {
   _isMounted = false;
 
@@ -41,7 +64,7 @@ class EventPage extends React.Component {
         if (!this.state.user) {
           this.setState({
             button: (
-              <button className="button-go">
+              <button className="button-go" ref={this.buttonRef}>
                 Sign In to Join
               </button>
             ),
@@ -61,7 +84,9 @@ class EventPage extends React.Component {
             button: (
               <button
                 className="button-go"
-                onClick={this.deleteVolunteer}>
+                onClick={this.deleteVolunteer}
+                ref={this.buttonRef}
+              >
                 Leave Event
               </button>
             ),
@@ -71,7 +96,9 @@ class EventPage extends React.Component {
             button: (
               <button
                 className="button-go"
-                onClick={this.addVolunteer}>
+                onClick={this.addVolunteer}
+                ref={this.buttonRef}
+              >
                 Join this Event!
               </button>
             ),
@@ -224,7 +251,7 @@ class EventPage extends React.Component {
                   >
                     DESCRIPTION
                   </p>
-                  <p className="event-detail-text" style={{ marginLeft: 30 }}>
+                  <p className="event-detail-text" style={{ marginLeft: 20, marginRight: 15 }}>
                     {this.state.data.description}
                   </p>
                 </div>
@@ -239,16 +266,10 @@ class EventPage extends React.Component {
                       <p className="detail-title-text">DATE:</p>
                     </div>
                     <p className="event-detail-text">
-                      Start:{" "}
-                      {new Date(this.state.data.startDate)
-                        .toString()
-                        .slice(4, 21)}
+                      Start: {displayTime(this.state.data.startDate)}
                     </p>
                     <p className="event-detail-text">
-                      End:{" "}
-                      {new Date(this.state.data.endDate)
-                        .toString()
-                        .slice(4, 21)}
+                      End: {displayTime(this.state.data.endDate)}
                     </p>
                   </div>
                   <div className="event-location">
@@ -260,9 +281,14 @@ class EventPage extends React.Component {
                       ></img>
                       <p className="detail-title-text">LOCATION:</p>
                     </div>
-                    <p className="event-detail-text">
-                      Location: {this.state.data.location}
-                    </p>
+                    <a 
+                      href={`https://www.google.com/maps/search/?api=1&query=${displayLocation(this.state.data)}`} 
+                      className="event-detail-text"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span className="link-text">{displayLocation(this.state.data)}</span>
+                    </a>
                   </div>
                   <div className="event-contact">
                     <div className="event-detail-head">
@@ -273,9 +299,9 @@ class EventPage extends React.Component {
                       ></img>
                       <p className="detail-title-text">CONTACT:</p>
                     </div>
-                    <p className="event-detail-text">
-                      Contact: {this.state.data.contact}
-                    </p>
+                    <a className="event-detail-text" href={`mailto:${this.state.data.contact}?subject=${this.state.data.name}`}>
+                      <span className="link-text">{this.state.data.contact}</span>
+                    </a>
                   </div>
                   <div className="event-host">
                     <div className="event-detail-head">
@@ -284,11 +310,28 @@ class EventPage extends React.Component {
                         alt=""
                         className="event-detail-icon"
                       ></img>
-                      <p className="detail-title-text">HOSTED BY:</p>
+                      <p className="detail-title-text">ORGANIZATION:</p>
                     </div>
                     <p className="event-detail-text">
                       Host: {this.state.data.organization}
                     </p>
+                  </div>
+                  <div className="event-website">
+                    <div className="event-detail-head">
+                      <img
+                        src="https://img.icons8.com/material-outlined/24/000000/globe--v2.png"
+                        className="event-detail-icon"
+                      ></img>
+                      <p className="detail-title-text">WEBSITE:</p>
+                    </div>
+                    <a 
+                      className="event-detail-text" 
+                      href={this.state.data.website}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {this.state.data.website}
+                    </a>
                   </div>
                 </div>
               </div>
