@@ -11,7 +11,7 @@ function myEvents(data, condition) {
   return data && data.length > 0 ? (
     Repeater(data, condition)
   ) : (
-    <p id="nothing-to-see">Nothing to see here...</p>
+    <p className="secondary-sans" id="nothing-to-see">Nothing to see here...</p>
   );
 }
 
@@ -19,7 +19,7 @@ function myProfileArea(data) {
   return data ? (
     ProfileFormatter(data)
   ) : (
-    <p id="nothing-to-see">Nothing to see here...</p>
+    <p className="secondary-sans" id="nothing-to-see">Nothing to see here...</p>
   );
 }
 const ProfileFormatter = (data) => {
@@ -85,7 +85,7 @@ class Profile extends React.Component {
     console.log('get profile info')
     let config = {
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token") 
+        Authorization: "Bearer " + localStorage.getItem("token")
       }
     };
     axios.get(url +'basic', config).then((res) => {
@@ -97,7 +97,7 @@ class Profile extends React.Component {
       console.log(err);
       this.setState({isLoaded: true, error: err})
     });
-    
+
   }
 
   render() {
@@ -126,14 +126,14 @@ class Profile extends React.Component {
             <div className="profile-personal">
               <div className="name-wrap">
                 <img
-                  className="profile-pic" 
+                  className="profile-pic"
                   src={pfp}
                   alt=""
                 />
                 <div className="profile-box">
 
                 <div className="banner">
-                    <p className="banner-text">About Me</p>
+                    <p className="banner-text primary-mont">About Me</p>
                     <div>{myProfileArea({user: this.state.user, events: this.state.events, myEvents: this.state.myEvents})}</div>
                   </div>
               </div>
@@ -143,19 +143,19 @@ class Profile extends React.Component {
               <div className="flex-on-myevent">
                 <div className="event-type">
                   <div className="banner">
-                    <p className="banner-text">My Upcoming Events</p>
+                    <p className="banner-text primary-mont">My Upcoming Events</p>
                     <div>{myEvents(this.state.events.upcoming, 'start')}</div>
                   </div>
                 </div>
                 <div className="event-type">
                   <div className="banner">
-                    <p className="banner-text">My Past Events</p>
+                    <p className="banner-text primary-mont">My Past Events</p>
                   </div>
                   {myEvents(this.state.events.past, 'ongoing')}
                 </div>
                 <div className="event-type">
                   <div className="banner">
-                    <p className="banner-text">Events Created By Me</p>
+                    <p className="banner-text primary-mont">Events Created By Me</p>
                   </div>
                   {Repeater(this.state.myEvents, 'end')}
                 </div>

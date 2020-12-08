@@ -7,6 +7,7 @@ import Email from '../images/mail.png'
 import Anjan from '../images/Anjan.png'
 import Kim from '../images/Kim.jpg'
 import Isabel from '../images/Isabel.png'
+import Dhruv from '../images/Dhruv.jpg'
 import '../css/AboutUs.css'
 
 class AboutUs extends Component {
@@ -39,7 +40,7 @@ class AboutUs extends Component {
             onClick={() => this.handleOnClick("product")}>Service
           </button>
           <button className="button-style"
-            onClick={() => this.handleOnClick("people")}>People
+            onClick={() => this.handleOnClick("people")}>Team
           </button>
         </div>
 
@@ -49,7 +50,7 @@ class AboutUs extends Component {
 
             <div className="d-flex flex-row justify-content-center justify-content-space-between move-down" >
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Humans1}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Dhruv}></img>
                 <div className="d-flex flex-column justify-content-center">
                   <h4 className="d-flex justify-content-center people-text">
                     Dhruv
@@ -57,10 +58,10 @@ class AboutUs extends Component {
                   <span className="d-flex justify-content-center align-items-center people-description-text" style={{height: 48}}>Back End Developer</span>
                 </div>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
-                  <a href="https://wikipedia.com">
+                  <a href="mailto:dvaish@berkeley.edu">
                     <img src={Email} className="icon-style"/>
                   </a>
-                  <a href="https://google.com">
+                  <a href="https://www.linkedin.com/in/dhruv-vaish/">
                     <img src={LinkedIn} className="icon-style"/>
                   </a>
                 </div>
@@ -76,10 +77,10 @@ class AboutUs extends Component {
                   <span className="d-flex justify-content-center people-description-text">UI Designer</span>
                 </div>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
-                  <a href="https://wikipedia.com">
+                  <a href="mailto:kimberley.fan123@berkeley.edu">
                     <img src={Email} className="icon-style"/>
                   </a>
-                  <a href="https://google.com">
+                  <a href="https://www.linkedin.com/in/kimberleyfan/">
                     <img src={LinkedIn} className="icon-style"/>
                   </a>
                 </div>
@@ -92,7 +93,7 @@ class AboutUs extends Component {
                 </h4>
                 <span className="d-flex justify-content-center align-items-center people-description-text" style={{height: 48}}>Back End Developer</span>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
-                  <a href="https://wikipedia.com">
+                  <a href="mailto:gautamvenkatesh@berkeley.edu">
                     <img src={Email} className="icon-style"/>
                   </a>
                   <a href="https://google.com">
@@ -111,10 +112,10 @@ class AboutUs extends Component {
                   <span className="d-flex justify-content-center people-description-text">UI Designer</span>
                 </div>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
-                  <a href="https://wikipedia.com">
+                  <a href="mailto:izheng@berkeley.edu">
                     <img src={Email} className="icon-style"/>
                   </a>
-                  <a href="https://google.com">
+                  <a href="https://www.linkedin.com/in/isabel-zheng-24003b1b2/">
                     <img src={LinkedIn} className="icon-style"/>
                   </a>
                 </div>
@@ -127,10 +128,10 @@ class AboutUs extends Component {
                 </h4>
                 <span className="d-flex justify-content-center align-items-center people-description-text" style={{height: 48}}>Back End Developer</span>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
-                  <a href="https://wikipedia.com">
+                  <a href="mailto:anjanb@berkeley.edu">
                     <img src={Email} className="icon-style"/>
                   </a>
-                  <a href="https://google.com">
+                  <a href="https://www.linkedin.com/in/anjanbharadwaj/">
                     <img src={LinkedIn} className="icon-style"/>
                   </a>
                 </div>

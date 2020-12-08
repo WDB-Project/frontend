@@ -87,7 +87,7 @@ signin = (e) => {
                 <Col className="d-none d-lg-flex justify-content-end">
                   <NavLink className="font" style={browseStyle} href="/browse">Browse</NavLink>
                   <Form inline>
-                      <Button onClick = {(e) => this.create(e)}style={buttonStyle} outline>Create Event</Button>
+                      <Button onClick = {(e) => this.create(e)} className="submit-button" outline>Create Event</Button>
                   </Form>
                 </Col>
                 <NavItem className="d-flex align-items-center justify-content-end">

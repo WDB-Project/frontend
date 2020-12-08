@@ -35,7 +35,7 @@ function getPopularTags(events, myEvents) {
   // console.log(list2)
   console.log(myEvents)
 
-  
+
   if (list1 != null && list1 != undefined && list1.length > 0) {
     for (let e of list1) {
       console.log("eeee")
@@ -64,10 +64,10 @@ function getPopularTags(events, myEvents) {
   for (let key of keysSorted) {
     str += key + ", "
   }
-  
+
   str = str.substring(0, str.length - 2)
   return str
-  
+
 }
 
 const ProfileCard = (props) => {
@@ -80,18 +80,18 @@ const ProfileCard = (props) => {
   return (
     <div>
           <div className="info-padding">
-            <h5 className="title-card">Name: {props.user.realname}</h5>
-            <div className="number-events">
+            <h5 className="title-card primary-mont">Name: {props.user.realname}</h5>
+            <div className="number-events secondary-sans">
               Username: {props.user.realname}
             </div>
-            <div className="number-events">
+            <div className="number-events secondary-sans">
               {getNumberEventsAttended(props.events)}
             </div>
-            <div className="number-events">
+            <div className="number-events secondary-sans">
               {getNumberEventsCreated(props.myEvents)}
             </div>
             <br></br>
-            <div className="number-events">
+            <div className="number-events secondary-sans">
               {getPopularTags(props.events, props.myEvents)}
             </div>
             {/* <div className="date-event">

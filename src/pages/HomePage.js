@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from '../components/NavBar.js'
 import PopEvents from  '../components/PopularEvents.js'
 import SignIn from '../pages/SignIn'
-import AboutUs from '../css/components/AboutUs'
+import AboutUs from '../components/AboutUs'
 
 import Humans1 from '../images/Humans1.png'
 import '../css/HomePage.css'
@@ -17,7 +17,7 @@ class HomePage extends Component{
           <div>
             <h1 className="title-style">Up&Coming</h1>
             <h4 className="subtitle-style">
-              events made easy
+              bring your events to life!
             </h4>
           </div>
           <div>

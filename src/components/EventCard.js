@@ -29,23 +29,23 @@ const EventCard = (props) => {
             <img src={props.event.image} alt="event banner" />
           </div>
           <div className="card-body">
-            <h5 className="title-card">{props.event.name}</h5>
-            <div className="date-event"></div>
-            <div className="date-event">
-              <div className="date">
+            <h5 className="title-card primary-mont">{props.event.name}</h5>
+            <div className="date-event secondary-sans"></div>
+            <div className="date-event secondary-sans">
+              <div className="date secondary-sans">
                 Start: {new Date(props.event.startDate).toString().slice(4, 15)}
               </div>
-              <div className="date">
+              <div className="date secondary-sans">
                 End: {new Date(props.event.endDate).toString().slice(4, 15)}
               </div>
             </div>
-            <div className="date-event">
+            <div className="date-event secondary-sans">
               <div>Location: {props.event.location}</div>
             </div>
-            <div className="upcoming-past">
+            <div className="upcoming-past secondary-sans">
               {daysLeft(props.event, props.condition)}
             </div>
-            <ul className="tags">
+            <ul className="tags secondary-sans">
               <li className="tag">{props.event.tag}</li>
             </ul>
           </div>

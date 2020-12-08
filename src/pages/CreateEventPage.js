@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateEventCard from '../css/components/CreateEventCard.js'
+import CreateEventCard from '../components/CreateEventCard.js'
 import Header from '../components/NavBar.js'
 
 import '../css/CreateEventPage.css'

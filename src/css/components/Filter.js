@@ -6,14 +6,14 @@ const Filter = (props) => {
     return (
       <div className="dropdown">
         <a
-          className="btn dropdown-toggle secondary-sans"
+          className="btn btn-secondary dropdown-toggle secondary-sans"
           role="button"
           id="dropdownMenuLink"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Advanced Search
+          test
         </a>
 
         <div className="dropdown-menu">
