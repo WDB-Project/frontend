@@ -139,7 +139,7 @@ class BrowseContent extends Component {
             <div className="header">
               <h1 className="title-browse primary-mont">Browse Events</h1>
               <div className="secondary-sans" id="available-events">
-                {this.availableEvents()} Available Events
+                {this.availableEvents()} Total Events
               </div>
             </div>
             <div className="event-type">
