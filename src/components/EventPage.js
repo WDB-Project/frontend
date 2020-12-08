@@ -35,10 +35,13 @@ class EventPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { isLoaded: false };
+    this.state = { 
+      isLoaded: false, 
+      user:  JSON.parse(localStorage.getItem("user")), 
+      config: {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      }};
     this.updateEvent = this.updateEvent.bind(this);
-    this.buttonRef = React.createRef();
-    this.state.user = JSON.parse(localStorage.getItem("user"));
   }
 
   componentDidMount() {
@@ -71,13 +74,12 @@ class EventPage extends React.Component {
             button: (
               <button
                 className="button-go"
-                onClick={this.deleteEvent}
-              >Delete this Event</button>
+                onClick={this.deleteEvent}>
+                  Delete this Event
+              </button>
             )
           })
-        } else if (
-          this.state.data.volunteers.some(item => item._id === this.state.user._id)
-        ) {
+        } else if (this.state.data.volunteers.some(item => item._id === this.state.user._id)) {
           this.setState({
             button: (
               <button
@@ -122,11 +124,8 @@ class EventPage extends React.Component {
             isLoaded: true,
             data: result.data[0],
           });
-          let config = {
-            headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-          };
           if (localStorage.getItem("user")) {
-            axios.get(url + `/profile/basicold?uid=${this.state.user._id}`, config).then(
+            axios.get(url + `/profile/basicold?uid=${this.state.user._id}`, this.state.config).then(
               (result) => {
                 this.setState({user: result.data})
                 localStorage.setItem('user', JSON.stringify(result.data))
@@ -150,23 +149,17 @@ class EventPage extends React.Component {
   }
 
   addVolunteer = () => {
-    let config = {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    };
     let body = {
       id: this.state.data._id,
       volunteer: {realname: this.state.user.realname, _id: this.state.user._id},
     };
-    axios.put(url + "/events/signup", body, config).then(
+    axios.put(url + "/events/signup", body, this.state.config).then(
       (result) => {
         this.setState({ join: "Leave Event", update: this.deleteVolunteer });
         this.componentDidMount();
-        axios.put(url + "/profile/join", {id: this.state.user._id, event: this.props.eventID}, config).then(
-        (result) => {
-          
-        },
-        (err) => {
-          console.log(err)
+        axios.put(url + "/profile/join", {id: this.state.user._id, event: this.props.eventID}, this.state.config).then(
+        (result, err) => {
+          if (err) console.log(err)
       }
     )
       },
@@ -178,23 +171,17 @@ class EventPage extends React.Component {
   };
 
   deleteVolunteer = () => {
-    let config = {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    };
     let body = {
       id: this.state.data._id,
       volunteer: {realname: this.state.user.realname, _id: this.state.user._id},
     };
-    axios.put(url + "/events/leave", body, config).then(
+    axios.put(url + "/events/leave", body, this.state.config).then(
       (result) => {
         this.setState({ join: "Join This Event!", update: this.addVolunteer });
         this.componentDidMount();
-        axios.put(url + "/profile/leave", {id: this.state.user._id, event: this.props.eventID}, config).then(
-          (result) => {
-            
-          },
-          (err) => {
-            console.log(err)
+        axios.put(url + "/profile/leave", {id: this.state.user._id, event: this.props.eventID}, this.state.config).then(
+          (result, err) => {
+            if (err) console.log(err)
           }
         )
       },
@@ -203,15 +190,11 @@ class EventPage extends React.Component {
         alert("Volunteer deletion failed");
       }
     );
-
   };
 
   
   deleteEvent = () => {
-    let config = {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    };
-    axios.delete(url + `/events/delete?id=${this.props.eventID}`, config).then(
+    axios.delete(url + `/events/delete?id=${this.props.eventID}`, this.state.config).then(
       (result) => {
         this.props.history.push('/browse')
       }, (err) => {
