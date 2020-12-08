@@ -29,7 +29,7 @@ html {
   list-style: none;
   margin: 0;
   overflow: hidden;
-  padding: 14px 80px 5px 0px;
+  padding: 14px 0px 5px 0px;
 }
 
 .tags li {
@@ -44,7 +44,7 @@ html {
   line-height: 26px;
   padding: 0 20px 0 23px;
   position: relative;
-  margin: 0 6px 10px 0;
+  /* margin: 0 6px 10px 0; */
   text-decoration: none;
   -webkit-transition: color 0.2s;
   display: block;
@@ -121,8 +121,9 @@ html {
   float: right;
 }
 .upcoming-past {
+  margin: 12px 0 0 0;
   border-style: solid;
-  width: 40%;
+  width: 35%;
   text-align: center;
   float: right;
 }

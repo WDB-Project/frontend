@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import EventCard from "../components/EventCard.js";
 import Filter from "../components/Filter.js";
 import Header from "../components/NavBar.js";
-import LoadingPage from "../components/LoadingPage.js"
+import LoadingPage from "../components/LoadingPage.js";
 import axios from "axios";
 
 import "../css/BrowseContent.css";
 
-const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
+const url =
+  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
 
 function Repeater(items, condition) {
   if (items === undefined) {
@@ -17,19 +18,21 @@ function Repeater(items, condition) {
     <div id="background-coloring">
       <ul className="wrapping-browsing">
         {items.map((event) => {
-          return <EventCard key={event._id} event={event} condition={condition}/>;
+          return (
+            <EventCard key={event._id} event={event} condition={condition} />
+          );
         })}
       </ul>
     </div>
   );
-};
+}
 
 function encodeURL(inputDict) {
-  var query = '?'
+  var query = "?";
   for (const [key, value] of Object.entries(inputDict)) {
-    query += `${key}=${value}&`
+    query += `${key}=${value}&`;
   }
-  return query.slice(0,-1)
+  return query.slice(0, -1);
 }
 
 class BrowseContent extends Component {
@@ -38,15 +41,15 @@ class BrowseContent extends Component {
     this.state = {
       isLoaded: false,
       data: undefined,
-      start: '',
-      end: '',
-      tag: '',
+      start: "",
+      end: "",
+      tag: "",
     };
     this.getEvents = this.getEvents.bind(this);
-    this.availableEvents = this.availableEvents.bind(this)
-    this.filterParams = this.filterParams.bind(this)
-    this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.availableEvents = this.availableEvents.bind(this);
+    this.filterParams = this.filterParams.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -54,7 +57,7 @@ class BrowseContent extends Component {
   }
 
   componentWillUnmount() {
-    this.setState({isLoaded: false})
+    this.setState({ isLoaded: false });
   }
 
   availableEvents() {
@@ -66,38 +69,39 @@ class BrowseContent extends Component {
   }
 
   filterParams() {
-    const ms = 1000 * 60 * 60 * 8
-    const filter = {}
-    if (this.state.start !== '') {
-      filter['startDate'] = Date.parse(this.state.start) + ms
+    const ms = 1000 * 60 * 60 * 8;
+    const filter = {};
+    if (this.state.start !== "") {
+      filter["startDate"] = Date.parse(this.state.start) + ms;
     }
-    if (this.state.end !== '') {
-      filter['endDate'] = Date.parse(this.state.end) + ms
+    if (this.state.end !== "") {
+      filter["endDate"] = Date.parse(this.state.end) + ms;
     }
-    if (this.state.tag !== '' && this.state.tag !== 'All') {
-      filter['tag'] = this.state.tag
+    if (this.state.tag !== "" && this.state.tag !== "All") {
+      filter["tag"] = this.state.tag;
     }
-    return encodeURL(filter)
+    return encodeURL(filter);
   }
 
   handleChange = (event) => {
-    const name = event.target.name
+    const name = event.target.name;
     this.setState({
-      [name]: event.target.value
-    })
-  }
+      [name]: event.target.value,
+    });
+  };
 
   handleClick = (e) => {
-    e.preventDefault()
-    this.getEvents()
-  }
+    e.preventDefault();
+    this.getEvents();
+  };
 
   getEvents() {
-    console.log(url + this.filterParams())
-    axios.get(url + this.filterParams()) 
+    console.log(url + this.filterParams());
+    axios
+      .get(url + this.filterParams())
       .then((response) => {
         console.log(response);
-        console.log(response.data)
+        console.log(response.data);
         this.setState({
           isLoaded: true,
           data: response.data,
@@ -125,25 +129,31 @@ class BrowseContent extends Component {
             <Header />
           </div>
           <div>
-            <Filter onChange={this.handleChange} onClick={this.handleClick} state={this.state} />
+            <Filter
+              onChange={this.handleChange}
+              onClick={this.handleClick}
+              state={this.state}
+            />
           </div>
           <div className="upcoming-past-sectioning">
             <div className="entire-screen">
               <div className="header">
                 <h1 className="title-browse">Browse Events</h1>
-                <div id="available-events">{this.availableEvents()} Available Events</div>
+                <div id="available-events">
+                  {this.availableEvents()} Available Events
+                </div>
               </div>
               <div className="event-type">
                 <div className="subtitles">Upcoming Events </div>
-                {Repeater(this.state.data.upcoming, 'start')}
+                {Repeater(this.state.data.upcoming, "start")}
               </div>
               <div className="event-type">
                 <div className="subtitles">Ongoing Events </div>
-                {Repeater(this.state.data.ongoing, 'ongoing')}
+                {Repeater(this.state.data.ongoing, "ongoing")}
               </div>
               <div className="event-type">
                 <div className="subtitles">Past Events </div>
-                {Repeater(this.state.data.past, 'end')}
+                {Repeater(this.state.data.past, "end")}
               </div>
             </div>
           </div>
