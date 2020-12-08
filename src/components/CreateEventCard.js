@@ -55,10 +55,10 @@ class CreateEventCard extends Component {
     e.preventDefault();
     const start = Date.parse(
       `${this.startDayRef.current.value} ${this.startMonthRef.current.value} ${this.startYearRef.current.value}`
-    ); // needs time
+    ) + (this.state.startTime * 1000); // needs time
     const end = Date.parse(
       `${this.endDayRef.current.value} ${this.endMonthRef.current.value} ${this.endYearRef.current.value}`
-    ); // needs time
+    ) + (this.state.endTime * 1000); // needs time
     const location = `${this.addressOneRef.current.value}, ${this.addressTwoRef.current.value}, ${this.cityRef.current.value}, ${this.zipRef.current.value}`;
 
     const eventAttributes = {
@@ -141,6 +141,7 @@ class CreateEventCard extends Component {
               <Form.Group as={Col}>
                 <Form.Label className="title-text-style">Description</Form.Label>
                 <Form.Control
+                required
                   ref={this.descriptionRef}
                   type="text"
                   className="placeholder-text-style"
@@ -178,7 +179,7 @@ class CreateEventCard extends Component {
                 <TimePicker
                   className="placeholder-text-style"
                   ref={this.startTimeRef}
-                  onClick={this.handleTimeChangeStart}
+                  onChange={this.handleTimeChangeStart}
                   value={this.state.startTime}
                   start="00:00"
                   end="23:45"
@@ -190,7 +191,7 @@ class CreateEventCard extends Component {
                 <TimePicker
                   className="placeholder-text-style"
                   ref={this.endTimeRef}
-                  onClick={this.handleTimeChangeEnd}
+                  onChange={this.handleTimeChangeEnd}
                   value={this.state.endTime}
                   start="00:00"
                   end="23:45"
@@ -407,7 +408,7 @@ class CreateEventCard extends Component {
 
             <div className="butn-padding">
               <Button
-                className="submit-button"
+                className="submit-button-event-card"
                 onClick={(e) => this.createEvent(e)}
               >
                 Submit

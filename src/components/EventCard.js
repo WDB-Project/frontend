@@ -19,6 +19,17 @@ function daysLeft(event, condition) {
   }
 }
 
+function displayTime(timeInput) {
+  const time = new Date(timeInput)
+  const hours = (time.getHours() > 12) ? time.getHours() - 12 : time.getHours()
+  const mid = (time.getHours() > 12) ? 'pm' : 'am'
+  const minutes = (time.getMinutes() < 10) ? `0${time.getMinutes()}` : time.getMinutes()
+  const day = time.getDate()
+  const month = time.toString().slice(4, 7)
+  const year = time.getFullYear()
+  return `${hours}:${minutes} ${mid}, ${day} ${month} ${year}`
+}
+
 const EventCard = (props) => {
   console.log(props.event);
   return (
@@ -33,10 +44,10 @@ const EventCard = (props) => {
             <div className="date-event secondary-sans"></div>
             <div className="date-event secondary-sans">
               <div className="date secondary-sans">
-                Start: {new Date(props.event.startDate).toString().slice(4, 15)}
+                Start: {displayTime(props.event.startDate)}
               </div>
               <div className="date secondary-sans">
-                End: {new Date(props.event.endDate).toString().slice(4, 15)}
+                End: {displayTime(props.event.endDate)}
               </div>
             </div>
             <div className="date-event secondary-sans">

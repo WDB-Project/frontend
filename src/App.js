@@ -7,7 +7,6 @@ import Profile from './pages/Profile'
 import CreateEventPage from './pages/CreateEventPage'
 import GetEventID from "./components/GetEventID";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 import {

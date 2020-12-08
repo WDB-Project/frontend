@@ -27,7 +27,6 @@ class CreateEventPage extends Component {
           </svg>
         </div>
         <div className="d-flex justify-content-center card-style">
-          {/**/}
           <CreateEventCard />
         </div>
       </div>

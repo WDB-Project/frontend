@@ -55,6 +55,7 @@ const Filter = (props) => {
                 <option>Social Good</option>
                 <option>Professional</option>
                 <option>Personal</option>
+                <option>Music</option>
               </select>
             </div>
 

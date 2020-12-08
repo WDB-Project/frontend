@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import EventCard from "../components/EventCard.js";
 import Filter from "../components/Filter.js";
 import Header from "../components/NavBar.js";
-import LoadingPage from "../components/LoadingPage.js";
-import axios from "axios";
+import LoadingPage from "../components/LoadingPage.js"
 
 import "../css/BrowseContent.css";
 
-const url =
-  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
+import axios from "axios"
+const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
 
 function Repeater(items, condition) {
   if (items === undefined) {
