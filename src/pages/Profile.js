@@ -159,10 +159,10 @@
             <div className="eventpage-content">
             <Modal show={this.state.modalRequested} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Change Profile Picture</Modal.Title>
               </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-              <Form.Group className = "field" controlId="formBasicPfp">
+              <Modal.Body  style={{paddingLeft: 25,}} >Fill in the field below.</Modal.Body>
+              <Form.Group  style={{paddingLeft: 25,}}  className = "field" controlId="formBasicPfp">
                 <Form.Control ref={this.pfpRef} type="name" placeholder="Profile Picture link" />
               </Form.Group>
               <Modal.Footer>
