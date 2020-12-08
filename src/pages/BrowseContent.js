@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import EventCard from "../components/EventCard.js";
 import Filter from "../components/Filter.js";
 import Header from "../components/NavBar.js";
-import LoadingPage from "../components/LoadingPage.js"
+import LoadingPage from "../components/LoadingPage.js";
 
 import "../css/BrowseContent.css";
 
-import axios from "axios"
-const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
+import axios from "axios";
+const url =
+  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
 
 function Repeater(items, condition) {
   if (items === undefined) {
@@ -134,26 +135,24 @@ class BrowseContent extends Component {
               state={this.state}
             />
           </div>
-          <div className="upcoming-past-sectioning">
-            <div className="entire-screen">
-              <div className="header">
-                <h1 className="title-browse primary-mont">Browse Events</h1>
-                <div className="secondary-sans" id="available-events">
-                  {this.availableEvents()} Available Events
-                </div>
+          <div className="entire-browse">
+            <div className="header">
+              <h1 className="title-browse primary-mont">Browse Events</h1>
+              <div className="secondary-sans" id="available-events">
+                {this.availableEvents()} Available Events
               </div>
-              <div className="event-type">
-                <div className="subtitles primary-mont">Upcoming Events </div>
-                {Repeater(this.state.data.upcoming, "start")}
-              </div>
-              <div className="event-type">
-                <div className="subtitles primary-mont">Ongoing Events </div>
-                {Repeater(this.state.data.ongoing, "ongoing")}
-              </div>
-              <div className="event-type">
-                <div className="subtitles primary-mont">Past Events </div>
-                {Repeater(this.state.data.past, "end")}
-              </div>
+            </div>
+            <div className="event-type">
+              <div className="subtitles primary-mont">Upcoming Events </div>
+              {Repeater(this.state.data.upcoming, "start")}
+            </div>
+            <div className="event-type">
+              <div className="subtitles primary-mont">Ongoing Events </div>
+              {Repeater(this.state.data.ongoing, "ongoing")}
+            </div>
+            <div className="event-type">
+              <div className="subtitles primary-mont">Past Events </div>
+              {Repeater(this.state.data.past, "end")}
             </div>
           </div>
         </div>

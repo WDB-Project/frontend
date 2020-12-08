@@ -44,7 +44,6 @@ html {
   line-height: 26px;
   padding: 0 20px 0 23px;
   position: relative;
-  /* margin: 0 6px 10px 0; */
   text-decoration: none;
   -webkit-transition: color 0.2s;
   display: block;
@@ -90,14 +89,6 @@ html {
 .padding-between-cards:hover {
   box-shadow: 5px 5px 30px 11px rgba(0, 0, 0, 0.26);
 }
-/* .card {
-  padding: 30px;
-  max-width: 320px;
-  width: 100%;
-  display: block;
-  margin: 0px;
-  word-wrap: break-word;
-} */
 
 .card-body {
   background-color: #fff;

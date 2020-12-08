@@ -7,7 +7,6 @@ body {
   padding-bottom: 0px;
   display: flex;
   flex-wrap: wrap;
-  /* flex-grow: 1; */
   width: inherit;
 }
 
@@ -17,7 +16,6 @@ body {
 .title-browse {
   font-size: 40px;
   font-weight: bold;
-  /* position: absolute; */
   margin: 20px 0px 0px 0px;
 }
 
@@ -34,7 +32,7 @@ body {
   color: #243e36;
 }
 
-.entire-screen {
+.entire-browse {
   display: flex;
   flex-direction: column;
   width: 100%;
