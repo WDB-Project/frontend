@@ -36,8 +36,8 @@ class Register extends React.Component {
         const pwd = this.passwordRef.current.value;
         const realName = this.realNameRef.current.value;
         const email = this.emailRef.current.value;
-        const pfpUrl = this.pfpRef.current.value
-        if (pfpUrl == null || pfpUrl == undefined) {
+        var pfpUrl = this.pfpRef.current.value
+        if (pfpUrl === null || pfpUrl === undefined) {
             pfpUrl = ""
         }
         console.log(pfpUrl)
@@ -50,7 +50,7 @@ class Register extends React.Component {
             email: email,
             pfp: pfpUrl
         }).then((result) => {
-                if (result.data.message == "success") {
+                if (result.data.message === "success") {
                     console.log("Registered success in! Token: ");
                     this.switch(e)
                 } else {

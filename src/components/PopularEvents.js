@@ -22,7 +22,7 @@ const EventRow = ({ event }) => {
 }
 
 function DisplayEvents(items) {
-  if (items == undefined) {
+  if (items === undefined) {
     return null
   }
   return (
@@ -79,9 +79,6 @@ class PopEvents extends Component{
       color: "white",
       fontSize: 25,
       padding: 2
-    };
-    const pstyle = {
-      marginBottom: 0
     };
     const innertext = {
       fontFamily: 'Open Sans'

@@ -19,6 +19,18 @@ function daysLeft(event, condition) {
   }
 }
 
+function displayLocation(event) {
+  console.log(event['state'])
+  const attributes = ['addressOne', 'addressTwo', 'city', 'state', 'zip']
+  var location = ''
+  for (const attribute of attributes) {
+    if (event[attribute] !== '')
+     location += (event[attribute] + ', ')
+  }
+  console.log(location)
+  return location.slice(0, -2)
+}
+
 function displayTime(timeInput) {
   const time = new Date(timeInput)
   const hours = (time.getHours() > 12) ? time.getHours() - 12 : time.getHours()
@@ -31,7 +43,6 @@ function displayTime(timeInput) {
 }
 
 const EventCard = (props) => {
-  console.log(props.event);
   return (
     <div>
       <a href={`/event/${props.event._id}`} className="link">
@@ -51,7 +62,7 @@ const EventCard = (props) => {
               </div>
             </div>
             <div className="date-event secondary-sans">
-              <div>Location: {props.event.location}</div>
+              <div>Location: {displayLocation(props.event)}</div>
             </div>
             <div className="upcoming-past secondary-sans">
               {daysLeft(props.event, props.condition)}

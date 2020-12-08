@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "../css/ProfileCard.css";
 
 
 function getNumberEventsAttended(events) {
   let total = events.ongoing.length + events.past.length
-  if (total == 1) {
+  if (total === 1) {
     return total + ' event attended';
   }
   return total + ' events attended';
@@ -14,10 +14,10 @@ function getNumberEventsAttended(events) {
 function getNumberEventsCreated(myEvents) {
   let total = 0;
   console.log(myEvents)
-  if (myEvents != null && myEvents != undefined){
+  if (myEvents !== null && myEvents !== undefined){
      total = myEvents.length
   }
-  if (total == 1) {
+  if (total === 1) {
     return total + ' event hosted';
   }
   return total + ' events hosted';
@@ -36,7 +36,7 @@ function getPopularTags(events, myEvents) {
   console.log(myEvents)
 
 
-  if (list1 != null && list1 != undefined && list1.length > 0) {
+  if (list1 !== null && list1 !== undefined && list1.length > 0) {
     for (let e of list1) {
       console.log("eeee")
       console.log(e)
@@ -48,7 +48,7 @@ function getPopularTags(events, myEvents) {
       }
     }
   }
-  if (list2 != null && list2 != undefined && list2.length > 0) {
+  if (list2 !== null && list2 !== undefined && list2.length > 0) {
     for (let e of list2) {
       let tag = e.tag
       if (dict.hasOwnProperty(tag)) {

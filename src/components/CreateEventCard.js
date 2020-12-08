@@ -59,14 +59,17 @@ class CreateEventCard extends Component {
     const end = Date.parse(
       `${this.endDayRef.current.value} ${this.endMonthRef.current.value} ${this.endYearRef.current.value}`
     ) + (this.state.endTime * 1000); // needs time
-    const location = `${this.addressOneRef.current.value}, ${this.addressTwoRef.current.value}, ${this.cityRef.current.value}, ${this.zipRef.current.value}`;
 
     const eventAttributes = {
       name: this.nameRef.current.value,
       tag: this.tagRef.current.value,
       image: this.imageRef.current.value,
       description: this.descriptionRef.current.value,
-      location: location,
+      addressOne: this.addressOneRef.current.value,
+      addressTwo: this.addressTwoRef.current.value,
+      city: this.cityRef.current.value,
+      state: this.stateRef.current.value,
+      zip: this.zipRef.current.value,
       organization: this.organizationRef.current.value,
       website: this.websiteRef.current.value,
       contact: this.emailRef.current.value,
@@ -118,7 +121,7 @@ class CreateEventCard extends Component {
       boxShadow: "5px 5px 30px 11px rgba(0, 0, 0, 0.26)"
     };
 
-    if (this.state.submitted == true) {
+    if (this.state.submitted === true) {
       return (<Redirect path="/browse" />)
     } else {
       return (

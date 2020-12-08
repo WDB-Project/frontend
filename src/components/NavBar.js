@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import createHistory from 'history/createBrowserHistory'
 import {
-  Container, Row, Col, Form, Input, Button, Navbar, Nav,
-  NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
-  DropdownToggle, DropdownMenu, DropdownItem
+  Container, Row, Col, Form, Button, Navbar, Nav,
+  NavLink, NavItem, 
 } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
 import '../css/NavBar.css';
 
 class Header extends Component{
-  constructor(props) {
-    super(props)
-  }
 
   signout = (e) => {
     console.log()
@@ -21,13 +17,15 @@ class Header extends Component{
     localStorage.removeItem('user');
     this.props.history.push('/home');
 
-}
-signin = (e) => {
-  e.preventDefault()
-  const history = createHistory()
-  history.push('/signin')
-  history.go(0)
-}
+  }
+
+  signin = (e) => {
+    e.preventDefault()
+    const history = createHistory()
+    history.push('/signin')
+    history.go(0)
+  }
+
   create = (e) => {
     e.preventDefault()
     const history = createHistory()
@@ -63,7 +61,7 @@ signin = (e) => {
     if (localStorage.getItem('token') || localStorage.getItem('user')) {
       let pfp = "https://i.stack.imgur.com/34AD2.jpg"
       let user = JSON.parse(localStorage.getItem('user'))
-      if (user.profilepic && user.profilepic != "") {
+      if (user.profilepic && user.profilepic !== "") {
         pfp = user.profilepic
       }
       return (
