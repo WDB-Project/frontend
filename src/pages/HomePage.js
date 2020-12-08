@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from '../components/NavBar.js'
 import PopEvents from  '../components/PopularEvents.js'
-import SignInCard from '../components/SignInCard.js'
+import SignInCard from './SignIn.js'
 import AboutUs from '../components/AboutUs.js'
 
 import Humans1 from '../images/Humans1.png'
