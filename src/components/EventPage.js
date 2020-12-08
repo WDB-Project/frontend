@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./NavBar.js";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage"
+import { withRouter } from "react-router";
 
 import axios from "axios";
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
@@ -33,14 +34,24 @@ class EventPage extends React.Component {
         }
 
         this.setState({ volunteers: volunteers });
+
         if (!this.state.user) {
           this.setState({
             button: (
-              <button className="button-go" ref={this.buttonRef}>
+              <button className="button-go">
                 Sign In to Join
               </button>
             ),
           });
+        } else if (this.state.user.myEvents.includes(this.props.eventID)) {
+          this.setState({
+            button: (
+              <button
+                className="button-go"
+                onClick={this.deleteEvent}
+              >Delete this Event</button>
+            )
+          })
         } else if (
           this.state.data.volunteers.some(item => item._id === this.state.user._id)
         ) {
@@ -49,7 +60,6 @@ class EventPage extends React.Component {
               <button
                 className="button-go"
                 onClick={this.deleteVolunteer}
-                ref={this.buttonRef}
               >
                 Leave Event
               </button>
@@ -61,7 +71,6 @@ class EventPage extends React.Component {
               <button
                 className="button-go"
                 onClick={this.addVolunteer}
-                ref={this.buttonRef}
               >
                 Join this Event!
               </button>
@@ -172,6 +181,19 @@ class EventPage extends React.Component {
 
   };
 
+  
+  deleteEvent = () => {
+    let config = {
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    };
+    axios.delete(url + `/events/delete?id=${this.props.eventID}`, config).then(
+      (result) => {
+        this.props.history.push('/browse')
+      }, (err) => {
+        console.log(err)
+      }
+    )
+  }
 
   render() {
     require('../css/EventPage.css')
@@ -293,4 +315,4 @@ class EventPage extends React.Component {
   }
 }
 
-export default EventPage;
+export default withRouter(EventPage);
