@@ -8,14 +8,12 @@ import axios from "axios";
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
 
 function displayLocation(event) {
-  console.log(event['state'])
   const attributes = ['addressOne', 'addressTwo', 'city', 'state', 'zip']
   var location = ''
   for (const attribute of attributes) {
     if (event[attribute] !== '')
      location += (event[attribute] + ', ')
   }
-  console.log(location)
   return location.slice(0, -2)
 }
 
@@ -53,7 +51,7 @@ class EventPage extends React.Component {
           if (value) {
             volunteers.push(
               <li className="volunteer-list" key={index}>
-                {value.realname}
+                {value.username}
               </li>
             );
           }
@@ -151,7 +149,7 @@ class EventPage extends React.Component {
   addVolunteer = () => {
     let body = {
       id: this.state.data._id,
-      volunteer: {realname: this.state.user.realname, _id: this.state.user._id},
+      volunteer: {username: this.state.user.username, _id: this.state.user._id},
     };
     axios.put(url + "/events/signup", body, this.state.config).then(
       (result) => {
@@ -173,7 +171,7 @@ class EventPage extends React.Component {
   deleteVolunteer = () => {
     let body = {
       id: this.state.data._id,
-      volunteer: {realname: this.state.user.realname, _id: this.state.user._id},
+      volunteer: {username: this.state.user.username, _id: this.state.user._id},
     };
     axios.put(url + "/events/leave", body, this.state.config).then(
       (result) => {
@@ -251,7 +249,7 @@ class EventPage extends React.Component {
                   >
                     DESCRIPTION
                   </p>
-                  <p className="event-detail-text" style={{ marginLeft: 20, marginRight: 15 }}>
+                  <p className="event-detail-text" style={{ marginLeft: 30, marginRight: 10 }}>
                     {this.state.data.description}
                   </p>
                 </div>
@@ -320,6 +318,7 @@ class EventPage extends React.Component {
                     <div className="event-detail-head">
                       <img
                         src="https://img.icons8.com/material-outlined/24/000000/globe--v2.png"
+                        alt=""
                         className="event-detail-icon"
                       ></img>
                       <p className="detail-title-text">WEBSITE:</p>
