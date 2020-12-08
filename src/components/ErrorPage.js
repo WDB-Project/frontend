@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "./ErrorPage.css"
+
+import "../css/ErrorPage.css"
 
 class ErrorPage extends React.Component {
     render() {

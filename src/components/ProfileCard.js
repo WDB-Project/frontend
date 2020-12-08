@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./Profile_Card.css";
+
+import "../css/ProfileCard.css";
 
 
 function getNumberEventsAttended(events) {
@@ -69,7 +70,7 @@ function getPopularTags(events, myEvents) {
   
 }
 
-const Profile_Card = (props) => {
+const ProfileCard = (props) => {
   console.log(props.user)
   console.log(props.events)
   console.log("myevents")
@@ -106,4 +107,4 @@ const Profile_Card = (props) => {
   );
 };
 
-export default Profile_Card;
+export default ProfileCard;

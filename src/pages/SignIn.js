@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from "../NavBar/NavBar.js"
-import axios from 'axios'
-import "./SignIn.css"
-import {Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
-import {Redirect} from 'react-router-dom';
+import Header from "../components/NavBar.js"
+import {Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
-const dbUrl = "http://localhost:3000/auth/"
-const finalDbUrl = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
+import "../css/SignIn.css"
+
+import axios from 'axios'
+const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
+
 class SignIn extends React.Component {
     constructor(props) {
         super(props)
@@ -22,7 +21,7 @@ class SignIn extends React.Component {
         console.log("login attempt")
         const uName = this.usernameRef.current.value;
         const pwd = this.passwordRef.current.value;
-        axios.post(finalDbUrl +"login", {
+        axios.post(url +"login", {
             username: uName,
             password: pwd
         }).then((result) => {

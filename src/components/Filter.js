@@ -1,36 +1,6 @@
-import React, { Component } from "react";
-import "./filter.css";
-import Dropdown from "react-dropdown";
-import "react-dropdown/style.css";
+import React from "react";
 
-const options = [
-  { value: "", label: "All Tags" },
-  {
-    value: "Social Good",
-    label: "Social Good",
-    className: "myOptionclassName",
-  },
-  {
-    value: "Food & Drink",
-    label: "Food & Drink",
-    className: "myOptionclassName",
-  },
-  {
-    value: "Educational",
-    label: "Educational",
-    className: "myOptionclassName",
-  },
-  {
-    value: "Professional",
-    label: "Professional",
-    className: "myOptionclassName",
-  },
-  {
-    value: "Personal",
-    label: "Personal",
-    className: "myOptionclassName",
-  },
-];
+import "../css/Filter.css";
 
 const Filter = (props) => {
     return (
@@ -95,61 +65,5 @@ const Filter = (props) => {
       </div>
     );
 }
-
-// className Filter extends Component {
-//   render() {
-//     return (
-//       <div className="dropdown">
-//         <a
-//           className="btn btn-secondary dropdown-toggle"
-//           role="button"
-//           id="dropdownMenuLink"
-//           data-toggle="dropdown"
-//           aria-haspopup="true"
-//           aria-expanded="false"
-//         >
-//           Advanced Search
-//         </a>
-
-//         <div className="dropdown-menu">
-//           <form className="px-4 py-3">
-//             <div className="form-group">
-//               <div className="sort-start-date">
-//                 <label for="start-range1">Sort by Date:</label>
-//                 <label for="start-range2">Start Date:</label>
-
-//                 <input
-//                   type="date"
-//                   id="start-range1"
-//                   name="startDate"
-//                 />
-//               </div>
-//               <label for="start-range2">End Date: </label>
-//               <input
-//                 type="date"
-//                 id="start-range2"
-//                 name="endDate"
-//               />
-//             </div>
-//             <div className="sort-tag">
-//               <p> Sort By Tag: </p>
-//               <Dropdown
-//                 options={options}
-//                 value={options[0]}
-//                 placeholder="Select an option"
-//                 className="dropdown-size"
-//                 onChange={this._onSelect}
-//               />
-//             </div>
-
-//             <button type="submit" className="btn btn-primary" id="search-button">
-//               Search
-//             </button>
-//           </form>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
 
 export default Filter;

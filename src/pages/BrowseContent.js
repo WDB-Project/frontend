@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import EventCard from "../Event_Card/Event_Card";
-import Filter from "../filter/filter";
-import Header from "../NavBar/NavBar";
-import LoadingPage from "../LoadingPage/LoadingPage"
+import EventCard from "../components/EventCard.js";
+import Filter from "../components/Filter.js";
+import Header from "../components/NavBar.js";
+import LoadingPage from "../components/LoadingPage.js"
 import axios from "axios";
 
-import "./browse_content.css";
-import "../filter/filter.css"
+import "../css/BrowseContent.css";
 
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
 

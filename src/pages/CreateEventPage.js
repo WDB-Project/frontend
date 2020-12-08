@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import CreateEventCard from './Create_Event_Card'
-import Header from '../NavBar/NavBar'
-import './CreateEventPage.css'
+import CreateEventCard from '../components/CreateEventCard.js'
+import Header from '../components/NavBar.js'
+
+import '../css/CreateEventPage.css'
 
 class CreateEventPage extends Component {
   render(){

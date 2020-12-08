@@ -1,20 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Header from "../NavBar/NavBar.js";
-import axios from "axios";
-import ErrorPage from "../ErrorPage/ErrorPage";
-import Profile_Card from "../Profile_Card/Profile_Card";
-import Event_Card from "../Event_Card/Event_Card";
+import Header from "../components/NavBar";
+import ErrorPage from "../components/ErrorPage";
+import ProfileCard from "../components/ProfileCard";
+import EventCard from "../components/EventCard";
 
+import axios from "axios";
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
 
-// const dbUrl =
-// `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
-
-const dbUrl =
-`http://localhost:3000/profile/`;
-
-// `http://ec2-3-86-143-220.compute-1.amazonaws.com:3000`;
 function myEvents(data, condition) {
   return data && data.length > 0 ? (
     Repeater(data, condition)
@@ -33,14 +25,14 @@ function myProfileArea(data) {
 const ProfileFormatter = (data) => {
   console.log(data)
   return (
-    <Profile_Card user={data.user} events={data.events} myEvents={data.myEvents} />
+    <ProfileCard user={data.user} events={data.events} myEvents={data.myEvents} />
 
   );
 };
 
 const Repeater = (items, condition) => {
   console.log(items);
-  if (!items || items.length == 0) {
+  if (!items || items.length === 0) {
     return <p id="nothing-to-see">Nothing to see here...</p>;
   }
   return (
@@ -50,7 +42,7 @@ const Repeater = (items, condition) => {
           {items.map((event) => {
             return (
               <div class="individual-event">
-                <Event_Card event={event} condition={condition} />
+                <EventCard event={event} condition={condition} />
               </div>
             );
           })}
@@ -109,7 +101,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    require("./Profile.css");
+    require("../css/Profile.css");
     if (!this.state.user || !this.state.isLoaded) {
       console.log("Loading");
       if (this.state.error) {
@@ -119,7 +111,7 @@ class Profile extends React.Component {
       }
     } else {
       let pfp = "https://i.stack.imgur.com/34AD2.jpg"
-      if (this.state.user.profilepic && this.state.user.profilepic != "") {
+      if (this.state.user.profilepic && this.state.user.profilepic !== "") {
         pfp = this.state.user.profilepic
       }
       console.log("the profile pic is...")

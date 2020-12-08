@@ -1,11 +1,11 @@
 import React from "react";
-import SignIn from "./components/SignIn/SignIn";
-import BrowseContent from "./components/Browse_Content/browse_content";
-import HomePage from "./components/Home_Page/Home_Page";
-import Register from './components/Register/Register'
-import Profile from './components/Profile/Profile'
-import CreateEventPage from './components/Create_Event_Page/Create_Event_Page'
-import GetEventID from "./components/EventPage/getEventID";
+import SignIn from "./pages/SignIn";
+import BrowseContent from "./pages/BrowseContent";
+import HomePage from "./pages/HomePage";
+import Register from './pages/Register'
+import Profile from './pages/Profile'
+import CreateEventPage from './pages/CreateEventPage'
+import GetEventID from "./components/GetEventID";
 
 import logo from "./logo.svg";
 import "./App.css";

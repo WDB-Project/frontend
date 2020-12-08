@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import './NavBar.css';
-import Browse_Content from '../Browse_Content/browse_content';
 import createHistory from 'history/createBrowserHistory'
-import {Link} from 'react-router-dom'
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
@@ -10,7 +7,7 @@ import {
 } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 
-const AVATAR = 'https://www.nationalgeographic.com/content/dam/animals/thumbs/rights-exempt/mammals/m/mountain-gorilla_thumb.jpg';
+import '../css/NavBar.css';
 
 class Header extends Component{
   constructor(props) {

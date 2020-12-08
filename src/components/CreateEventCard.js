@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import {Redirect} from "react-router-dom"
 import TimePicker from "react-bootstrap-time-picker";
-import axios from "axios";
-import './CreateEventCard.css'
 
+import '../css/CreateEventCard.css'
+
+import axios from "axios";
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/create";
 
 class CreateEventCard extends Component {

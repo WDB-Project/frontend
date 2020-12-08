@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from "../NavBar/NavBar.js" 
-import axios from 'axios'
-import "./Register.css"
-import {Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
+import Header from "../components/NavBar.js" 
+
+import {Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
+import "../css/Register.css"
+
+import axios from 'axios'
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
 
 class Register extends React.Component {

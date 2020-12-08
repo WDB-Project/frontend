@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Humans1 from '../Home_Page/Humans1.png'
-import Humans2 from '../Home_Page/Humans2.png'
-import './AboutUs.css'
-import {Button} from "react-bootstrap";
-import LinkedIn from './linkedin.png'
-import Email from './mail.png'
-import Anjan from './Pictures/Anjan.png'
-import Kim from './Pictures/Kim.jpg'
-import Isabel from './Pictures/Isabel.png'
+
+import Humans1 from '../images/Humans1.png'
+import Humans2 from '../images/Humans2.png'
+import LinkedIn from '../images/linkedin.png'
+import Email from '../images/mail.png'
+import Anjan from '../images/Anjan.png'
+import Kim from '../images/Kim.jpg'
+import Isabel from '../images/Isabel.png'
+import '../css/AboutUs.css'
 
 class AboutUs extends Component {
   constructor(props) { //runs everytime the file starts

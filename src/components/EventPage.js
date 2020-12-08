@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Header from "../NavBar/NavBar.js";
+import Header from "./NavBar.js";
+import ErrorPage from "./ErrorPage";
+import LoadingPage from "./LoadingPage"
+
 import axios from "axios";
-import ErrorPage from "../ErrorPage/ErrorPage";
-import LoadingPage from "../LoadingPage/LoadingPage"
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
 
 class EventPage extends React.Component {
@@ -174,7 +174,7 @@ class EventPage extends React.Component {
 
 
   render() {
-    require('./EventPage.css')
+    require('../css/EventPage.css')
     if (!this.state.isLoaded) {
       console.log("Loading");
       if (this.state.error) {

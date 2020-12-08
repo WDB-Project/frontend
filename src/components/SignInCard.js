@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, button } from 'react-bootstrap';
-import "./SignInCard.css"
+
+import "../css/SignInCard.css"
 
 class SignInCard extends Component{
   render(){

@@ -1,5 +1,6 @@
 import React from "react";
-import "./event_card.css";
+
+import "../css/EventCard.css";
 
 function daysLeft(event, condition) {
   const now = Date.now()

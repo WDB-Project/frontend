@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import Header from '../NavBar/NavBar'
-import PopEvents from  '../Popular_Events/Popular_Events'
-import SignInCard from '../SignIn/SignIn'
-import Humans1 from './Humans1.png'
-import AboutUs from '../AboutUs/AboutUs'
-import './HomePage.css'
+import Header from '../components/NavBar.js'
+import PopEvents from  '../components/PopularEvents.js'
+import SignInCard from '../components/SignInCard.js'
+import AboutUs from '../components/AboutUs.js'
+
+import Humans1 from '../images/Humans1.png'
+import '../css/HomePage.css'
 
 class HomePage extends Component{
   render(){

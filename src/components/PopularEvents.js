@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Card, ListGroup, Row, Col } from 'react-bootstrap';
-import "./PopularEvents.css"
-import axios from 'axios'
 
+import "../css/PopularEvents.css"
+
+import axios from 'axios'
 const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get"
 
 const EventRow = ({ event }) => {
