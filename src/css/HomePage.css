@@ -52,7 +52,7 @@
   position: absolute;
   z-index: 0;
   top: 700px;
-  right: -100px;
+  right: 0px;
   height: 700px;
   opacity: .25;
 }
@@ -60,11 +60,12 @@
 .home-blob4 {
   position: absolute;
   z-index: 0;
-  top: 650px;
-  right: 400px;
+  top: 675px;
+  right: 325px;
   height: 250px;
   opacity: .75;
 }
+
 /* FONTS USED THROUGHOUT APP */
 .primary-mont {
   font-family: 'Montserrat', sans-serif;

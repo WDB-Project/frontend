@@ -138,21 +138,21 @@ class BrowseContent extends Component {
           <div className="upcoming-past-sectioning">
             <div className="entire-screen">
               <div className="header">
-                <h1 className="title-browse">Browse Events</h1>
-                <div id="available-events">
+                <h1 className="title-browse primary-mont">Browse Events</h1>
+                <div className="secondary-sans" id="available-events">
                   {this.availableEvents()} Available Events
                 </div>
               </div>
               <div className="event-type">
-                <div className="subtitles">Upcoming Events </div>
+                <div className="subtitles primary-mont">Upcoming Events </div>
                 {Repeater(this.state.data.upcoming, "start")}
               </div>
               <div className="event-type">
-                <div className="subtitles">Ongoing Events </div>
+                <div className="subtitles primary-mont">Ongoing Events </div>
                 {Repeater(this.state.data.ongoing, "ongoing")}
               </div>
               <div className="event-type">
-                <div className="subtitles">Past Events </div>
+                <div className="subtitles primary-mont">Past Events </div>
                 {Repeater(this.state.data.past, "end")}
               </div>
             </div>
