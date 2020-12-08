@@ -33,7 +33,7 @@ function encodeURL(inputDict) {
   return query.slice(0,-1)
 }
 
-class Browse_Content extends Component {
+class BrowseContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -154,4 +154,4 @@ class Browse_Content extends Component {
   }
 }
 
-export default Browse_Content;
+export default BrowseContent;
