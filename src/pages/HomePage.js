@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from '../components/NavBar.js'
 import PopEvents from  '../components/PopularEvents.js'
-import SignInCard from './SignIn.js'
+import SignIn from '../pages/SignIn'
 import AboutUs from '../components/AboutUs.js'
 
 import Humans1 from '../images/Humans1.png'
@@ -48,7 +48,7 @@ class HomePage extends Component{
             <PopEvents />
           </div>
           <div className="card-padding" style = {{marginRight: "150px"}}>
-            <SignInCard />
+            <SignIn />
           </div>
         </div>
 
