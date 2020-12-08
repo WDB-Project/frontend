@@ -25,7 +25,12 @@ class Header extends Component{
     this.props.history.push('/home');
 
 }
-
+signin = (e) => {
+  e.preventDefault()
+  const history = createHistory()
+  history.push('/signin')
+  history.go(0)
+}
   create = (e) => {
     e.preventDefault()
     const history = createHistory()
@@ -132,6 +137,11 @@ class Header extends Component{
                       <Button onClick = {(e) => this.create(e)}style={buttonStyle} outline>Create Event</Button>
                   </Form>
                 </Col>
+                <NavItem style={{marginLeft: 25}} className="d-flex align-items-center justify-content-end">
+                  <Form inline>
+                    <Button style={buttonStyle} outline onClick={(e) => this.signin(e)}>Sign In</Button>
+                  </Form>
+                </NavItem>
 
               </Row>
             </Container>
