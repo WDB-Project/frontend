@@ -36,7 +36,7 @@
   const Repeater = (items, condition) => {
     console.log(items);
     if (!items || items.length === 0) {
-      return <p className="secondary-sans" id="nothing-to-see">Nothing to see here...</p>;
+      return <p className = "secondary-sans" id="nothing-to-see">Nothing to see here...</p>;
     }
     return (
       <div>
