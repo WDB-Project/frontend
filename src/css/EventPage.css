@@ -81,7 +81,7 @@
   width: 75%;
   background-color: #fff;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  min-height: 75%;
+  min-height: 60%;
   overflow-y: auto;
   border-radius: 7px;
 }
@@ -162,7 +162,7 @@
   flex-direction: column;
   border-left: black 1px solid;
   margin-top: 1.35%;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   height: 95%;
 }
 
@@ -197,6 +197,11 @@
   margin-top: 10%;
   margin-left: 10px;
 }
+
+.event-website {
+  margin-bottom: 20px;
+}
+
 
 
 .event-detail-text {
