@@ -20,26 +20,26 @@ function daysLeft(event, condition) {
 }
 
 function displayLocation(event) {
-  console.log(event['state'])
-  const attributes = ['addressOne', 'addressTwo', 'city', 'state', 'zip']
-  var location = ''
+  console.log(event["state"]);
+  const attributes = ["addressOne", "addressTwo", "city", "state", "zip"];
+  var location = "";
   for (const attribute of attributes) {
-    if (event[attribute] !== '')
-     location += (event[attribute] + ', ')
+    if (event[attribute] !== "") location += event[attribute] + ", ";
   }
-  console.log(location)
-  return location.slice(0, -2)
+  console.log(location);
+  return location.slice(0, -2);
 }
 
 function displayTime(timeInput) {
-  const time = new Date(timeInput)
-  const hours = (time.getHours() > 12) ? time.getHours() - 12 : time.getHours()
-  const mid = (time.getHours() > 12) ? 'pm' : 'am'
-  const minutes = (time.getMinutes() < 10) ? `0${time.getMinutes()}` : time.getMinutes()
-  const day = time.getDate()
-  const month = time.toString().slice(4, 7)
-  const year = time.getFullYear()
-  return `${hours}:${minutes} ${mid}, ${day} ${month} ${year}`
+  const time = new Date(timeInput);
+  const hours = time.getHours() > 12 ? time.getHours() - 12 : time.getHours();
+  const mid = time.getHours() > 12 ? "pm" : "am";
+  const minutes =
+    time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes();
+  const day = time.getDate();
+  const month = time.toString().slice(4, 7);
+  const year = time.getFullYear();
+  return `${hours}:${minutes} ${mid}, ${day} ${month} ${year}`;
 }
 
 const EventCard = (props) => {
@@ -55,14 +55,21 @@ const EventCard = (props) => {
             <div className="date-event secondary-sans"></div>
             <div className="date-event secondary-sans">
               <div className="date secondary-sans">
-                Start: {displayTime(props.event.startDate)}
+                Start: &nbsp;
+                <div className="bolded">
+                  {displayTime(props.event.startDate)}
+                </div>
               </div>
               <div className="date secondary-sans">
-                End: {displayTime(props.event.endDate)}
+                End: &nbsp;
+                <div className="bolded">{displayTime(props.event.endDate)}</div>
               </div>
             </div>
             <div className="date-event secondary-sans">
-              <div>Location: {displayLocation(props.event)}</div>
+              <div>
+                Location: &nbsp;
+                <div className="bolded">{displayLocation(props.event)}</div>
+              </div>
             </div>
             <div className="upcoming-past secondary-sans">
               {daysLeft(props.event, props.condition)}
