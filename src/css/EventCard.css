@@ -102,7 +102,7 @@ html {
 .date-event {
   font-size: 15px;
   font-weight: 600;
-  color: grey;
+  color: black;
 }
 
 .location-event {
@@ -127,4 +127,10 @@ html {
 .link:hover {
   color: black;
   text-decoration: none;
+}
+
+.bolded {
+  font-weight: lighter;
+  display: inline;
+  color: grey;
 }
