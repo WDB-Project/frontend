@@ -12,13 +12,21 @@ const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/
 class Register extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {registered: false, incorrect: false}
+        this.state = {registered: false, incorrect: false, pictures: []}
         this.usernameRef = React.createRef();
         this.passwordRef = React.createRef();
         this.realNameRef = React.createRef();
         this.emailRef = React.createRef();
-        this.pfpRef = React.createRef();
+    }
 
+    onDrop(pictureFiles, pictureDataURLs) {
+        console.log("ondrop")
+        console.log(pictureFiles[0])
+        console.log(pictureDataURLs)
+
+        this.setState({
+            picture: pictureFiles[0]
+        });
     }
 
     switch = (e) => {
@@ -36,12 +44,12 @@ class Register extends React.Component {
         const pwd = this.passwordRef.current.value;
         const realName = this.realNameRef.current.value;
         const email = this.emailRef.current.value;
-        var pfpUrl = this.pfpRef.current.value
+
+        var pfpUrl = this.state.profileUrl
         if (pfpUrl === null || pfpUrl === undefined) {
             pfpUrl = ""
         }
         console.log(pfpUrl)
-        // return;
 
         axios.post(url + "register", {
             username: uName,
@@ -51,6 +59,7 @@ class Register extends React.Component {
             pfp: pfpUrl
         }).then((result) => {
                 if (result.data.message === "success") {
+                    let id = result.data.id
                     console.log("Registered success in! Token: ");
                     this.switch(e)
                 } else {
@@ -64,7 +73,25 @@ class Register extends React.Component {
                 }
             )
     }
- 
+    showWidget = (e) => {
+        if (this.state.noMoreUpload) {
+            alert('Only 1 profile picture upload allowed.')
+            return;
+        }
+        e.preventDefault()
+        let widget = window.cloudinary.createUploadWidget({
+            cloudName: "dqfre6apd",
+            uploadPreset: "nbmcvhae" },
+            (error, result) => {this.checkUploadResult(result)})
+        console.log("showWidget")
+        widget.open()
+    }
+    checkUploadResult = (resultEvent) => {
+        if (resultEvent.event === 'success') {
+            console.log(resultEvent.info.secure_url)
+            this.setState({noMoreUpload: true, profileUrl: resultEvent.info.secure_url})
+        }
+    }
     render() {
         const { incorrect } = this.state;
         let warn = <div></div>;
@@ -96,14 +123,9 @@ class Register extends React.Component {
                     <Form.Group className = "field" controlId="formBasicPassword">
                         <Form.Control ref={this.passwordRef} type="password" placeholder="Password" />
                     </Form.Group>
-                    <Form.Group className = "field" controlId="formBasicPfp">
-                        <Form.Control ref={this.pfpRef} type="name" placeholder="Profile Picture link" />
-                    </Form.Group>
-                    {/* <Form.File ref={this.pfpRef}
-                        id="custom-file"
-                        label="Upload a profile picture (optional)!"
-                        custom
-                    /> */}
+                    <Button className = "submitButton" style={{marginBottom: 25}} onClick={(e) => this.showWidget(e)}>
+                        Upload Profile Picture
+                    </Button>
 
                     <Button className = "submitButton" onClick={(e) => this.registerAttempt(e)} id="register" variant="primary" type="submit">
                         Register

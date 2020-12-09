@@ -62,8 +62,6 @@
       super(props);
       this.state = { isLoaded: false, data: undefined };
       this.getProfileInfo = this.getProfileInfo.bind(this);
-      this.handleClose = this.handleClose.bind(this);
-      this.handleShow = this.handleShow.bind(this);
       this.buttonRef = React.createRef();
       this.pfpRef = React.createRef();
 
@@ -86,38 +84,6 @@
       }
     }
 
-    handleClose = () => {
-      this.setState({modalRequested: false})
-    }
-    handleCloseSuccess = () => {
-      let newUrl = this.pfpRef.current.value;
-      let config = {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token")
-        }
-      };
-      axios.post(url + "updateProfilePic", {
-        pfp: newUrl
-      }, config).then((result) => {
-            if (result.data.message === "success") {
-                let user1 = this.state.user
-                user1.profilepic = newUrl;
-                localStorage.setItem('user', JSON.stringify(user1))
-            } else {
-                console.log("Did not register");
-            }
-           this.setState({modalRequested: false})
-          },(err) => {
-                console.log("Did not register");
-                console.log(err)
-                this.setState({modalRequested: false})
-            }
-        )
-    }
-    handleShow = (e) => {
-      e.preventDefault();
-      this.setState({modalRequested: true})
-    }
     async getProfileInfo() {
       console.log('get profile info')
       let config = {
@@ -135,7 +101,48 @@
       });
 
     }
-
+    showWidget = (e) => {
+      if (this.state.noMoreUpload) {
+          alert('Only 1 profile picture upload allowed.')
+          return;
+      }
+      e.preventDefault()
+      let widget = window.cloudinary.createUploadWidget({
+          cloudName: "dqfre6apd",
+          uploadPreset: "nbmcvhae" },
+          (error, result) => {this.checkUploadResult(result)})
+      console.log("showWidget")
+      widget.open()
+  }
+  checkUploadResult = (resultEvent) => {
+      if (resultEvent.event === 'success') {
+          console.log(resultEvent.info.secure_url)
+          this.setState({noMoreUpload: true, profileUrl: resultEvent.info.secure_url})
+          let newUrl = resultEvent.info.secure_url;
+          let config = {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token")
+            }
+          };
+          axios.post(url + "updateProfilePic", {
+            pfp: newUrl
+          }, config).then((result) => {
+                if (result.data.message === "success") {
+                    let user1 = this.state.user
+                    user1.profilepic = newUrl;
+                    localStorage.setItem('user', JSON.stringify(user1))
+                } else {
+                    console.log("Did not register");
+                }
+              this.setState({modalRequested: false})
+              },(err) => {
+                    console.log("Did not register");
+                    console.log(err)
+                    this.setState({modalRequested: false})
+                }
+          )
+      }
+  }
     render() {
       require("../css/Profile.css");
       if (!this.state.user || !this.state.isLoaded) {
@@ -157,23 +164,6 @@
             </div>
 
             <div className="eventpage-content">
-            <Modal show={this.state.modalRequested} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Change Profile Picture</Modal.Title>
-              </Modal.Header>
-              <Modal.Body  style={{paddingLeft: 25,}} >Fill in the field below.</Modal.Body>
-              <Form.Group  style={{paddingLeft: 25,}}  className = "field" controlId="formBasicPfp">
-                <Form.Control ref={this.pfpRef} type="name" placeholder="Profile Picture link" />
-              </Form.Group>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={this.handleCloseSuccess}>
-                  Save Changes
-                </Button>
-              </Modal.Footer>
-            </Modal>
               <div className="profile-personal">
                 <div className="name-wrap">
                   <img
@@ -182,7 +172,7 @@
                     alt=""
                   />
                   <div className="centered-text">
-                  <a href="" onClick={(e) => this.handleShow(e)}>Change photo</a>
+                  <a href="" onClick={(e) => this.showWidget(e)}>Change photo</a>
                   </div>
                   <div className="profile-box">
 
