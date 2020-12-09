@@ -235,7 +235,13 @@
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">My Upcoming Events</p>
-                      <div>{myEvents(this.state.events.upcoming, 'ongoing')}</div>
+                      <div>{myEvents(this.state.events.upcoming, 'upcoming')}</div>
+                    </div>
+                  </div>
+                  <div className="event-type">
+                    <div className="banner">
+                      <p className="banner-text primary-mont">My Ongoing Events</p>
+                      <div>{myEvents(this.state.events.ongoing, 'ongoing')}</div>
                     </div>
                   </div>
                   <div className="event-type">
