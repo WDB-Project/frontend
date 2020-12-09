@@ -68,14 +68,7 @@ class EventPage extends React.Component {
               </button>
             ),
           });
-        } else if (Date.now() > new Date(this.state.data.endDate)) {
-          this.setState({
-            button: (
-              <button className = "button-go">
-                Event Passed
-              </button>
-            )
-          })
+        
         } else if (this.state.user.myEvents.includes(this.props.eventID)) {
           this.setState({
             button: (
@@ -83,6 +76,14 @@ class EventPage extends React.Component {
                 className="button-go"
                 onClick={this.deleteEvent}>
                   Delete this Event
+              </button>
+            )
+          })
+        } else if (Date.now() > new Date(this.state.data.endDate)) {
+          this.setState({
+            button: (
+              <button className = "button-go">
+                Event Passed
               </button>
             )
           })
