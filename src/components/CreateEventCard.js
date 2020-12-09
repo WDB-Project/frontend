@@ -376,7 +376,3 @@ class CreateEventCard extends Component {
 }
 
 export default CreateEventCard;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
