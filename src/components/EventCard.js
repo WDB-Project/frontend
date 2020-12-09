@@ -20,9 +20,15 @@ function daysLeft(event, condition) {
 }
 
 function displayLocation(event) {
+<<<<<<< Updated upstream
   console.log(event["state"]);
   const attributes = ["addressOne", "addressTwo", "city", "state", "zip"];
   var location = "";
+=======
+  console.log(event['state'])
+  const attributes = ['city', 'state']
+  var location = ''
+>>>>>>> Stashed changes
   for (const attribute of attributes) {
     if (event[attribute] !== "") location += event[attribute] + ", ";
   }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import {Redirect} from "react-router-dom"
-import TimePicker from "react-bootstrap-time-picker";
 
 import '../css/CreateEventCard.css'
 
@@ -13,22 +12,17 @@ class CreateEventCard extends Component {
     super(props);
     this.state = {
       submitted: false,
-      startTime: 0,
-      endTime: 0,
-      user: JSON.parse(localStorage.getItem('user'))
+      startTime: '12:00',
+      startDate: '1970-03-08',
+      endTime: '12:00',
+      endDate: '1970-03-08',
+      user: JSON.parse(localStorage.getItem('user')),
+      checked: false
     };
     this.nameRef = React.createRef();
     this.descriptionRef = React.createRef();
     this.tagRef = React.createRef();
     this.organizationRef = React.createRef();
-    this.startTimeRef = React.createRef();
-    this.startDayRef = React.createRef();
-    this.startMonthRef = React.createRef();
-    this.startYearRef = React.createRef();
-    this.endTimeRef = React.createRef();
-    this.endDayRef = React.createRef();
-    this.endMonthRef = React.createRef();
-    this.endYearRef = React.createRef();
     this.emailRef = React.createRef();
     this.websiteRef = React.createRef();
     this.imageRef = React.createRef();
@@ -39,79 +33,80 @@ class CreateEventCard extends Component {
     this.zipRef = React.createRef();
 
     this.createEvent = this.createEvent.bind(this);
-    this.handleTimeChangeStart = this.handleTimeChangeStart.bind(this);
-    this.handleTimeChangeEnd = this.handleTimeChangeEnd.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleCheck = this.handleCheck.bind(this)
   }
 
-  handleTimeChangeStart(time) {
-    this.setState({ startTime: time });
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleTimeChangeEnd(time) {
-    this.setState({ endTime: time });
+  handleCheck(event) {
+    this.setState({checked: !this.state.checked})
   }
 
   createEvent = (e) => {
-    e.preventDefault();
-    const start = Date.parse(
-      `${this.startDayRef.current.value} ${this.startMonthRef.current.value} ${this.startYearRef.current.value}`
-    ) + (this.state.startTime * 1000); // needs time
-    const end = Date.parse(
-      `${this.endDayRef.current.value} ${this.endMonthRef.current.value} ${this.endYearRef.current.value}`
-    ) + (this.state.endTime * 1000); // needs time
+    if (!this.state.checked) {
+      alert('Please confirm the details of your event')
+    } else {
+      e.preventDefault();
+      const start = Date.parse(
+        `${this.state.startDate} ${this.state.startTime}`
+      );
+      const end = Date.parse(
+        `${this.state.endDate} ${this.state.endTime}`
+      );
 
-    const eventAttributes = {
-      name: this.nameRef.current.value,
-      tag: this.tagRef.current.value,
-      image: this.imageRef.current.value,
-      description: this.descriptionRef.current.value,
-      addressOne: this.addressOneRef.current.value,
-      addressTwo: this.addressTwoRef.current.value,
-      city: this.cityRef.current.value,
-      state: this.stateRef.current.value,
-      zip: this.zipRef.current.value,
-      organization: this.organizationRef.current.value,
-      website: this.websiteRef.current.value,
-      contact: this.emailRef.current.value,
-      startDate: start,
-      endDate: end,
-    };
+      const eventAttributes = {
+        name: this.nameRef.current.value,
+        tag: this.tagRef.current.value,
+        image: this.imageRef.current.value,
+        description: this.descriptionRef.current.value,
+        addressOne: this.addressOneRef.current.value,
+        addressTwo: this.addressTwoRef.current.value,
+        city: this.cityRef.current.value,
+        state: this.stateRef.current.value,
+        zip: this.zipRef.current.value,
+        organization: this.organizationRef.current.value,
+        website: this.websiteRef.current.value,
+        contact: this.emailRef.current.value,
+        startDate: start,
+        endDate: end,
+      };
 
-    let config = {
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    };
+      let config = {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      };
 
-    axios
-      .post(url, eventAttributes, config)
-      .then(
-        (result) => {
-          if (result.data.message === "success") {
-            console.log("Event created successfully");
-            this.setState({ submitted: true });
-            axios.put("http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/create", {id: this.state.user._id, event: result.data.id}, config).then(
-              (result) => {
+      axios
+        .post(url, eventAttributes, config)
+        .then(
+          (result) => {
+            if (result.data.message === "success") {
+              console.log("Event created successfully");
+              this.setState({ submitted: true });
+              axios.put("http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/create", {id: this.state.user._id, event: result.data.id}, config).then(
+                (result) => {
 
-              }, (err) => {
-                console.log(err)
-              }
-            )
-          } else {
-            console.log("Failed to create Event");
+                }, (err) => {
+                  console.log(err)
+                }
+              )
+            } else {
+              this.setState({ submitted: false });
+              alert('Please fill in all the required fields')
+            }
+          },
+          (err) => {
             this.setState({ submitted: false });
-            // switch page to proper url
+            console.log(err)
           }
-        },
-        (err) => {
-          console.log("Error raised");
-          this.setState({ submitted: false });
-          console.log(err);
-        }
-      )
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
+        )
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
 
   render() {
     const cardStyle = {
@@ -131,6 +126,7 @@ class CreateEventCard extends Component {
               <Form.Group as={Col}>
                 <Form.Label className="title-text-style">Event Name</Form.Label>
                 <Form.Control
+                  required
                   ref={this.nameRef}
                   size="lg"
                   type="text"
@@ -144,7 +140,7 @@ class CreateEventCard extends Component {
               <Form.Group as={Col}>
                 <Form.Label className="title-text-style">Description</Form.Label>
                 <Form.Control
-                required
+                  required
                   ref={this.descriptionRef}
                   type="text"
                   className="placeholder-text-style"
@@ -154,6 +150,7 @@ class CreateEventCard extends Component {
               <Form.Group>
                 <Form.Label className="title-text-style">Organization</Form.Label>
                 <Form.Control
+                  required
                   ref={this.organizationRef}
                   type="text"
                   className="placeholder-text-style"
@@ -163,6 +160,7 @@ class CreateEventCard extends Component {
               <Form.Group as={Col}>
                 <Form.Label className="title-text-style">Tag</Form.Label>
                 <Form.Control
+                  required
                   className="placeholder-text-style"
                   ref={this.tagRef}
                   as="select">
@@ -179,102 +177,47 @@ class CreateEventCard extends Component {
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label className="title-text-style">Start Time:</Form.Label>
-                <TimePicker
+                <Form.Control
+                  required
                   className="placeholder-text-style"
-                  ref={this.startTimeRef}
-                  onChange={this.handleTimeChangeStart}
+                  onChange={this.handleChange}
                   value={this.state.startTime}
-                  start="00:00"
-                  end="23:45"
-                  step={15}
+                  name="startTime"
+                  type="time"
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label className="title-text-style">Start Date:</Form.Label>
+                <Form.Control
+                  required
+                  className="placeholder-text-style"
+                  onChange={this.handleChange}
+                  value={this.state.startDate}
+                  name="startDate"
+                  type="date"
                 />
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label className="title-text-style">End Time:</Form.Label>
-                <TimePicker
+                <Form.Control
+                  required
                   className="placeholder-text-style"
-                  ref={this.endTimeRef}
-                  onChange={this.handleTimeChangeEnd}
+                  onChange={this.handleChange}
                   value={this.state.endTime}
-                  start="00:00"
-                  end="23:45"
-                  step={15}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Label className="title-text-style">Day</Form.Label>
-                <Form.Control
-                  className="placeholder-text-style"
-                  ref={this.startDayRef}
-                  type="text"
-                  placeholder="1-31"
+                  name="endTime"
+                  type="time"
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label className="title-text-style">Month</Form.Label>
+                <Form.Label className="title-text-style">Start Date:</Form.Label>
                 <Form.Control
+                  required
                   className="placeholder-text-style"
-                  ref={this.startMonthRef}
-                  as="select">
-                  <option>January</option>
-                  <option>February</option>
-                  <option>March</option>
-                  <option>April</option>
-                  <option>May</option>
-                  <option>June</option>
-                  <option>July</option>
-                  <option>August</option>
-                  <option>September</option>
-                  <option>October</option>
-                  <option>November</option>
-                  <option>December</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label className="title-text-style">Year</Form.Label>
-                <Form.Control
-                  className="placeholder-text-style"
-                  ref={this.startYearRef}
-                  type="text" />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label className="title-text-style">Day</Form.Label>
-                <Form.Control
-                  className="placeholder-text-style"
-                  ref={this.endDayRef}
-                  type="text"
-                  placeholder="1-31"
+                  onChange={this.handleChange}
+                  value={this.state.endDate}
+                  name="endDate"
+                  type="date"
                 />
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label className="title-text-style">Month</Form.Label>
-                <Form.Control
-                  className="placeholder-text-style"
-                  ref={this.endMonthRef}
-                  as="select">
-                  <option>January</option>
-                  <option>February</option>
-                  <option>March</option>
-                  <option>April</option>
-                  <option>May</option>
-                  <option>June</option>
-                  <option>July</option>
-                  <option>August</option>
-                  <option>September</option>
-                  <option>October</option>
-                  <option>November</option>
-                  <option>December</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group as={Col}>
-                <Form.Label>Year</Form.Label>
-                <Form.Control
-                  className="placeholder-text-style"
-                  ref={this.endYearRef}
-                  type="text" />
               </Form.Group>
             </Form.Row>
 
@@ -302,6 +245,7 @@ class CreateEventCard extends Component {
               <Form.Group as={Col} controlId="formGridImage">
                 <Form.Label className="title-text-style">Image</Form.Label>
                 <Form.Control
+                  required
                   className="placeholder-text-style"
                   ref={this.imageRef}
                   type="text"
@@ -313,6 +257,7 @@ class CreateEventCard extends Component {
             <Form.Group controlId="formGridAddress1">
               <Form.Label className="title-text-style">Address</Form.Label>
               <Form.Control
+                required
                 className="placeholder-text-style"
                 ref={this.addressOneRef}
                 placeholder="1234 Main St"
@@ -332,6 +277,7 @@ class CreateEventCard extends Component {
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label className="title-text-style">City</Form.Label>
                 <Form.Control
+                  required
                   className="placeholder-text-style"
                   ref={this.cityRef}
                   type="text" />
@@ -340,79 +286,84 @@ class CreateEventCard extends Component {
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label className="title-text-style">State</Form.Label>
                 <Form.Control
+                  required
                   className="placeholder-text-style"
                   ref={this.stateRef}
-                  as="select">
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>Arizona</option>
-                  <option>Arkansas</option>
-                  <option>California</option>
-                  <option>Colorado</option>
-                  <option>Connecticut</option>
-                  <option>Delaware</option>
-                  <option>Florida</option>
-                  <option>Georgia</option>
-                  <option>Hawaii</option>
-                  <option>Idaho</option>
-                  <option>Illinois</option>
-                  <option>Indiana</option>
-                  <option>Iowa</option>
-                  <option>Kansas</option>
-                  <option>Kentucky</option>
-                  <option>Louisiana</option>
-                  <option>Maine</option>
-                  <option>Maryland</option>
-                  <option>Massachusetts</option>
-                  <option>Michigan</option>
-                  <option>Minnesota</option>
-                  <option>Mississippi</option>
-                  <option>Missouri</option>
-                  <option>Montana</option>
-                  <option>Nebraska</option>
-                  <option>Nevada</option>
-                  <option>New Hampshire</option>
-                  <option>New Jersey</option>
-                  <option>New Mexico</option>
-                  <option>New York</option>
-                  <option>North Carolina</option>
-                  <option>North Dakota</option>
-                  <option>Ohio</option>
-                  <option>Oklahoma</option>
-                  <option>Oregon</option>
-                  <option>Pennsylvania</option>
-                  <option>Rhode Island</option>
-                  <option>South Carolina</option>
-                  <option>South Dakota</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Utah</option>
-                  <option>Vermont</option>
-                  <option>Virginia</option>
-                  <option>Washington</option>
-                  <option>West Virginia</option>
-                  <option>Wisconsin</option>
-                  <option>Wyoming</option>
+                  as="select"
+                  defaultValue="CA"
+                >
+                  <option>AL</option>
+                  <option>AK</option>
+                  <option>AZ</option>
+                  <option>AR</option>
+                  <option>CA</option>
+                  <option>CO</option>
+                  <option>CT</option>
+                  <option>DE</option>
+                  <option>FL</option>
+                  <option>GA</option>
+                  <option>HI</option>
+                  <option>ID</option>
+                  <option>IL</option>
+                  <option>IN</option>
+                  <option>IA</option>
+                  <option>KS</option>
+                  <option>KY</option>
+                  <option>LA</option>
+                  <option>ME</option>
+                  <option>MD</option>
+                  <option>MA</option>
+                  <option>MI</option>
+                  <option>MN</option>
+                  <option>MS</option>
+                  <option>MO</option>
+                  <option>MT</option>
+                  <option>NE</option>
+                  <option>NV</option>
+                  <option>NH</option>
+                  <option>NJ</option>
+                  <option>NM</option>
+                  <option>NY</option>
+                  <option>NC</option>
+                  <option>ND</option>
+                  <option>OH</option>
+                  <option>OK</option>
+                  <option>OR</option>
+                  <option>PA</option>
+                  <option>RI</option>
+                  <option>SC</option>
+                  <option>SD</option>
+                  <option>TN</option>
+                  <option>TX</option>
+                  <option>UT</option>
+                  <option>VT</option>
+                  <option>VA</option>
+                  <option>WA</option>
+                  <option>WV</option>
+                  <option>WI</option>
+                  <option>WY</option>
                 </Form.Control>
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label className="title-text-style">Zip</Form.Label>
                 <Form.Control
+                  required
                   className="placeholder-text-style"
                   ref={this.zipRef}
                   type="text" />
               </Form.Group>
             </Form.Row>
 
-            {/* <Form.Group id="formGridCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
+            <Form.Group id="formGridCheckbox">
+              <Form.Check type="checkbox" onChange={this.handleCheck} checked={this.state.checked} name="checked" label="Confirm" />
+            </Form.Group>
 
             <div className="butn-padding">
               <Button
                 className="submit-button"
                 onClick={(e) => this.createEvent(e)}
+                type="submit"
               >
                 Submit
               </Button>
@@ -425,3 +376,7 @@ class CreateEventCard extends Component {
 }
 
 export default CreateEventCard;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
