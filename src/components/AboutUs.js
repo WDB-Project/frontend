@@ -89,7 +89,7 @@ class AboutUs extends Component {
               <div style={ItemPadding}>
                 <img className="rounded-circle" style={ImgStyle} src={Humans1} alt = ""></img>
                 <h4 className="d-flex justify-content-center people-text">
-                  Guatam
+                  Gautam
                 </h4>
                 <span className="d-flex justify-content-center align-items-center people-description-text" style={{height: 48}}>Back End Developer</span>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
