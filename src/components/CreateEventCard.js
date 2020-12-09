@@ -411,7 +411,7 @@ class CreateEventCard extends Component {
 
             <div className="butn-padding">
               <Button
-                className="submit-button-event-card"
+                className="submit-button"
                 onClick={(e) => this.createEvent(e)}
               >
                 Submit
