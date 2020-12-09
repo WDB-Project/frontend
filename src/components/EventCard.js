@@ -1,5 +1,5 @@
 import React from "react";
-
+import DefaultBlobs from '../images/DefaultBlobs.svg';
 import "../css/EventCard.css";
 
 function daysLeft(event, condition) {
@@ -43,12 +43,13 @@ function displayTime(timeInput) {
 }
 
 const EventCard = (props) => {
+  const image = (props.event.image !== "") ? props.event.image : DefaultBlobs
   return (
     <div>
       <a href={`/event/${props.event._id}`} className="link">
         <div className="padding-between-cards">
           <div className="image-spacing">
-            <img src={props.event.image} alt="event banner" />
+            <img src={image} alt="event banner" />
           </div>
           <div className="card-body">
             <h5 className="title-card primary-mont">{props.event.name}</h5>
