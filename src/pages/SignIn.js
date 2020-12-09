@@ -80,7 +80,7 @@ class SignIn extends React.Component {
                         <Form.Control ref={this.passwordRef} type="password" placeholder="Password" className="secondry-font"/>
                     </Form.Group>
 
-                    <Button className = "submitButton" id="login" onClick={(e) => this.loginAttempt(e)} variant="primary" type="submit">
+                    <Button className = "submit-button" id="login" onClick={(e) => this.loginAttempt(e)} variant="primary" type="submit">
                         Login
                     </Button>
                 </Form>
