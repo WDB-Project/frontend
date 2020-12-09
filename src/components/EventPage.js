@@ -33,9 +33,9 @@ class EventPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
-      isLoaded: false, 
-      user:  JSON.parse(localStorage.getItem("user")), 
+    this.state = {
+      isLoaded: false,
+      user:  JSON.parse(localStorage.getItem("user")),
       config: {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       }};
@@ -93,7 +93,7 @@ class EventPage extends React.Component {
                 onClick={this.deleteVolunteer}
                 ref={this.buttonRef}
               >
-                Leave Event
+              Leave Event
               </button>
             ),
           });
@@ -198,7 +198,7 @@ class EventPage extends React.Component {
     );
   };
 
-  
+
   deleteEvent = () => {
     axios.delete(url + `/events/delete?id=${this.props.eventID}`, this.state.config).then(
       (result) => {
@@ -229,22 +229,22 @@ class EventPage extends React.Component {
           <img className="title-image" src={this.state.data.image} alt="" />
         </div>
         <div className="eventpage-content">
-          <div className="name-signup">
+          <div className= "name-signup">
             <div className="name-wrap">
-              <h1 className="name">{this.state.data.name}</h1>
+              <h1 className="primary-mont name">{this.state.data.name}</h1>
             </div>
             <div className="signup">
               <p
-                className="detail-title-text"
+                className="detail-title-text primary-mont"
                 style={{ marginLeft: "20px", marginTop: "20px" }}
               >
                 SIGN UP
               </p>
 
               <div className="signup-cont">
-                <ol className="vol-wrapper">{this.state.volunteers}</ol>
+                <ol className="vol-wrapper secondary-sans">{this.state.volunteers}</ol>
               </div>
-              <div className="add-vol">{this.state.button}</div>
+              <div className="add-vol primary-mont">{this.state.button}</div>
             </div>
           </div>
           <div className="description">
@@ -252,12 +252,12 @@ class EventPage extends React.Component {
               <div className="detail-content">
                 <div className="description-wrapper-sub">
                   <p
-                    className="detail-title-text"
+                    className="detail-title-text primary-mont"
                     style={{ marginLeft: "20px", marginTop: "20px" }}
                   >
                     DESCRIPTION
                   </p>
-                  <p className="event-detail-text" style={{ marginLeft: 30, marginRight: 10 }}>
+                  <p className="event-detail-text secondary-sans" style={{ marginLeft: 30, marginRight: 10 }}>
                     {this.state.data.description}
                   </p>
                 </div>
@@ -269,12 +269,12 @@ class EventPage extends React.Component {
                         alt = ""
                         className="event-detail-icon"
                       ></img>
-                      <p className="detail-title-text">DATE:</p>
+                      <p className="detail-title-text primary-mont">DATE:</p>
                     </div>
-                    <p className="event-detail-text">
+                    <p className="event-detail-text secondary-sans">
                       Start: {displayTime(this.state.data.startDate)}
                     </p>
-                    <p className="event-detail-text">
+                    <p className="event-detail-text secondary-sans">
                       End: {displayTime(this.state.data.endDate)}
                     </p>
                   </div>
@@ -285,11 +285,11 @@ class EventPage extends React.Component {
                         alt=""
                         className="event-detail-icon"
                       ></img>
-                      <p className="detail-title-text">LOCATION:</p>
+                      <p className="detail-title-text primary-mont">LOCATION:</p>
                     </div>
-                    <a 
-                      href={`https://www.google.com/maps/search/?api=1&query=${displayLocation(this.state.data)}`} 
-                      className="event-detail-text"
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${displayLocation(this.state.data)}`}
+                      className="event-detail-text secondary-sans"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -303,9 +303,9 @@ class EventPage extends React.Component {
                         alt=""
                         className="event-detail-icon"
                       ></img>
-                      <p className="detail-title-text">CONTACT:</p>
+                      <p className="detail-title-text primary-mont">CONTACT:</p>
                     </div>
-                    <a className="event-detail-text" href={`mailto:${this.state.data.contact}?subject=${this.state.data.name}`}>
+                    <a className="event-detail-text secondary-sans" href={`mailto:${this.state.data.contact}?subject=${this.state.data.name}`}>
                       <span className="link-text">{this.state.data.contact}</span>
                     </a>
                   </div>
@@ -316,9 +316,9 @@ class EventPage extends React.Component {
                         alt=""
                         className="event-detail-icon"
                       ></img>
-                      <p className="detail-title-text">ORGANIZATION:</p>
+                      <p className="detail-title-text primary-mont">ORGANIZATION:</p>
                     </div>
-                    <p className="event-detail-text">
+                    <p className="event-detail-text secondary-sans">
                       Host: {this.state.data.organization}
                     </p>
                   </div>
@@ -329,10 +329,10 @@ class EventPage extends React.Component {
                         alt=""
                         className="event-detail-icon"
                       ></img>
-                      <p className="detail-title-text">WEBSITE:</p>
+                      <p className="detail-title-text primary-mont">WEBSITE:</p>
                     </div>
-                    <a 
-                      className="event-detail-text" 
+                    <a
+                      className="event-detail-text secondary-sans"
                       href={this.state.data.website}
                       target="_blank"
                       rel="noreferrer"
