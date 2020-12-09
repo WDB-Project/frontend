@@ -3,6 +3,7 @@ import Header from "./NavBar.js";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage"
 import { withRouter } from "react-router";
+import ConfettiGenerator from "confetti-js";
 
 import axios from "axios";
 const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
@@ -209,6 +210,18 @@ class EventPage extends React.Component {
     )
   }
 
+  confetti = () => {
+    if (this.state.data.name == "WDB Showcase Banquet") {
+      React.useEffect(() => {
+        const confettiSettings = { target: 'my-canvas' };
+        const confetti = new ConfettiGenerator(confettiSettings);
+        confetti.render();
+       
+        return () => confetti.clear();
+      }, [])
+    }
+  }
+
   render() {
     require('../css/EventPage.css')
     if (!this.state.isLoaded) {
@@ -219,7 +232,8 @@ class EventPage extends React.Component {
         return <LoadingPage />;
       }
     }
-
+    
+    this.confetti()
     return (
       <div className="wrapper">
         <div className="nav-bar">
