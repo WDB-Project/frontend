@@ -51,7 +51,7 @@ class EventPage extends React.Component {
           if (value) {
             volunteers.push(
               <li className="volunteer-list" key={index}>
-                {value.username}
+                {value.realname} (@{value.username})
               </li>
             );
           }
@@ -149,7 +149,7 @@ class EventPage extends React.Component {
   addVolunteer = () => {
     let body = {
       id: this.state.data._id,
-      volunteer: {username: this.state.user.username, _id: this.state.user._id},
+      volunteer: {realname: this.state.user.realname, username: this.state.user.username, _id: this.state.user._id},
     };
     axios.put(url + "/events/signup", body, this.state.config).then(
       (result) => {
@@ -171,7 +171,7 @@ class EventPage extends React.Component {
   deleteVolunteer = () => {
     let body = {
       id: this.state.data._id,
-      volunteer: {username: this.state.user.username, _id: this.state.user._id},
+      volunteer: {realname: this.state.user.realname, username: this.state.user.username, _id: this.state.user._id},
     };
     axios.put(url + "/events/leave", body, this.state.config).then(
       (result) => {
