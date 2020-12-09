@@ -20,13 +20,11 @@ function daysLeft(event, condition) {
 }
 
 function displayLocation(event) {
-  console.log(event['state'])
   const attributes = ['city', 'state']
   var location = ''
   for (const attribute of attributes) {
     if (event[attribute] !== "") location += event[attribute] + ", ";
   }
-  console.log(location);
   return location.slice(0, -2);
 }
 

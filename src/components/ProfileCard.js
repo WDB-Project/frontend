@@ -31,15 +31,9 @@ function getPopularTags(events, myEvents) {
     .concat(events.ongoing)
     .concat(events.upcoming);
   let list2 = myEvents;
-  // list2 = list2.concat(myEvents).concat(myEvents.ongoing).concat(myEvents.upcoming)
-  console.log("getpopular");
-  console.log(list1);
-  // console.log(list2)
-  console.log(myEvents);
 
   if (list1 !== null && list1 !== undefined && list1.length > 0) {
     for (let e of list1) {
-      console.log("eeee");
       console.log(e);
       let tag = e.tag;
       if (dict.hasOwnProperty(tag)) {
