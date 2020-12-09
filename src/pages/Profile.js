@@ -3,7 +3,6 @@
   import ErrorPage from "../components/ErrorPage";
   import ProfileCard from "../components/ProfileCard";
   import EventCard from "../components/EventCard";
-  import {Modal, Form, Button, Col } from "react-bootstrap";
   import { withRouter } from 'react-router-dom';
 
   import axios from "axios";
@@ -54,6 +53,54 @@
       </div>
     );
   };
+
+  const Repeater2 = (items) => {
+    const date = Date.now()
+    const displayItems = []
+    for (const event of items) {
+      if (event.startDate > date) {
+        const eventCard1 = (event) => {
+          return (
+          <div>
+            <ul>
+              <div class="individual-event">
+                <EventCard event={event} condition='start' />
+              </div>
+            </ul>
+          </div>
+          )
+        }
+        displayItems.push(eventCard1(event))
+      } else if (event.endDate > date) {
+        const eventCard2 = (event) => {
+          return (
+            <div>
+              <ul>
+                <div class="individual-event">
+                  <EventCard event={event} condition='ongoing' />
+                </div>
+              </ul>
+            </div>
+          )
+        }
+        displayItems.push(eventCard2(event))
+      } else {
+        const eventCard3 = (event) => {
+          return (
+            <div>
+              <ul>
+                <div class="individual-event">
+                  <EventCard event={event} condition='end' />
+                </div>
+              </ul>
+            </div>
+            )
+        }
+        displayItems.push(eventCard3(event))
+      }
+    }
+    return displayItems
+  }
 
   class Profile extends React.Component {
     _isMounted = false;
@@ -188,20 +235,20 @@
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">My Upcoming Events</p>
-                      <div>{myEvents(this.state.events.upcoming, 'start')}</div>
+                      <div>{myEvents(this.state.events.upcoming, 'ongoing')}</div>
                     </div>
                   </div>
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">My Past Events</p>
                     </div>
-                    {myEvents(this.state.events.past, 'ongoing')}
+                    {myEvents(this.state.events.past, 'past')}
                   </div>
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">Events Created By Me</p>
                     </div>
-                    {Repeater(this.state.myEvents, 'end')}
+                    {Repeater2(this.state.myEvents)}
                   </div>
                 </div>
               </div>
