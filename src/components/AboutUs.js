@@ -50,7 +50,7 @@ class AboutUs extends Component {
 
             <div className="d-flex flex-row justify-content-center justify-content-space-between move-down" >
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Dhruv}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Dhruv} alt = ""></img>
                 <div className="d-flex flex-column justify-content-center">
                   <h4 className="d-flex justify-content-center people-text">
                     Dhruv
@@ -59,16 +59,16 @@ class AboutUs extends Component {
                 </div>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
                   <a href="mailto:dvaish@berkeley.edu">
-                    <img src={Email} className="icon-style"/>
+                    <img src={Email} className="icon-style" alt = ""/>
                   </a>
                   <a href="https://www.linkedin.com/in/dhruv-vaish/">
-                    <img src={LinkedIn} className="icon-style"/>
+                    <img src={LinkedIn} className="icon-style" alt = ""/>
                   </a>
                 </div>
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Kim}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Kim} alt = ""></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Kim
                 </h4>
@@ -78,32 +78,32 @@ class AboutUs extends Component {
                 </div>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
                   <a href="mailto:kimberley.fan123@berkeley.edu">
-                    <img src={Email} className="icon-style"/>
+                    <img src={Email} className="icon-style" alt = ""/>
                   </a>
                   <a href="https://www.linkedin.com/in/kimberleyfan/">
-                    <img src={LinkedIn} className="icon-style"/>
+                    <img src={LinkedIn} className="icon-style" alt = ""/>
                   </a>
                 </div>
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Humans1}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Humans1} alt = ""></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Guatam
                 </h4>
                 <span className="d-flex justify-content-center align-items-center people-description-text" style={{height: 48}}>Back End Developer</span>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
                   <a href="mailto:gautamvenkatesh@berkeley.edu">
-                    <img src={Email} className="icon-style"/>
+                    <img src={Email} className="icon-style" alt = ""/>
                   </a>
                   <a href="https://google.com">
-                    <img src={LinkedIn} className="icon-style"/>
+                    <img src={LinkedIn} className="icon-style" alt = ""/>
                   </a>
                 </div>
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Isabel}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Isabel} alt = ""></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Isabel
                 </h4>
@@ -113,26 +113,26 @@ class AboutUs extends Component {
                 </div>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
                   <a href="mailto:izheng@berkeley.edu">
-                    <img src={Email} className="icon-style"/>
+                    <img src={Email} className="icon-style" alt = ""/>
                   </a>
                   <a href="https://www.linkedin.com/in/isabel-zheng-24003b1b2/">
-                    <img src={LinkedIn} className="icon-style"/>
+                    <img src={LinkedIn} className="icon-style" alt = ""/>
                   </a>
                 </div>
               </div>
 
               <div style={ItemPadding}>
-                <img className="rounded-circle" style={ImgStyle} src={Anjan}></img>
+                <img className="rounded-circle" style={ImgStyle} src={Anjan} alt = ""></img>
                 <h4 className="d-flex justify-content-center people-text">
                   Anjan
                 </h4>
                 <span className="d-flex justify-content-center align-items-center people-description-text" style={{height: 48}}>Back End Developer</span>
                 <div className="d-flex flex-row justify-content-center justify-content-around">
                   <a href="mailto:anjanb@berkeley.edu">
-                    <img src={Email} className="icon-style"/>
+                    <img src={Email} className="icon-style" alt = ""/>
                   </a>
                   <a href="https://www.linkedin.com/in/anjanbharadwaj/">
-                    <img src={LinkedIn} className="icon-style"/>
+                    <img src={LinkedIn} className="icon-style" alt = ""/>
                   </a>
                 </div>
               </div>
@@ -142,7 +142,7 @@ class AboutUs extends Component {
         :
           <div> {/*PRODUCT*/}
             <div className="d-flex flex-row justify-content-center justify-content-around align-items-center">
-              <img src={Humans2} className="humans-2"/>
+              <img src={Humans2} className="humans-2" alt = ""/>
               <h3 className="product-text">
                 Up&Coming allows anyone to find relevant upcoming events and aids in the creation of events.
                 It’s a convenient platform for you to share and relay information about your events and discover new events.
