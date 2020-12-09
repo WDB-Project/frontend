@@ -62,11 +62,19 @@ class EventPage extends React.Component {
         if (!this.state.user) {
           this.setState({
             button: (
-              <button className="button-go" ref={this.buttonRef}>
+              <button className="button-go">
                 Sign In to Join
               </button>
             ),
           });
+        } else if (Date.now() > new Date(this.state.data.endDate)) {
+          this.setState({
+            button: (
+              <button className = "button-go">
+                Event Passed
+              </button>
+            )
+          })
         } else if (this.state.user.myEvents.includes(this.props.eventID)) {
           this.setState({
             button: (
