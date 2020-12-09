@@ -9,9 +9,10 @@
 }
 
 .subtitle-style {
-  position: absolute;
-  left: 150px;
+  /* position: absolute;
+  left: 150px; */
   font-family: 'Open Sans', sans-serif;
+  padding-top: 15px;
 }
 
 .card-padding {

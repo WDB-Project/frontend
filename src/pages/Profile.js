@@ -11,7 +11,7 @@
 
   function myEvents(data, condition) {
     return data && data.length > 0 ? (
-      Repeater(data, condition)
+      Repeater2(data, condition)
     ) : (
       <p className="secondary-sans" id="nothing-to-see">Nothing to see here...</p>
     );
@@ -33,7 +33,7 @@
   };
 
   const Repeater = (items, condition) => {
-    console.log(items);
+    console.log(condition)
     if (!items || items.length === 0) {
       return <p className = "secondary-sans" id="nothing-to-see">Nothing to see here...</p>;
     }
@@ -42,6 +42,7 @@
         <ul>
           <div>
             {items.map((event) => {
+              console.log(<EventCard event={event} condition={condition} />)
               return (
                 <div class="individual-event">
                   <EventCard event={event} condition={condition} />
@@ -235,20 +236,20 @@
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">My Upcoming Events</p>
-                      <div>{myEvents(this.state.events.upcoming, 'upcoming')}</div>
+                      <div>{myEvents(this.state.events.upcoming)}</div>
                     </div>
                   </div>
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">My Ongoing Events</p>
-                      <div>{myEvents(this.state.events.ongoing, 'ongoing')}</div>
+                      <div>{myEvents(this.state.events.ongoing)}</div>
                     </div>
                   </div>
                   <div className="event-type">
                     <div className="banner">
                       <p className="banner-text primary-mont">My Past Events</p>
+                      <div>{myEvents(this.state.events.past)}</div>
                     </div>
-                    {myEvents(this.state.events.past, 'past')}
                   </div>
                   <div className="event-type">
                     <div className="banner">

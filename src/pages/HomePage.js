@@ -14,10 +14,10 @@ class HomePage extends Component{
         <Header />
 
         <div className="d-flex flex-row justify-content-around align-items-center" style={{height: 600, backgroundColor: '#F1F7ED'}}>
-          <div>
+          <div className="d-flex flex-column">
             <h1 className="title-style">Up&Coming</h1>
             <h4 className="subtitle-style">
-              bring your events to life!
+              Bring your events to life!
             </h4>
           </div>
           <div>
