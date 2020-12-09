@@ -61,7 +61,7 @@
 
 .signup {
   background-color: white;
-  min-height: 58%;
+  min-height: 45.5%;
   margin-left: 20%;
   width: 100%;
   margin-top: 10%;
@@ -81,7 +81,6 @@
   width: 75%;
   background-color: #fff;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  min-height: 60%;
   overflow-y: auto;
   border-radius: 7px;
 }
