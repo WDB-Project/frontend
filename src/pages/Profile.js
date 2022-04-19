@@ -6,7 +6,8 @@ import EventCard from "../components/EventCard";
 import { withRouter } from "react-router-dom";
 
 import axios from "axios";
-const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
+const url = "http://localhost:3030/profile/" 
+// `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/profile/`;
 
 function myEvents(data, condition) {
   return data && data.length > 0 ? (

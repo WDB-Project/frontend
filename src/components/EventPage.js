@@ -6,7 +6,8 @@ import { withRouter } from "react-router";
 import Confetti from 'react-confetti'
 
 import axios from "axios";
-const url = `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
+const url = "http://localhost:3030"
+// `http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com`;
 
 function displayLocation(event) {
   const attributes = ['addressOne', 'addressTwo', 'city', 'state', 'zip']
@@ -227,7 +228,7 @@ class EventPage extends React.Component {
     }
 
     var confetti;
-    if (this.state.data.name == "WDB Showcase Banquet") {
+    if (this.state.data.name === "WDB Showcase Banquet") {
       confetti = <Confetti width ={this.state.width} height = {this.state.height}/>
     } else {
       confetti = ""

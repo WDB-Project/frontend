@@ -5,7 +5,8 @@ import {Redirect} from "react-router-dom"
 import '../css/CreateEventCard.css'
 
 import axios from "axios";
-const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/create";
+const url = "http://localhost:3030/events/create"
+// "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/create";
 
 class CreateEventCard extends Component {
   constructor(props) {

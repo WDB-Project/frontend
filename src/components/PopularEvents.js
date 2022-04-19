@@ -4,7 +4,8 @@ import { Card, ListGroup, Row, Col } from 'react-bootstrap';
 import "../css/PopularEvents.css"
 
 import axios from 'axios'
-const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get"
+const url = "http://localhost:3030/events/get"
+// "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get"
 
 const EventRow = ({ event }) => {
   return (

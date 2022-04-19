@@ -6,7 +6,8 @@ import { withRouter } from 'react-router-dom';
 import "../css/SignIn.css"
 
 import axios from 'axios'
-const url = "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
+const url = "http://localhost:3030/auth/" 
+// "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/auth/"
 
 class SignIn extends React.Component {
     constructor(props) {

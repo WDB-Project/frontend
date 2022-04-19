@@ -7,8 +7,8 @@ import LoadingPage from "../components/LoadingPage.js";
 import "../css/BrowseContent.css";
 
 import axios from "axios";
-const url =
-  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
+const url = "http://localhost:3030/events/get"
+//  "http://upandcoming-env.eba-icsyb2cg.us-east-1.elasticbeanstalk.com/events/get";
 
 function Repeater(items, condition) {
   if (items === undefined) {
